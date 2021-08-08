@@ -1,8 +1,10 @@
 <script>
+  import './account/mypage.css'
   import './styles.scss';
   import { Router, Link, Route } from 'svelte-routing';
   import About from './About.svelte';
   import Products from './products/Products.svelte';
+  import Account from './account/Mypage.svelte';
 
   import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
 
@@ -20,6 +22,7 @@
         </Route>
         <Route path="/products" component={Products} />
         <Route path="/about" component={About} />
+        <Route path="/account" component={Account} />
         <Route path="**" component={PageNotFound} />
       </div>
     </main>
