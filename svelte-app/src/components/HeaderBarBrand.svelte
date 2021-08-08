@@ -73,13 +73,22 @@
   .new_login a{
     color: black;
   }
+
+  @media screen and (max-width: 1024px) {
+    .new_login{
+      width: 100%;
+    }
+    .new_navbar {
+      width: 100%;
+    }
+  }
 </style>
 
 
 <div class="new_navbar">
   <div class="new_dropdown">
     <button class="new_dropbtn">
-      <img src="./logo.png" alt="멜하는감자" />
+      <img src="./logo.png" alt="멜하는감자" /> <!--TODO 이미지 불러오기&반응형으로-->
     </button>
   </div>
 
@@ -128,6 +137,6 @@
   </div>
 </div>
 <div class="new_login">
-  <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인/회원가입</a>
+  <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인 / 회원가입</a>
 </div>
 
