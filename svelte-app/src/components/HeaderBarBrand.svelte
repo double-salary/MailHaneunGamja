@@ -128,6 +128,6 @@
   </div>
 </div>
 <div class="new_login">
-  <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인</a>
+  <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인/회원가입</a>
 </div>
 
