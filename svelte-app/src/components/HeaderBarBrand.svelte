@@ -19,6 +19,7 @@
   .new_dropdown {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   
   .new_dropdown .new_dropbtn {
@@ -39,7 +40,7 @@
   .new_dropdown-content {
     display: none;
     position: absolute;
-    margin-top: 40px;
+    margin-top: 180px;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -65,13 +66,16 @@
 
   .new_login{
     width: 30%;
-    margin-top: 32px;
+    margin-top: 18px;
     display: flex;
     justify-content: center;
   }
 
   .new_login a{
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   @media screen and (max-width: 1024px) {
@@ -88,7 +92,7 @@
 <div class="new_navbar">
   <div class="new_dropdown">
     <button class="new_dropbtn">
-      <img src="./logo.png" alt="멜하는감자" /> <!--TODO 이미지 불러오기&반응형으로-->
+      <img src="./logo.png" alt="멜하는감자" style="height: 40px"/> <!--TODO 이미지 불러오기&반응형으로-->
     </button>
   </div>
 
