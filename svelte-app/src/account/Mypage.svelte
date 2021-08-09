@@ -1,5 +1,5 @@
 <script>
-    import { preventDefault } from "svelte/internal";
+    //import { preventDefault } from "svelte/internal";
 
     let name="김시연";
     let major="자유전공학부";
@@ -9,45 +9,59 @@
     };
 
 
-    let bookmark1 = ["성적", "점수문의", "시험 사항 확인 문제 조회"];
-    let bookmark2 = ["수강신청", "", "정원외 수강신청 가능 여부"];
-    let bookmark3 = ["수업 이외", "", "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"]
-
+    // let bookmark1 = ["성적", "점수문의", "시험 사항 확인 문제 조회"];
+    // let bookmark2 = ["수강신청", "", "정원외 수강신청 가능 여부"];
+    // let bookmark3 = ["수업 이외", "", "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"]
+    
+    let bookmarks = [
+        { lc : "성적", mc: "점수문의", sc: "시험 사항 확인 문제 조회"},
+        { lc: "수강신청", mc: "", sc: "정원외 수강신청 가능 여부"},
+        { lc: "수업 이외", mc: "", sc: "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"}
+    ]
 
     let editing = false;
 </script>
     
 
 
-<div class="info-container">
-    <div>개인 정보</div>
-    <label>
-        <input type=checkbox bind:checked={editing}>
+<div id="info-container">
+    <div class="info-title">개인 정보</div>
+    <label class="editing-btn">
+        <input class="checkbox-rec" type=checkbox bind:checked={editing}>
         수정하기
     </label>
     <hr>
     
     {#if editing}
-            <!-- 수정하기 form -->
-        <!-- <form on:submit|preventDefault={handleSubmit}>      
-            <input type="text" placeholder="" bind:value={name} />
-            <input type="text" placeholder="" bind:value={major} />
-            <input type="text" placeholder="" bind:value={studentId} />
-            <button>Add Person</button>
-        </form> -->
+        <ul id="editing-ul">
+            <li class="info-box info-box1">
+                <div class="name-label">이름</div>
+                <input class="input-name" type="text" placeholder="(예) 홍길동" bind:value={name} />
+            </li>
+            <li class="info-box info-box2"> 
+                <div class="major-label">학과</div>
+                <input class="input-major" type="text" placeholder="(예) 영어영문학과" bind:value={major} />
+            </li>
+            <li class="info-box info-box3">
+                <div class="studentId-label">학번</div>
+                <input class="input-studentId" type="text" placeholder="(예) 18학번 또는 2021-12345" bind:value={studentId} />
+            </li>
+        </ul>
+        <!-- 수정하기 form -->          
+
     {:else}
-        <ul>
-            <li>
-                <div>이름</div>
-                <div>{name}</div>
+        <ul id="static-ul">
+            <li class="info-box info-box1">
+                <div class="name-label">이름</div>
+                <div class="name-info">{name}</div>
             </li>
-            <li>
-                <div>학과</div>
-                <div>{major}</div>
+            <li class="info-box info-box2"> 
+                <div class="major-label">학과</div>
+                <div class="major-info">{major}</div>
             </li>
-            <li>
-                <div>학번</div>
-                <div>{studentId}</div>
+            <li class="info-box info-box3">
+                <div class="studentId-label">학번</div>
+                <div class="studentId-info">{studentId}</div>
             </li>
         </ul>
     {/if}
@@ -58,29 +72,19 @@
 
 <br/><br/>
 
-<div class="bookmark-container">
-    <div>자주 찾는 양식</div>
+<div id="bookmark-container">
+    <div class="bookmark-title">자주 찾는 양식</div>
     <hr>
     <ul>
-        <li>
-            <div>
-                <div>{bookmark1[0]}</div>
-                <div>{bookmark1[1]}</div>
-            </div>
-            <div>{bookmark1[2]}</div>
-        </li>
-        <li>
-            <div>
-                <div>{bookmark2[0]}</div>
-            </div>
-            <div>{bookmark2[2]}</div>
-        </li>
-        <li>
-            <div>
-                <div>{bookmark3[0]}</div>
-            </div>
-            <div>{bookmark3[2]}</div>
-        </li>
+        {#each bookmarks as { lc, mc, sc }}
+            <li class="bookmark-box">
+                <div class="bookmark-lcmc">
+                    <div class="large-category">{ lc }</div>
+                    <div class="medium-category">{ mc }</div>
+                </div>
+                <div class="small-category">{ sc }</div>
+            </li>
+	    {/each}
     </ul>
 
 </div>

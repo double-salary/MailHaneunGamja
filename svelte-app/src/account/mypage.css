@@ -1,4 +1,39 @@
-.content-container{
-    color: red;
-    font-weight: bold;
-}
+hr{}
+#info-container{}
+
+.info-title{font-size: 3rem;}
+.editing-btn{}
+.checkbox-rec{}
+
+#info-container ul{}
+#editing-ul{}
+.info-box{border:1px solid black;} /*1,2,3*/
+
+.name-label{}
+.major-label{}
+.studentId-label{}
+
+.input-name{}
+.input-major{}
+.input-studentId{}
+
+#static-ul{}
+
+.name-info{}
+.major-info{}
+.studentId-info{}
+
+
+
+#bookmark-container{}
+
+.bookmark-title{font-size: 3rem;}
+
+#bookmark-container ul{}
+.bookmark-box{border:1px solid black;}
+
+.bookmark-lcmc{}
+.large-category{}
+.medium-category{}
+.small-category{}
+
