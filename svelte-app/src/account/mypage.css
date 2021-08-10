@@ -1,0 +1,56 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+*{font-family: 'NanumSquareOTF_ac', 'NanumSquare'}
+
+hr{}
+#info-container{
+    border: 1px solid #9189EB; 
+    width: 70%;
+    margin: 0 15%;
+}
+.info-title-wrap{}
+.info-title{font-size: 3rem; color: #9189EB; font-weight: bold;}
+
+.editing-btn{color: #9189EB; float: right;}
+.checkbox-rec{display: none;}
+
+#info-container ul{}
+#editing-ul{}
+.info-box{border:1px solid #9189EB; border-radius: 5px; margin-bottom: 0.7rem; padding: 0.3rem;} /*1,2,3*/
+
+.name-label{color: #9189EB;}
+.major-label{color: #9189EB;}
+.studentId-label{color: #9189EB;}
+
+.input-name{}
+.input-major{}
+.input-studentId{}
+
+#static-ul{}
+
+.name-info{}
+.major-info{}
+.studentId-info{}
+
+
+
+#bookmark-container{
+    border: 1px solid #9189EB;
+    width: 70%;
+    margin: 0 15%;
+}
+
+.bookmark-title{font-size: 3rem; color: #9189EB; font-weight: bold;}
+
+#bookmark-container ul{}
+.bookmark-box{border:1px solid #9189EB; overflow: hidden; border-radius: 5px; margin-bottom: 0.7rem; padding: 0.3rem;}
+
+.bookmark-categories{
+    width: 60%;
+    float:left;
+}
+.bookmark-lcmc{overflow: hidden;}
+.large-category{background-color: #9189EB; color:white; float:left;}
+.medium-category{color: #9189EB; float:left}
+.small-category{}
+.bookmark-box svg{float:left;}
+
