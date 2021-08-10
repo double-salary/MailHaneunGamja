@@ -13,7 +13,11 @@
   <div class="new_dropdown">
     <button class="new_dropbtn"
       >성적
-      <i class="fa fa-caret-down" />
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
     </button>
     <div class="new_dropdown-content">
       <a href="#">Link 1</a>
@@ -25,7 +29,11 @@
   <div class="new_dropdown">
     <button class="new_dropbtn"
       >수업
-      <i class="fa fa-caret-down" />
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
     </button>
     <div class="new_dropdown-content">
       <a href="#">Link 1</a>
@@ -37,7 +45,11 @@
   <div class="new_dropdown">
     <button class="new_dropbtn"
       >수강신청
-      <i class="fa fa-caret-down" />
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
     </button>
     <div class="new_dropdown-content">
       <a href="#">Link 1</a>
@@ -49,7 +61,11 @@
   <div class="new_dropdown">
     <button class="new_dropbtn"
       >기타
-      <i class="fa fa-caret-down" />
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
     </button>
     <div class="new_dropdown-content">
       <a href="#">Link 1</a>
@@ -69,7 +85,9 @@
     width: 70%; /*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 width 100%로 사용)*/
     display: flex;
     justify-content: space-evenly; /*적당히 가운데 몰리게*/
-    margin-top: 18px;
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 90px;
   }
 
   .new_navbar a {
@@ -82,25 +100,39 @@
 
   .new_dropdown {
     display: flex;
-    flex-direction: column;
     justify-content: center; /*가운데정렬*/
   }
 
   .new_dropdown .new_dropbtn {
-    font-size: 16px;
+    font-family: 'NanumSquare';
+    font-size: 20px;
+    font-weight: bold;
     border: none;
     outline: none;
-    color: black;
+    color: var(--darkGray-text);
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .new_dropbtn:hover {
+    color: var(--purple-main);
+    fill: var(--purple-main);
+  }
+
+  .new_dropbtn_img {
+    max-width: 9px;
+    margin-left: 6px;
   }
 
   .new_dropdown-content {
     display: none;
     position: absolute;
-    margin-top: 180px; /*메뉴 hover했을때 하단 메뉴가 바로 아래에 위치하게 하는 용도*/
+    margin-top: 70px; /*메뉴 hover했을때 하단 메뉴가 바로 아래에 위치하게 하는 용도*/
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -126,17 +158,25 @@
 
   .new_login {
     width: 30%; /*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 100%로 사용)*/
-    margin-top: 18px;
     display: flex;
     justify-content: center; /*가운데정렬*/
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 90px;
   }
 
   .new_login a {
-    font-size: 16px;
-    color: black;
+    font-family: 'NanumSquare';
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center; /*가운데정렬*/
+    margin: 20px 0px;
+    padding: 0px 12px;
+    background-color: var(--purple-main);
+    border-radius: 16px;
   }
 
   /*new_navbar와 new_login 화면좁아서 개행되면 width 100%로 사용)*/
