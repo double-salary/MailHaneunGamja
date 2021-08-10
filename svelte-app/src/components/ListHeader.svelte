@@ -21,7 +21,8 @@
   <button
     class="button refresh-button"
     on:click={() => dispatch('refresh')}
-    aria-label="refresh">
+    aria-label="refresh"
+  >
     <i class="fas fa-sync" aria-hidden="true" />
   </button>
 </div>
