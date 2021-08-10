@@ -1,7 +1,9 @@
 <script>
   import './account/mypage.css';
   import './mails/Mails.css';
+  import './landings/landings.css';
   import './styles.scss';
+  import './global.css';
   import { Router, Link, Route } from 'svelte-routing';
   import About from './About.svelte';
   import Products from './products/Products.svelte';
@@ -9,12 +11,24 @@
   import Mails from './mails/Mails.svelte';
 
   import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
+  import Landings from './landings/Landings.svelte';
 
   export let url = '';
 </script>
 
+<svelte:head>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css"
+  />
+</svelte:head>
+
+
 <HeaderBar />
-<div class="section columns">
+<Landings />
+
+<!-- <div class="section columns">
   <Router {url}>
     <NavBar />
     <main class="column">
@@ -30,4 +44,9 @@
       </div>
     </main>
   </Router>
-</div>
+
+</div> -->
+
+<style>
+  
+</style>
