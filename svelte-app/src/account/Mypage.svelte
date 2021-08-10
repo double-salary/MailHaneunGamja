@@ -13,11 +13,20 @@
     // let bookmark3 = ["수업 이외", "", "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"]
     
     let bookmarks = [
-        { lc : "성적", mc: "점수문의", sc: "시험 사항 확인 문제 조회"},
-        { lc: "수강신청", mc: "", sc: "정원외 수강신청 가능 여부"},
-        { lc: "수업 이외", mc: "", sc: "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"}
+        { marked: true, lc: "성적", mc: "점수문의", sc: "시험 사항 확인 문제 조회"},
+        { marked: true, lc: "수강신청", sc: "정원외 수강신청 가능 여부"},
+        { marked: true, lc: "수업 이외", sc: "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"},
+        { marked: true, lc:"lc", mc:"mc", sc:"sc"}
     ]
 
+    // function unmark(index) {
+    //     console.log(index);
+    //     bookmarks[index].marked = false;
+    //     bookmarks.splice(index, 1);
+    //     bookmarks = bookmarks.filter(t => t.marked);
+    //     console.log(bookmarks);
+	// }
+    
     let editing = false;
 </script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
@@ -81,19 +90,25 @@
     <div class="bookmark-title">자주 찾는 양식</div>
     <hr>
     <ul>
-        {#each bookmarks as { lc, mc, sc }}
+        {#each bookmarks as bookmark, id }
             <li class="bookmark-box">
                 <div class="bookmark-categories">
                     <div class="bookmark-lcmc">
-                        <div class="large-category">{ lc }</div>
-                        <div class="medium-category">{ mc }</div>
+                        <div class="large-category">{ bookmark.lc }</div>
+                        {#if bookmark.mc == undefined}<div></div> {:else}<div class="medium-category">{ bookmark.mc }</div>{/if}
+                        
                     </div>
-                    <div class="small-category">{ sc }</div>
+                    <div class="small-category">{ bookmark.sc }</div>
                 </div>
 
-                <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.72141 0.96167H5.75796H10.242H10.2786H10.2786C11.1037 0.961661 11.7754 0.961653 12.3206 1.0062C12.884 1.05223 13.3882 1.15011 13.8577 1.38931C14.596 1.76548 15.1962 2.36571 15.5724 3.10398C15.8116 3.57344 15.9094 4.07766 15.9555 4.64105C16 5.18629 16 5.85799 16 6.68309V6.71963V20.1719C16 20.4807 15.8356 20.7661 15.5685 20.9211C15.3015 21.0761 14.9721 21.0772 14.704 20.924L9.1882 17.7721C8.54828 17.4064 8.39012 17.3274 8.24162 17.2962C8.08229 17.2626 7.91771 17.2626 7.75837 17.2962C7.60988 17.3274 7.45172 17.4064 6.81179 17.7721L1.29602 20.924C1.02791 21.0772 0.698528 21.0761 0.431452 20.9211C0.164377 20.7661 0 20.4807 0 20.1719V6.71963V6.68308V6.68307C-9.37508e-06 5.85798 -1.70097e-05 5.18629 0.044531 4.64105C0.0905613 4.07766 0.188438 3.57344 0.427644 3.10398C0.803809 2.36571 1.40404 1.76548 2.14231 1.38931C2.61177 1.15011 3.11599 1.05223 3.67938 1.0062C4.22462 0.961653 4.89631 0.961661 5.7214 0.96167H5.72141Z" fill="#9189EB"/>
-                </svg>                    
+                <div>
+                    <img src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
+                </div>
+
+                <!-- <div on:click="{unmark({id})}">
+                    <img src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
+                </div> -->
+
             </li>
 	    {/each}
     </ul>
