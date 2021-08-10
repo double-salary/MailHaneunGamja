@@ -9,9 +9,9 @@
   import Products from './products/Products.svelte';
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
+  import Landing from './landings/Landing.svelte';
 
   import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
-  import Landings from './landings/Landings.svelte';
 
   export let url = '';
 </script>
@@ -24,29 +24,18 @@
   />
 </svelte:head>
 
-
 <HeaderBar />
-<Landings />
 
-<!-- <div class="section columns">
-  <Router {url}>
-    <NavBar />
-    <main class="column">
-      <div>
-        <Route path="/">
-          <Redirect path="/products" />
-        </Route>
-        <Route path="/products" component={Products} />
-        <Route path="/about" component={About} />
-        <Route path="/account" component={Account} />
-        <Route path="/mails" component={Mails} />
-        <Route path="**" component={PageNotFound} />
-      </div>
-    </main>
-  </Router>
-
-</div> -->
+<Router {url}>
+  <Route path="/">
+    <Redirect path="/landing" />
+  </Route>
+  <Route path="/landing" component={Landing} />
+  <Route path="/about" component={About} />
+  <Route path="/account" component={Account} />
+  <Route path="/mails" component={Mails} />
+  <Route path="**" component={PageNotFound} />
+</Router>
 
 <style>
-  
 </style>
