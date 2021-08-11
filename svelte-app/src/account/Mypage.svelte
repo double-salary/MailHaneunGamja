@@ -1,4 +1,7 @@
+<svelte:options immutable={false}/>
+
 <script>
+    import MutableTodo from './MutableTodo.svelte';
 
     let name="김시연";
     let major="자유전공학부";
@@ -6,26 +9,35 @@
     const handleSubmit = () => {
         console.log(name, major, studentId);
     };
-
-
-    // let bookmark1 = ["성적", "점수문의", "시험 사항 확인 문제 조회"];
-    // let bookmark2 = ["수강신청", "", "정원외 수강신청 가능 여부"];
-    // let bookmark3 = ["수업 이외", "", "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"]
     
-    let bookmarks = [
+    $: bookmarks = [
         { marked: true, lc: "성적", mc: "점수문의", sc: "시험 사항 확인 문제 조회"},
         { marked: true, lc: "수강신청", sc: "정원외 수강신청 가능 여부"},
         { marked: true, lc: "수업 이외", sc: "교수님을 만나뵙기 위해 날을 잡아야 하는 상황"},
-        { marked: true, lc:"lc", mc:"mc", sc:"sc"}
     ]
 
-    // function unmark(index) {
-    //     console.log(index);
-    //     bookmarks[index].marked = false;
-    //     bookmarks.splice(index, 1);
-    //     bookmarks = bookmarks.filter(t => t.marked);
-    //     console.log(bookmarks);
-	// }
+    function toggle(index) {
+        bookmarks = bookmarks.map(bookmark => {
+            if (bookmark === bookmarks[index]){
+                console.log(bookmark.id);
+                return {
+                    index,
+                    marked: !bookmark.marked,
+                    lc: bookmark.lc,
+                    mc: bookmark.mc,
+                    sc: bookmark.sc
+                };
+            }
+            return bookmark;
+        });
+        clear(index);
+    }
+
+    function clear(index) {
+        console.log(bookmarks);
+        bookmarks = bookmarks.filter(b => b.marked);
+        console.log(bookmarks);
+    }
     
     let editing = false;
 </script>
@@ -90,26 +102,8 @@
     <div class="bookmark-title">자주 찾는 양식</div>
     <hr>
     <ul>
-        {#each bookmarks as bookmark, id }
-            <li class="bookmark-box">
-                <div class="bookmark-categories">
-                    <div class="bookmark-lcmc">
-                        <div class="large-category">{ bookmark.lc }</div>
-                        {#if bookmark.mc == undefined}<div></div> {:else}<div class="medium-category">{ bookmark.mc }</div>{/if}
-                        
-                    </div>
-                    <div class="small-category">{ bookmark.sc }</div>
-                </div>
-
-                <div>
-                    <img src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
-                </div>
-
-                <!-- <div on:click="{unmark({id})}">
-                    <img src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
-                </div> -->
-
-            </li>
+        {#each bookmarks as bookmark, id}
+                <MutableTodo {bookmark} on:click = "{() => toggle(id)}"></MutableTodo>
 	    {/each}
     </ul>
 

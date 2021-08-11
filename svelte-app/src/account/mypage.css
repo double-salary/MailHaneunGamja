@@ -49,5 +49,5 @@ hr{margin:0 0 1rem !important;}
 .large-category{margin-right: 0.5rem; border-radius: 7px; padding: 0 0.5rem; background-color: #9189EB; color:white; float:left;}
 .medium-category{border:1px solid #9189EB; border-radius: 7px; padding: 0 0.5rem; color: #9189EB; float:left}
 .small-category{margin-left: 0.3rem;}
-.bookmark-box img{float:right; position:relative; top: 1rem; right: 1rem; filter: invert(68%) sepia(44%) saturate(4440%) hue-rotate(208deg) brightness(96%) contrast(92%);}
+.bookmark-box img{cursor: pointer;  float:right; position:relative; top: 1rem; right: 1rem; filter: invert(68%) sepia(44%) saturate(4440%) hue-rotate(208deg) brightness(96%) contrast(92%);}
 
