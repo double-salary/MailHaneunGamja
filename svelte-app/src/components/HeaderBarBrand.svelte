@@ -61,11 +61,9 @@
   <div class="new_dropdown">
     <button class="new_dropbtn"
       >기타
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
+      <svg class="new_dropbtn_img" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.165973 0.165973C0.38727 -0.0553243 0.746063 -0.0553243 0.96736 0.165973L4.56667 3.76528L8.16597 0.165973C8.38727 -0.0553243 8.74606 -0.0553243 8.96736 0.165973C9.18866 0.38727 9.18866 0.746063 8.96736 0.96736L4.96736 4.96736C4.74606 5.18866 4.38727 5.18866 4.16597 4.96736L0.165973 0.96736C-0.0553243 0.746063 -0.0553243 0.38727 0.165973 0.165973Z" fill="#3F424D"/>
+      </svg>        
     </button>
     <div class="new_dropdown-content">
       <a href="#">Link 1</a>
@@ -76,10 +74,10 @@
 </div>
 <div class="new_login">
   {#if !userInfo}
-    <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인 / 회원가입</a>
+    <a href="/.auth/login/google?post_login_redirect_uri=/landing/">로그인 / 회원가입</a>
   {/if}
   {#if userInfo}
-    <a href="/.auth/logout?post_logout_redirect_uri=/products/">로그아웃</a>
+    <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
 
@@ -130,6 +128,10 @@
   .new_dropbtn_img {
     max-width: 9px;
     margin-left: 6px;
+  }
+
+  .new_dropbtn_img:hover{
+    fill: var(--purple-main);
   }
 
   .new_dropdown-content {
