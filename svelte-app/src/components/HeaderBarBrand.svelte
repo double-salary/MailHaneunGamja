@@ -67,7 +67,7 @@
     <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
-    <a href="#" style="margin-right:10px;">x번째 말하는 감자</a> <!--TODO 마이페이지로 연결 필요-->
+    <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
