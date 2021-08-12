@@ -21,9 +21,9 @@
         />
       </button>
       <div class="new_dropdown-content">
-        <Link to='grades/corrections/'><span>성적정정</span></Link>
-        <Link to='grades/inquiries/'><span>점수문의</span></Link>
-        <Link to='grades/evaluations/'><span>평가방식</span></Link>
+        <Link to='grades/corrections/1'><span>성적정정</span></Link>
+        <Link to='grades/inquiries/1'><span>점수문의</span></Link>
+        <Link to='grades/evaluations/1'><span>평가방식</span></Link>
       </div>
     </div>
 
@@ -37,8 +37,8 @@
         />
       </button>
       <div class="new_dropdown-content">
-        <Link to='courses/submissions/'><span>과제제출</span></Link>
-        <Link to='courses/attendence/'><span>출결사항</span></Link>
+        <Link to='courses/submissions/1'><span>과제제출</span></Link>
+        <Link to='courses/attendence/1'><span>출결사항</span></Link>
       </div>
     </div>
 
@@ -52,15 +52,15 @@
         />
       </button>
       <div class="new_dropdown-content">
-        <Link to='registration/exception/'><span>정원외 수강신청</span></Link>
-        <Link to='registration/rule/'><span>이수규정</span></Link>
+        <Link to='registration/exception/1'><span>정원외 수강신청</span></Link>
+        <Link to='registration/rule/1'><span>이수규정</span></Link>
       </div>
     </div>
 
     <div class="new_dropdown">
       <button class="new_dropbtn" style="cursor: pointer"
         >
-        <Link to='others/'><span>기타문의</span></Link>
+        <Link to='others/1'><span>기타문의</span></Link>
       </button>
     </div>
   </div>
