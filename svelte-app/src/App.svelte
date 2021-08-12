@@ -27,14 +27,14 @@
 
 <HeaderBar />
 
-<Router {url}>
+<Router {url}></Router>
   <Route path="/">
     <Redirect path="/landing" />
   </Route>
   <Route path="/landing" component={Landing} />
   <Route path="/login" component={Login} />
   <Route path="/about" component={About} />
-  <Route path="/account" component={Account} />
+  <Route path="/accounts/me" component={Account} />
   <Route path="/mails" component={Mails} />
   <Route path="**" component={PageNotFound} />
 </Router>
