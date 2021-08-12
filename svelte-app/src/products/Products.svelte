@@ -8,7 +8,7 @@
     getProductsAction,
     deleteProductAction,
     addProductAction,
-    updateProductAction
+    updateProductAction,
   } from '../store';
 
   const { products } = state;
@@ -81,7 +81,8 @@
     {title}
     {routePath}
     on:add={enableAddMode}
-    on:refresh={getProducts} />
+    on:refresh={getProducts}
+  />
   <div class="columns is-multiline is-variable">
     {#if products}
       <div class="column is-8">
@@ -90,12 +91,14 @@
             {errorMessage}
             products={$products}
             on:deleted={askToDelete}
-            on:selected={select} />
+            on:selected={select}
+          />
         {:else}
           <ProductDetail
             product={selected}
             on:unselect={clear}
-            on:save={save} />
+            on:save={save}
+          />
         {/if}
       </div>
     {/if}
@@ -105,5 +108,6 @@
     {message}
     isOpen={showModal}
     on:handleNo={closeModal}
-    on:handleYes={deleteProduct} />
+    on:handleYes={deleteProduct}
+  />
 </div>
