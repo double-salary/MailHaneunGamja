@@ -36,21 +36,25 @@ module.exports = async function (context, req) {
     }
 
 
-    // // Read the method and determine the requested action
-    // switch (req.method) {
-    //     // If get, return all tasks
-    //     case 'GET':
-    //         await getProfile(context);
-    //         break;
-    //     // If post, create new task
-    //     case 'POST':
-    //         await createProfile(context);
-    //         break;
-    //     // If put, update task
-    //     case 'PUT':
-    //         await updateProfile(context);
-    //         break;
-    // }
+    // Read the method and determine the requested action
+    switch (req.method) {
+        // If get, return all tasks
+        case 'GET':
+            console.log("GET")
+            // await getProfile(context);
+            // const tasks = await TaskModel.find();
+            // return all tasks
+            context.res.body = { tasks: "tasks" };
+            break;
+        // // If post, create new task
+        // case 'POST':
+        //     await createProfile(context);
+        //     break;
+        // // If put, update task
+        // case 'PUT':
+        //     await updateProfile(context);
+        //     break;
+    }
 };
 
 // Return all tasks
