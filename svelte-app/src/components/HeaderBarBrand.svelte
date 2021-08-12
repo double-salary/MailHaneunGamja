@@ -20,9 +20,9 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">성적정정</a>
+      <a href="#">점수문의</a>
+      <a href="#">평가방식</a>
     </div>
   </div>
 
@@ -36,9 +36,8 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">과제제출</a>
+      <a href="#">출결사항</a>
     </div>
   </div>
 
@@ -52,29 +51,20 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">정원외 수강신청</a>
+      <a href="#">이수규정</a>
     </div>
   </div>
 
   <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >기타
-      <svg class="new_dropbtn_img" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.165973 0.165973C0.38727 -0.0553243 0.746063 -0.0553243 0.96736 0.165973L4.56667 3.76528L8.16597 0.165973C8.38727 -0.0553243 8.74606 -0.0553243 8.96736 0.165973C9.18866 0.38727 9.18866 0.746063 8.96736 0.96736L4.96736 4.96736C4.74606 5.18866 4.38727 5.18866 4.16597 4.96736L0.165973 0.96736C-0.0553243 0.746063 -0.0553243 0.38727 0.165973 0.165973Z" fill="#3F424D"/>
-      </svg>        
+    <button class="new_dropbtn" style="cursor: pointer" onclick="location.href='#';"
+      >기타문의       
     </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
   </div>
 </div>
 <div class="new_login">
   {#if !userInfo}
-    <a href="/login/">로그인 / 회원가입</a>
+    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
     <a href="#" style="margin-right:10px;">x번째 말하는 감자</a> <!--TODO 마이페이지로 연결 필요-->
