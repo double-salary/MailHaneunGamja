@@ -1,20 +1,4 @@
 console.log("INDEX.JS APPROACHED")
-const auth = require('../shared/get-user-info.js');
-
-// module.exports = async function (context, req) {
-//     context.log('JavaScript HTTP trigger function processed a request.');
-
-//     const name = (req.query.name || (req.body && req.body.name));
-//     const responseMessage = name
-//         ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-//         : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
-
-//     context.res = {
-//         // status: 200, /* Defaults to 200 */
-//         body: responseMessage
-//     };
-// }
-
 
 // Load mongoose
 const mongoose = require('mongoose');
@@ -52,21 +36,21 @@ module.exports = async function (context, req) {
     }
 
 
-    // Read the method and determine the requested action
-    switch (req.method) {
-        // If get, return all tasks
-        case 'GET':
-            await getProfile(context);
-            break;
-        // If post, create new task
-        case 'POST':
-            await createProfile(context);
-            break;
-        // If put, update task
-        case 'PUT':
-            await updateProfile(context);
-            break;
-    }
+    // // Read the method and determine the requested action
+    // switch (req.method) {
+    //     // If get, return all tasks
+    //     case 'GET':
+    //         await getProfile(context);
+    //         break;
+    //     // If post, create new task
+    //     case 'POST':
+    //         await createProfile(context);
+    //         break;
+    //     // If put, update task
+    //     case 'PUT':
+    //         await updateProfile(context);
+    //         break;
+    // }
 };
 
 // Return all tasks

@@ -5,14 +5,15 @@
   import MutableTodo from './MutableTodo.svelte';
   import { getUserAction } from '../store';
 
-  main();
-
   async function main() {
     try {
       // Uses fetch to call server
       console.log('fetch api ');
-      const response = await fetch('/api/accounts/me');
+      const response = await fetch('/api/accounts/me', {
+        method: 'GET',
+      });
       // Reads returned JSON, which contains one property called tasks
+      console.log(response)
       const retrievedData = await response.json();
       // Retrieve tasks, which contains an array of all tasks in database
       console.log(retrievedData);
