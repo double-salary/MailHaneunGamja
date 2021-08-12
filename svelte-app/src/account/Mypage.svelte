@@ -6,7 +6,7 @@
   import { getUserAction } from '../store';
 
   async function main() {
-    userInfo = await getUserInfo();
+    const userInfo = await getUserInfo();
 
     try {
       // Uses fetch to call server
