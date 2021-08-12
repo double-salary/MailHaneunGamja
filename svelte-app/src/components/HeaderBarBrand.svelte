@@ -2,7 +2,7 @@
   <div class="new_dropdown">
     <button class="new_dropbtn">
       <img
-        src="./resources/img/logo.png"
+        src="../resources/img/logo.png"
         alt="멜하는감자"
         style="height: 40px"
       />
