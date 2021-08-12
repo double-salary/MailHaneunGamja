@@ -1,6 +1,7 @@
 <script>
   import './account/mypage.css';
   import './mails/Mails.css';
+  import './landings/scenarioList.css';
   import './landings/landings.css';
   import './styles.scss';
   import './global.css';
@@ -10,6 +11,7 @@
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
   import Landing from './landings/Landing.svelte';
+  import ScenarioList from './landings/ScenarioList.svelte';
   import Login from './login/Login.svelte';
 
   import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
@@ -32,6 +34,7 @@
     <Redirect path="/landing" />
   </Route>
   <Route path="/landing" component={Landing} />
+  <Route path="/scenarioList" component={ScenarioList} />
   <Route path="/login" component={Login} />
   <Route path="/about" component={About} />
   <Route path="/account" component={Account} />
