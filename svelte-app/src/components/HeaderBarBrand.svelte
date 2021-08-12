@@ -1,47 +1,140 @@
+<div class="new_navbar">
+  <div class="new_dropdown" onclick="location.href='/landing';">
+    <button class="new_dropbtn" style="cursor: pointer">
+      <img
+        src="../resources/img/logo.png"
+        alt="멜하는감자"
+        style="height: 40px"
+      />
+      <!--이미지 경로 기준은 public 폴더-->
+    </button>
+  </div>
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn"
+      >성적
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href="#">성적정정</a>
+      <a href="#">점수문의</a>
+      <a href="#">평가방식</a>
+    </div>
+  </div>
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn"
+      >수업
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href="#">과제제출</a>
+      <a href="#">출결사항</a>
+    </div>
+  </div>
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn"
+      >수강신청
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href="#">정원외 수강신청</a>
+      <a href="#">이수규정</a>
+    </div>
+  </div>
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn" style="cursor: pointer" onclick="location.href='#';"
+      >기타문의       
+    </button>
+  </div>
+</div>
+<div class="new_login">
+  {#if !userInfo}
+    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
+  {/if}
+  {#if userInfo}
+    <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
+    <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
+  {/if}
+</div>
+
 <style>
   .new_navbar {
-    width: 70%;/*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 width 100%로 사용)*/
+    width: 70%; /*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 width 100%로 사용)*/
     display: flex;
     justify-content: space-evenly; /*적당히 가운데 몰리게*/
-    margin-top: 18px;
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 90px;
   }
-  
+
   .new_navbar a {
     float: left;
     font-size: 16px;
-    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
-  
+
   .new_dropdown {
     display: flex;
-    flex-direction: column;
     justify-content: center; /*가운데정렬*/
   }
-  
+
   .new_dropdown .new_dropbtn {
-    font-size: 16px;  
+    font-family: 'NanumSquare';
+    font-size: 20px;
+    font-weight: bold;
     border: none;
     outline: none;
-    color: black;
+    color: var(--darkGray-text);
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
+
+  .new_dropbtn:hover {
+    color: var(--purple-main);
+    fill: var(--purple-main);
+  }
+
+  .new_dropbtn_img {
+    max-width: 9px;
+    margin-left: 6px;
+  }
+
+  .new_dropbtn_img:hover{
+    fill: var(--purple-main);
+  }
+
   .new_dropdown-content {
     display: none;
     position: absolute;
-    margin-top: 180px; /*메뉴 hover했을때 하단 메뉴가 바로 아래에 위치하게 하는 용도*/
+    margin-top: 70px; /*메뉴 hover했을때 하단 메뉴가 바로 아래에 위치하게 하는 용도*/
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
-  
+
   .new_dropdown-content a {
     float: none;
     color: black;
@@ -50,33 +143,41 @@
     display: block;
     text-align: left;
   }
-  
+
   .new_dropdown-content a:hover {
     background-color: #ddd; /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
   }
-  
+
   .new_dropdown:hover .new_dropdown-content {
     display: block;
   }
 
-  .new_login{
+  .new_login {
     width: 30%; /*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 100%로 사용)*/
-    margin-top: 18px;
     display: flex;
     justify-content: center; /*가운데정렬*/
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 90px;
   }
 
-  .new_login a{
-    font-size: 16px;
-    color: black;
+  .new_login a {
+    font-family: 'NanumSquare';
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center; /*가운데정렬*/
+    margin: 20px 0px;
+    padding: 0px 12px;
+    background-color: var(--purple-main);
+    border-radius: 16px;
   }
 
   /*new_navbar와 new_login 화면좁아서 개행되면 width 100%로 사용)*/
   @media screen and (max-width: 1024px) {
-    .new_login{
+    .new_login {
       width: 100%;
     }
     .new_navbar {
@@ -85,58 +186,35 @@
   }
 </style>
 
+<script>
+  import { onMount } from 'svelte';
+  import { Link } from 'svelte-routing';
 
-<div class="new_navbar">
-  <div class="new_dropdown">
-    <button class="new_dropbtn">
-      <img src="./logo.png" alt="멜하는감자" style="height: 40px"/> <!--이미지 경로 기준은 public 폴더-->
-    </button>
-  </div>
+  const providers = ['google'];
+  const redirect = window.location.pathname;
+  let userInfo = undefined;
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn">성적 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
+  onMount(async () => (userInfo = await getUserInfo()));
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn">수업 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
+  async function getUserInfo() {
+    try {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error('No profile could be found');
+      return undefined;
+    }
+  }
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn">수강신청 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
+    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn">기타 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
-</div>
-<div class="new_login">
-  <a href="/.auth/login/google?post_login_redirect_uri=/products/">로그인 / 회원가입</a>
-</div>
+    // The object returned here is spread on the anchor element's attributes
+    if (isActive) {
+      return { class: 'router-link-active' };
+    }
+    return {};
+  }
+</script>
