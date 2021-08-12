@@ -1,3 +1,36 @@
+<script>
+  import { onMount } from 'svelte';
+  import { Link } from 'svelte-routing';
+
+  const providers = ['google'];
+  const redirect = window.location.pathname;
+  let userInfo = undefined;
+
+  onMount(async () => (userInfo = await getUserInfo()));
+
+  async function getUserInfo() {
+    try {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error('No profile could be found');
+      return undefined;
+    }
+  }
+
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
+    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
+
+    // The object returned here is spread on the anchor element's attributes
+    if (isActive) {
+      return { class: 'router-link-active' };
+    }
+    return {};
+  }
+</script>
+
 <div class="new_navbar">
   <div class="new_dropdown" onclick="location.href='/landing';">
     <button class="new_dropbtn" style="cursor: pointer">
@@ -57,8 +90,11 @@
   </div>
 
   <div class="new_dropdown">
-    <button class="new_dropbtn" style="cursor: pointer" onclick="location.href='#';"
-      >기타문의       
+    <button
+      class="new_dropbtn"
+      style="cursor: pointer"
+      onclick="location.href='#';"
+      >기타문의
     </button>
   </div>
 </div>
@@ -67,7 +103,8 @@
     <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
-    <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
+    <a href="/accounts/me" style="margin-right:10px;">x번째 말하는 감자</a>
+    <!--마이페이지로 연결-->
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
@@ -121,7 +158,7 @@
     margin-left: 6px;
   }
 
-  .new_dropbtn_img:hover{
+  .new_dropbtn_img:hover {
     fill: var(--purple-main);
   }
 
@@ -185,36 +222,3 @@
     }
   }
 </style>
-
-<script>
-  import { onMount } from 'svelte';
-  import { Link } from 'svelte-routing';
-
-  const providers = ['google'];
-  const redirect = window.location.pathname;
-  let userInfo = undefined;
-
-  onMount(async () => (userInfo = await getUserInfo()));
-
-  async function getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
-
-  function getProps({ href, isPartiallyCurrent, isCurrent }) {
-    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
-
-    // The object returned here is spread on the anchor element's attributes
-    if (isActive) {
-      return { class: 'router-link-active' };
-    }
-    return {};
-  }
-</script>
