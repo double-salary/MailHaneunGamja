@@ -8,8 +8,29 @@
   main();
 
   async function main() {
-    await fetch('/api/accounts/me');
+    try {
+      // Uses fetch to call server
+      const response = await fetch('/api/accounts/me');
+      // Reads returned JSON, which contains one property called tasks
+      const retrievedData = await response.json();
+      // Retrieve tasks, which contains an array of all tasks in database
+      console.log(retrievedData);
+      //   const retrievedTasks = retrievedData.tasks;
+      //   // Loop through all tasks
+      //   for (let task of retrievedTasks) {
+      //     // Add each task to the array
+      //     tasks.push(task);
+      //   }
+    } catch {
+      // If there is an error, display a generic message on the page
+      const messageElement = document.createElement('li');
+      messageElement.innerHTML =
+        "Could not pull data. Make sure you've <a href='https://github.com/geektrainer/aswa-starter/docs/add-database.md'>configured the database</a>.";
+      document.getElementById('task-list').appendChild(messageElement);
+    }
   }
+
+  onMount(async () => await main());
 
   let name = '김시연';
   let major = '자유전공학부';
