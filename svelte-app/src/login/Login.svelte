@@ -1,5 +1,5 @@
 <script>
-    import './login.css';
+    import './login.css'; /*CSS 가져오기*/
     import { onMount } from 'svelte';
     import { Link } from 'svelte-routing';
   
