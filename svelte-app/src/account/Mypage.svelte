@@ -10,6 +10,7 @@
   async function main() {
     try {
       // Uses fetch to call server
+      console.log('fetch api ');
       const response = await fetch('/api/accounts/me');
       // Reads returned JSON, which contains one property called tasks
       const retrievedData = await response.json();
