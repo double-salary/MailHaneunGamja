@@ -5,7 +5,11 @@
   import MutableTodo from './MutableTodo.svelte';
   import { getUserAction } from '../store';
 
-  onMount(async () => await getUserAction());
+  main();
+
+  async function main() {
+    await fetch('/api/accounts/me');
+  }
 
   let name = '김시연';
   let major = '자유전공학부';
