@@ -1,0 +1,29 @@
+.scenario-list{overflow:hidden; margin-top: 3rem;}
+
+.mc-title{font-size: 1.5rem;}
+.sclist-ul{list-style: circle !important; margin-left:1rem !important;}
+.sclist-ul li{}
+.sclist-ul li a{font-size: 1.2rem; decoration:none; color:black !important;}
+.lc{margin-right: 3rem;}
+.lc-title{font-size:4rem; color: #6CBCC6; font-weight: bold; }
+.mc{margin-top: 2rem;}
+.mc-title{padding:0 0.5rem; width:fit-content; margin-bottom: 0.5rem; background-color: #6CBCC6; color:white; border-radius: 10px; }
+
+#grades-container{float:left; margin-left: 6rem;}
+.title-grades{font-size: 2rem;}
+/* .grades-corrections{border: 1px solid #9189EB;}
+.grades-inquiries{border: 1px solid #9189EB;}
+.grades-evaluations{border: 1px solid #9189EB;} */
+
+#courses-container{float:left;}
+.title-courses{font-size: 2rem;}
+/* .courses-submissions{border: 1px solid #9189EB;}
+.courses-attendance{border: 1px solid #9189EB;} */
+
+#registration-container{float:left;}
+.title-registration{font-size: 2rem;}
+/* .registration-exception{border: 1px solid #9189EB;}
+.registration-rule{border: 1px solid #9189EB;} */
+
+#others-container{float:left;} 
+.others-title{font-size: 2rem;}

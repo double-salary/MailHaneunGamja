@@ -43,7 +43,6 @@
 </script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
-
 <div id="info-container">
     <div class="info-title-wrap">
         <div class="info-title">개인 정보</div>
