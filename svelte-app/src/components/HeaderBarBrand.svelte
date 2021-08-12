@@ -1,76 +1,79 @@
-<div class="new_navbar">
-  <div class="new_dropdown" onclick="location.href='/landing';">
-    <button class="new_dropbtn" style="cursor: pointer">
-      <img
-        src="../resources/img/logo.png"
-        alt="멜하는감자"
-        style="height: 40px"
-      />
-      <!--이미지 경로 기준은 public 폴더-->
-    </button>
-  </div>
+<Router {url}>
+  <div class="new_navbar">
+    <div class="new_dropdown" onclick="location.href='/landing';">
+      <button class="new_dropbtn" style="cursor: pointer">
+        <img
+          src="../resources/img/logo.png"
+          alt="멜하는감자"
+          style="height: 40px"
+        />
+        <!--이미지 경로 기준은 public 폴더-->
+      </button>
+    </div>
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >성적
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">성적정정</a>
-      <a href="#">점수문의</a>
-      <a href="#">평가방식</a>
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >성적
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='grades/corrections/'><span>성적정정</span></Link>
+        <Link to='grades/inquiries/'><span>점수문의</span></Link>
+        <Link to='grades/evaluations/'><span>평가방식</span></Link>
+      </div>
+    </div>
+
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >수업
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='courses/submissions/'><span>과제제출</span></Link>
+        <Link to='courses/attendence/'><span>출결사항</span></Link>
+      </div>
+    </div>
+
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >수강신청
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='registration/exception/'><span>정원외 수강신청</span></Link>
+        <Link to='registration/rule/'><span>이수규정</span></Link>
+      </div>
+    </div>
+
+    <div class="new_dropdown">
+      <button class="new_dropbtn" style="cursor: pointer"
+        >
+        <Link to='others/'><span>기타문의</span></Link>
+      </button>
     </div>
   </div>
-
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >수업
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">과제제출</a>
-      <a href="#">출결사항</a>
-    </div>
+  <div class="new_login">
+    {#if !userInfo}
+      <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
+    {/if}
+    {#if userInfo}
+      <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
+      <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
+    {/if}
   </div>
-
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >수강신청
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">정원외 수강신청</a>
-      <a href="#">이수규정</a>
-    </div>
-  </div>
-
-  <div class="new_dropdown">
-    <button class="new_dropbtn" style="cursor: pointer" onclick="location.href='#';"
-      >기타문의       
-    </button>
-  </div>
-</div>
-<div class="new_login">
-  {#if !userInfo}
-    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
-  {/if}
-  {#if userInfo}
-    <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
-    <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
-  {/if}
-</div>
+</Router>
 
 <style>
   .new_navbar {
@@ -82,7 +85,7 @@
     height: 90px;
   }
 
-  .new_navbar a {
+  .new_navbar span {
     float: left;
     font-size: 16px;
     text-align: center;
@@ -95,7 +98,8 @@
     justify-content: center; /*가운데정렬*/
   }
 
-  .new_dropdown .new_dropbtn {
+  /*기타문의때문에 뒤에 있는 선택자 필요*/
+  .new_dropdown .new_dropbtn, .new_dropdown .new_dropbtn span {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
@@ -111,7 +115,8 @@
     justify-content: center;
   }
 
-  .new_dropbtn:hover {
+  /*기타문의때문에 뒤에 있는 선택자 필요*/
+  .new_dropbtn:hover, .new_dropbtn span:hover{
     color: var(--purple-main);
     fill: var(--purple-main);
   }
@@ -135,7 +140,7 @@
     z-index: 1;
   }
 
-  .new_dropdown-content a {
+  .new_dropdown-content span {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -144,7 +149,7 @@
     text-align: left;
   }
 
-  .new_dropdown-content a:hover {
+  .new_dropdown-content span:hover {
     background-color: #ddd; /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
   }
 
@@ -188,7 +193,9 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { Link } from 'svelte-routing';
+  import { Router, Link, Route } from 'svelte-routing';
+  export let url = '';
+  export let routePath = '';
 
   const providers = ['google'];
   const redirect = window.location.pathname;
