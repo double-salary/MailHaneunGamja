@@ -6,6 +6,8 @@
   import { getUserAction } from '../store';
 
   async function main() {
+    userInfo = await getUserInfo();
+
     try {
       // Uses fetch to call server
       console.log('fetch api ');
@@ -13,7 +15,7 @@
         method: 'GET',
       });
       // Reads returned JSON, which contains one property called tasks
-      console.log(response)
+      console.log(response);
       const retrievedData = await response.json();
       // Retrieve tasks, which contains an array of all tasks in database
       console.log(retrievedData);
@@ -81,12 +83,15 @@
 
   let editing = false;
 
-  async function getUser() {
-    errorMessage = undefined;
+  async function getUserInfo() {
     try {
-      await getUserAction();
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
     } catch (error) {
-      errorMessage = 'getUserActionFailed';
+      console.error('No profile could be found');
+      return undefined;
     }
   }
 </script>

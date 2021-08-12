@@ -6,3 +6,6 @@ async function getUserInfo() {
   }
   
   console.log(getUserInfo());
+
+
+module.exports = { getUserInfo };

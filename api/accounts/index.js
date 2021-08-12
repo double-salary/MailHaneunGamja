@@ -4,6 +4,9 @@ console.log("INDEX.JS APPROACHED")
 const mongoose = require('mongoose');
 
 // Connect to the database
+
+console.log(process.env.CONNECTION_STRING)
+
 mongoose.connect(
     process.env.CONNECTION_STRING, // Retrieve connection string
     { // boiler plate values
