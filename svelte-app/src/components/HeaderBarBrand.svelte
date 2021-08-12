@@ -69,7 +69,9 @@
       <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
     {/if}
     {#if userInfo}
-      <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
+      <div style="margin-right:10px;">
+        <Link to='/account'><span>x번째 말하는 감자</span></Link><!--마이페이지로 연결-->
+      </div>
       <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
     {/if}
   </div>
@@ -166,7 +168,8 @@
     height: 90px;
   }
 
-  .new_login a {
+  /*선택자 조금 괴상하지만 Link태그 인식문제로 우선 이렇게 했습니다*/
+  .new_login a, .new_login span, .new_login div {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
