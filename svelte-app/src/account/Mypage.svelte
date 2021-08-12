@@ -8,11 +8,11 @@
   async function main() {
     const userInfo = await getUserInfo();
 
-    console.log(process.env.CONNECT_STRING);
-
     try {
       // Uses fetch to call server
-      console.log('fetch api ');
+      console.log(
+        `fetch api, connection string: ${process.env.DATABASE_CONNECTION_STRING}`,
+      );
       const response = await fetch('/api/accounts/me', {
         method: 'GET',
       });

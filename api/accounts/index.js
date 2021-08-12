@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 // Connect to the database
 
-console.log(process.env.CONNECTION_STRING)
+console.log(process.env.DATABASE_CONNECTION_STRING)
 
 mongoose.connect(
     process.env.CONNECTION_STRING, // Retrieve connection string
@@ -47,7 +47,7 @@ module.exports = async function (context, req) {
             // await getProfile(context);
             // const tasks = await TaskModel.find();
             // return all tasks
-            context.res.body = { tasks: "tasks" };
+            context.res.body = { tasks: `tasks hehe ${process.env.DATABASE_CONNECTION_STRING}` };
             break;
         // // If post, create new task
         // case 'POST':
