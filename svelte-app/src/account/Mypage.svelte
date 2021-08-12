@@ -8,6 +8,8 @@
   async function main() {
     const userInfo = await getUserInfo();
 
+    console.log(process.env.CONNECT_STRING);
+
     try {
       // Uses fetch to call server
       console.log('fetch api ');
