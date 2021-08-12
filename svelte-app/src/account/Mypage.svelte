@@ -7,15 +7,24 @@
 
   async function main() {
     const userInfo = await getUserInfo();
+    const userId = await userInfo.userId;
+
+    console.log(userId);
 
     try {
       // Uses fetch to call server
       console.log(
         `fetch api, connection string: ${process.env.DATABASE_CONNECTION_STRING}`,
       );
-      const response = await fetch('/api/accounts/me', {
+      const response = await fetch(`/api/accounts/${userId}`, {
         method: 'GET',
-      });
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          console.log(JSON.stringify(myJson));
+        });
       // Reads returned JSON, which contains one property called tasks
       console.log(response);
       const retrievedData = await response.json();

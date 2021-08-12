@@ -1,0 +1,10 @@
+{
+
+  "properties": {
+    "DATABASE_CONNECTION_STRING": "mongodb://subeen:tqxTS7yd2hYvmjweJejcnjYglxojotucGTiGMGxOJtj7l38OX1BWRzXTMEjJRf8XEMVunrthZd6QfDCkCU05pA==@subeen.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@subeen@"
+  }
+
+  }
+
+
+  

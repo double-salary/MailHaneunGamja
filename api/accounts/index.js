@@ -38,6 +38,7 @@ module.exports = async function (context, req) {
         }
     }
 
+    const id = context.bindingData.userId;
 
     // Read the method and determine the requested action
     switch (req.method) {
@@ -47,7 +48,9 @@ module.exports = async function (context, req) {
             // await getProfile(context);
             // const tasks = await TaskModel.find();
             // return all tasks
-            context.res.body = { tasks: `tasks hehe ${process.env.DATABASE_CONNECTION_STRING}` };
+            
+            context.res.body = { tasks: `tasks hehe`, 
+        id: `${id}` };
             break;
         // // If post, create new task
         // case 'POST':
