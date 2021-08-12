@@ -1,0 +1,46 @@
+.login-container{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container .login-explain{
+    font-family: 'NanumSquare';
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 100px;
+    color: var(--yellow-main);
+    border: none;
+    outline: none;
+}
+
+.login-container .login-google{
+    font-family: 'NanumSquare';
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--darkGray-text);
+    border: 3px solid var(--purple-main);
+    border-radius: 15px;
+    text-align: center;
+    width: 500px;
+    margin-top:50px;
+    padding: 7px;
+
+    /*아이콘이랑 글씨 모두 가운데 정렬*/
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container .login-google:hover{
+    background-color: var(--purple-main);
+    cursor: pointer;
+}
+
+.login-container .login-google img{
+    margin-right: 10px; /* 아이콘이랑 글씨 간격위해*/
+}

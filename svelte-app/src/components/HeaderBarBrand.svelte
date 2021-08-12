@@ -1,6 +1,6 @@
 <div class="new_navbar">
-  <div class="new_dropdown">
-    <button class="new_dropbtn">
+  <div class="new_dropdown" onclick="location.href='/landing';">
+    <button class="new_dropbtn" style="cursor: pointer">
       <img
         src="../resources/img/logo.png"
         alt="멜하는감자"
@@ -74,9 +74,10 @@
 </div>
 <div class="new_login">
   {#if !userInfo}
-    <a href="/.auth/login/google?post_login_redirect_uri=/landing/">로그인 / 회원가입</a>
+    <a href="/login/">로그인 / 회원가입</a>
   {/if}
   {#if userInfo}
+    <a href="#" style="margin-right:10px;">x번째 말하는 감자</a> <!--TODO 마이페이지로 연결 필요-->
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
