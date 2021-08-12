@@ -6,7 +6,9 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "mongoose": "^5.10.11"
+  },
   "devDependencies": {
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.37.5"
