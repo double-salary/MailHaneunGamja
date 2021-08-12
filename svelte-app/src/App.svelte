@@ -10,6 +10,7 @@
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
   import Landing from './landings/Landing.svelte';
+  import Login from './login/Login.svelte';
 
   import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
 
@@ -31,6 +32,7 @@
     <Redirect path="/landing" />
   </Route>
   <Route path="/landing" component={Landing} />
+  <Route path="/login" component={Login} />
   <Route path="/about" component={About} />
   <Route path="/account" component={Account} />
   <Route path="/mails" component={Mails} />

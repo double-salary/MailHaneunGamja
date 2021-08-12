@@ -1,8 +1,8 @@
 <div class="new_navbar">
-  <div class="new_dropdown">
-    <button class="new_dropbtn">
+  <div class="new_dropdown" onclick="location.href='/landing';">
+    <button class="new_dropbtn" style="cursor: pointer">
       <img
-        src="./resources/img/logo.png"
+        src="../resources/img/logo.png"
         alt="멜하는감자"
         style="height: 40px"
       />
@@ -20,9 +20,9 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">성적정정</a>
+      <a href="#">점수문의</a>
+      <a href="#">평가방식</a>
     </div>
   </div>
 
@@ -36,9 +36,8 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">과제제출</a>
+      <a href="#">출결사항</a>
     </div>
   </div>
 
@@ -52,32 +51,25 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="#">정원외 수강신청</a>
+      <a href="#">이수규정</a>
     </div>
   </div>
 
   <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >기타
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
+    <button class="new_dropbtn" style="cursor: pointer" onclick="location.href='#';"
+      >기타문의       
     </button>
-    <div class="new_dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
   </div>
 </div>
 <div class="new_login">
-  <a href="/.auth/login/google?post_login_redirect_uri=/products/"
-    >로그인 / 회원가입</a
-  >
+  {#if !userInfo}
+    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
+  {/if}
+  {#if userInfo}
+    <a href="/account" style="margin-right:10px;">x번째 말하는 감자</a> <!--마이페이지로 연결-->
+    <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
+  {/if}
 </div>
 
 <style>
@@ -127,6 +119,10 @@
   .new_dropbtn_img {
     max-width: 9px;
     margin-left: 6px;
+  }
+
+  .new_dropbtn_img:hover{
+    fill: var(--purple-main);
   }
 
   .new_dropdown-content {
@@ -189,3 +185,36 @@
     }
   }
 </style>
+
+<script>
+  import { onMount } from 'svelte';
+  import { Link } from 'svelte-routing';
+
+  const providers = ['google'];
+  const redirect = window.location.pathname;
+  let userInfo = undefined;
+
+  onMount(async () => (userInfo = await getUserInfo()));
+
+  async function getUserInfo() {
+    try {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error('No profile could be found');
+      return undefined;
+    }
+  }
+
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
+    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
+
+    // The object returned here is spread on the anchor element's attributes
+    if (isActive) {
+      return { class: 'router-link-active' };
+    }
+    return {};
+  }
+</script>
