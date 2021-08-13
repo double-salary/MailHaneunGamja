@@ -121,15 +121,12 @@
   .new_dropbtn:hover, .new_dropbtn span:hover{
     color: var(--purple-main);
     fill: var(--purple-main);
+    filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg) brightness(100%) contrast(85%);
   }
 
   .new_dropbtn_img {
     max-width: 9px;
     margin-left: 6px;
-  }
-
-  .new_dropbtn_img:hover{
-    fill: var(--purple-main);
   }
 
   .new_dropdown-content {
