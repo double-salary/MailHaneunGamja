@@ -5,11 +5,32 @@
 
   /* svelte */
   import SideBar from './SideBar.svelte';
-  import MailGradesInquires1 from './mail/grades/MailGradesInquiries1.svelte';
-  import MailGradesInquires2 from './mail/grades/MailGradesInquiries2.svelte';
-  import Mail from './mail/MailTemplate.svelte';
-  import App from '../App.svelte';
+  /* mail - grades */
+  import MailGradesCorrections1 from './mail/grades/MailGradesCorrections1.svelte';
+  import MailGradesEvaluations1 from './mail/grades/MailGradesEvaluations1.svelte';
+  import MailGradesEvaluations2 from './mail/grades/MailGradesEvaluations2.svelte';
+  import MailGradesInquiries1 from './mail/grades/MailGradesInquiries1.svelte';
+  import MailGradesInquiries2 from './mail/grades/MailGradesInquiries2.svelte';
+  import MailGradesInquiries3 from './mail/grades/MailGradesInquiries3.svelte';
+  /* mail - courses */
+  import MailCoursesAttendance1 from './mail/courses/MailCoursesAttendance1.svelte';
+  import MailCoursesAttendance2 from './mail/courses/MailCoursesAttendance2.svelte';
+  import MailCoursesSubmissions1 from './mail/courses/MailCoursesSubmissions1.svelte';
+  import MailCoursesSubmissions2 from './mail/courses/MailCoursesSubmissions2.svelte';
+  import MailCoursesSubmissions3 from './mail/courses/MailCoursesSubmissions3.svelte';
+  import MailCoursesSubmissions4 from './mail/courses/MailCoursesSubmissions4.svelte';
+  /* mail - registration */
+  import MailRegistrationException1 from './mail/registration/MailRegistrationException1.svelte';
+  import MailRegistrationException2 from './mail/registration/MailRegistrationException2.svelte';
+  import MailRegistrationRule1 from './mail/registration/MailRegistrationRule1.svelte';
+  import MailRegistrationRule2 from './mail/registration/MailRegistrationRule2.svelte';
+  import MailRegistrationRule3 from './mail/registration/MailRegistrationRule3.svelte';
+  /* mail - others */
+  import MailOthers1 from './mail/others/MailOthers1.svelte';
+  import MailOthers2 from './mail/others/MailOthers2.svelte';
+  import MailOthers3 from './mail/others/MailOthers3.svelte';
 
+  /* url params */
   export let params = {};
 
   /* side bar data */
@@ -34,7 +55,6 @@
       '역수강/선수과목 미이수',
       '대체 과목 수강 가능 여부',
     ],
-    출결문의: ['공결/병결/개인 사유', '녹강/배속'],
   };
   const othersData = {
     면담문의: [],
@@ -57,21 +77,21 @@
     <div class="mail">
       {#if params.subcategory === 'corrections'}
         {#if params.id === '1'}
-          <MailGradesInquires1 />
+          <MailGradesCorrections1 />
         {/if}
       {:else if params.subcategory === 'inquiries'}
         {#if params.id === '1'}
-          <MailGradesInquires2 />
+          <MailGradesInquiries1 />
         {:else if params.id === '2'}
-          <MailGradesInquires1 />
+          <MailGradesInquiries2 />
         {:else if params.id === '3'}
-          <MailGradesInquires1 />
+          <MailGradesInquiries3 />
         {/if}
       {:else if params.subcategory === 'evaluations'}
         {#if params.id === '1'}
-          <MailGradesInquires2 />
+          <MailGradesEvaluations1 />
         {:else if params.id === '2'}
-          <MailGradesInquires2 />
+          <MailGradesEvaluations2 />
         {/if}
       {/if}
     </div>
@@ -88,19 +108,19 @@
     <div class="mail">
       {#if params.subcategory === 'submissions'}
         {#if params.id === '1'}
-          <MailGradesInquires1 />
+          <MailCoursesSubmissions1 />
         {:else if params.id === '2'}
-          <Mail />
+          <MailCoursesSubmissions2 />
         {:else if params.id === '3'}
-          <MailGradesInquires1 />
+          <MailCoursesSubmissions3 />
         {:else if params.id === '4'}
-          <MailGradesInquires1 />
+          <MailCoursesSubmissions4 />
         {/if}
       {:else if params.subcategory === 'attendance'}
         {#if params.id === '1'}
-          <MailGradesInquires2 />
+          <MailCoursesAttendance1 />
         {:else if params.id === '2'}
-          <MailGradesInquires2 />
+          <MailCoursesAttendance2 />
         {/if}
       {/if}
     </div>
@@ -117,17 +137,17 @@
     <div class="mail">
       {#if params.subcategory === 'exception'}
         {#if params.id === '1'}
-          <MailGradesInquires1 />
+          <MailRegistrationException1 />
         {:else if params.id === '2'}
-          <MailGradesInquires2 />
+          <MailRegistrationException2 />
         {/if}
       {:else if params.subcategory === 'rule'}
         {#if params.id === '1'}
-          <MailGradesInquires2 />
+          <MailRegistrationRule1 />
         {:else if params.id === '2'}
-          <MailGradesInquires2 />
+          <MailRegistrationRule2 />
         {:else if params.id === '3'}
-          <MailGradesInquires2 />
+          <MailRegistrationRule3 />
         {/if}
       {/if}
     </div>
@@ -142,13 +162,13 @@
       {/each}
     </div>
     <div class="mail">
-      {#if params.subcategory === ''}
+      {#if params.subcategory === 'other'}
         {#if params.id === '1'}
-          <MailGradesInquires1 />
+          <MailOthers1 />
         {:else if params.id === '2'}
-          <MailGradesInquires2 />
+          <MailOthers2 />
         {:else if params.id === '3'}
-          <MailGradesInquires2 />
+          <MailOthers3 />
         {/if}
       {/if}
     </div>

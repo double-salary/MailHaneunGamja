@@ -1,1 +1,1 @@
-<div>기타//2</div>
+<div>기타/other/2</div>
