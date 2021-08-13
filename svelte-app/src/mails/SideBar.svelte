@@ -1,17 +1,20 @@
 <script>
-  import css from './SideBar.css';
   import { slide } from 'svelte/transition';
-  export let entry;
+
+  export let category;
+  export let subcategory;
+  export let scenario;
+
   let isOpen = false;
-  let active = false;
-  const toggle = () => ((isOpen = !isOpen), (active = !active));
+
+  const toggle = () => (isOpen = !isOpen);
 </script>
 
-<div clss="side-bar">
-  <button id="button" class:active on:click={toggle} aria-expanded={isOpen}>
-    <span>
-      {entry[0]}
-    </span>
+<button id="button" on:click={toggle} aria-expanded={isOpen}>
+  <span>
+    {scenario[0]}
+  </span>
+  {#if category != 'others'}
     <svg
       width="10"
       height="6"
@@ -26,15 +29,21 @@
         fill="#3F424D"
       />
     </svg>
-  </button>
+  {/if}
+</button>
+{#if category != 'others'}
   {#if isOpen}
     <ul transition:slide={{ duration: 300 }}>
-      {#each entry[1] as item}
-        <li>{item}</li>
+      {#each scenario[1] as item, index}
+        <a href="/#/mails/{category}/{subcategory}/{index + 1}">
+          <li>
+            {item}
+          </li>
+        </a>
       {/each}
     </ul>
   {/if}
-</div>
+{/if}
 
 <style>
   .side-bar {
@@ -52,10 +61,6 @@
     justify-content: space-between;
     align-items: center;
   }
-  .active {
-    background-color: #9189eb;
-    color: #ffffff;
-  }
   span {
     text-align: start;
     width: 150px;
@@ -63,7 +68,6 @@
     font-size: 14px;
   }
   svg {
-    margin-right: 30px;
     transition: transform 0.2s ease-in;
   }
   path {
@@ -72,11 +76,11 @@
   ul {
     padding: 10px 20px;
     line-height: 14px;
-    color: #8992b0;
   }
   li {
     font-size: 12px;
-    padding: 5px 0;
+    padding: 8px 0;
+    color: #8992b0;
   }
 
   [aria-expanded='true'] svg {
