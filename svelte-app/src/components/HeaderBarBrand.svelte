@@ -1,13 +1,15 @@
 <div class="new_navbar">
   <div class="new_dropdown">
-    <button class="new_dropbtn">
-      <img
-        src="./resources/img/logo.png"
-        alt="멜하는감자"
-        style="height: 40px"
-      />
-      <!--이미지 경로 기준은 public 폴더-->
-    </button>
+    <a href="/">
+      <button class="new_dropbtn">
+        <img
+          src="./resources/img/logo.png"
+          alt="멜하는감자"
+          style="height: 40px"
+        />
+        <!--이미지 경로 기준은 public 폴더-->
+      </button>
+    </a>
   </div>
 
   <div class="new_dropdown">
