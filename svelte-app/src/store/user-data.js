@@ -1,5 +1,3 @@
-import * as store from './store';
-import { parseItem, parseList } from './http-utils';
 import API from './config';
 
 
@@ -44,6 +42,7 @@ export async function getUserAction() {
       });
 
     return response;
+    
   } catch {
     // If there is an error, display a generic message on the page
     console.log('User Profile Fetch Failed');

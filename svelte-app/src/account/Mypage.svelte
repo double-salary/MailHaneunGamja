@@ -21,13 +21,8 @@
   async function onMountLaunch() {
     var userProfile = await getUserAction();
     console.log(userProfile.name);
-    console.log(userProfile.major);
-    console.log(userProfile.studentId);
-    console.log(userProfile.bookmarks);
-    console.log(userProfile.userId);
     name = userProfile.name;
     major = userProfile.major;
-    studentId = userProfile.studentId;
     bookmarks = userProfile.bookmarks;
   }
 

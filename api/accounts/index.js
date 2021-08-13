@@ -2,6 +2,7 @@ console.log("INDEX.JS APPROACHED")
 
 // Load mongoose
 const mongoose = require('mongoose');
+const { updateUserAction } = require('../../svelte-app/src/store');
 
 // Connect to the database
 
@@ -97,10 +98,10 @@ async function updateTask(context) {
 
 async function getOrCreateUser(context) {
 
-    const id = context.bindingData.userId;
+    const userId = context.bindingData.userId;
 
-    const query = { userId: id };
-    const update = { userId: id };
+    const query = { userId: userId };
+    const update = { userId: userId };
     const options = {
         new: true,
         upsert: true,
