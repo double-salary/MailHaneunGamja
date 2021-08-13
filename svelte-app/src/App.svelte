@@ -24,7 +24,6 @@
   routes.set('/', Landing);
   routes.set('/scenarioList', ScenarioList);
   routes.set('/login', Login);
-  routes.set('/account', Account);
   routes.set('/accounts/me', Account);
   routes.set('/mails', Mails);
   routes.set('/mails/*', Mails);
