@@ -3,24 +3,28 @@
 <script>
   import { onMount } from 'svelte';
   import MutableTodo from './MutableTodo.svelte';
-  import { getUserAction } from '../store';
+  import { getUserAction, updateUserAction, userId } from '../store/user-data';
 
   let name = null;
   let major = null;
   let studentId = null;
+  let bookmarks = [];
 
   async function onMountLaunch() {
-    var userProfile = await getUserProfile();
+    var userProfile = await getUserAction();
     console.log(userProfile.name);
-    console.log(userProfile.major);
-    console.log(userProfile.studentId);
-    console.log(userProfile.bookmarks);
-    console.log(userProfile.userId);
     name = userProfile.name;
     major = userProfile.major;
-    studentId = userProfile.studentId;
     bookmarks = userProfile.bookmarks;
   }
+
+  $: userInfo = {
+    userId: userId,
+    name: name,
+    major: major,
+    studentId: studentId,
+    bookmarks: bookmarks,
+  };
 
   onMount(async () => await onMountLaunch());
 
@@ -67,43 +71,6 @@
   }
 
   let editing = false;
-
-  async function getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
-
-  async function getUserProfile() {
-    const userId = await getUserInfo().then(function (response) {
-      return response.userId;
-    });
-
-    try {
-      // Uses fetch to call server
-      const response = await fetch(`/api/accounts/${userId}`, {
-        method: 'GET',
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (myJson) {
-          console.log(myJson);
-          return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
-        });
-
-      return response;
-    } catch {
-      // If there is an error, display a generic message on the page
-      console.log('User Profile Fetch Failed');
-    }
-  }
 </script>
 
 <link
@@ -115,7 +82,7 @@
 <div id="info-container">
   <div class="info-title-wrap">
     <div class="info-title">개인 정보</div>
-    <label class="editing-btn">
+    <label class="editing-btn" on:click={updateUserAction(editing, userInfo)}>
       <input class="checkbox-rec" type="checkbox" bind:checked={editing} />
       <svg
         width="16"

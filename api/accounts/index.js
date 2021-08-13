@@ -2,6 +2,7 @@ console.log("INDEX.JS APPROACHED")
 
 // Load mongoose
 const mongoose = require('mongoose');
+const { updateUserAction } = require('../../svelte-app/src/store');
 
 // Connect to the database
 
@@ -20,9 +21,9 @@ mongoose.connect(
 const userSchema = new mongoose.Schema({
 
     userId: String,
-    name: { type: String, default: "name"},
-    major: { type: String, default: "major"},
-    studentId: { type: String, default: "studendID"},
+    name: { type: String, default: null},
+    major: { type: String, default: null},
+    studentId: { type: String, default: null},
     bookmarks: { type: [String], default: []}
     
 });
@@ -46,21 +47,11 @@ module.exports = async function (context, req) {
     switch (req.method) {
         // If get, return all tasks
         case 'GET':
-            console.log("GET")
             await getOrCreateUser(context);
             break;
-            
-            // context.res.body = {
-            //     name: "name",
-            //     userId: "userId",
-            //     major: "major",
-            //     studentId: "studentId",
-            //     bookmarks: []
-            // }
-            break;
-
 
         case 'POST': 
+            await updateUser(context);
             break;
     }
 };
@@ -107,10 +98,10 @@ async function updateTask(context) {
 
 async function getOrCreateUser(context) {
 
-    const id = context.bindingData.id;
+    const userId = context.bindingData.userId;
 
-    const query = { userId: id };
-    const update = { userId: id };
+    const query = { userId: userId };
+    const update = { userId: userId };
     const options = {
         new: true,
         upsert: true,
@@ -119,5 +110,31 @@ async function getOrCreateUser(context) {
 
     const user = await User.findOneAndUpdate(query, update, options);
 
-    context.res.body = await new User();
+    context.res.body = user;
+
+}
+
+async function updateUser(context) {
+
+    const userId = context.bindingData.userId;
+
+    const query = { userId: userId};
+    const update = context.req.body;
+    const options = {
+        new: true, 
+        upsert: true,
+        setDefaultsOnInsert: true
+    }
+
+    const user = await User.findOneAndUpdate(query, update, options); 
+
+    context.res.body = user;
+    
+    if (user.nModified >= 1) {
+        context.res.status = 204;
+    } else {
+        context.res.status = 404;
+    }
+
+
 }
