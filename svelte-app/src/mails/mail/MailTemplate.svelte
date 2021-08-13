@@ -1,5 +1,6 @@
 <script>
   import { slide } from 'svelte/transition';
+  import { onMount } from 'svelte';
   let name = '';
   let department = '';
   let studentId = '';
@@ -13,7 +14,7 @@
   const exampleData = {
     1: '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     2: '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    3: '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    3: '다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
   };
   
   const weatherLastWords={
@@ -46,7 +47,21 @@
     else {
       lastWords=coronaLastWords[i];
     }
-}
+  }
+
+	import CopyClipBoard from '../CopyClipBoard.svelte';
+
+  
+	const copy = () => {
+    let mail = document.getElementById('copy').innerText;
+
+		const app = new CopyClipBoard({
+			target: document.getElementById('clipboard'),
+			props: { mail },
+		});
+		app.$destroy();
+    alert('Copied to clipboard!');
+	}
 </script>
 
 <div class="mail__wrapper">
@@ -76,92 +91,92 @@
     <div class="mail__title">
       제목:
       <p>
-        [<input
-          type="text"
-          maxlength="20"
-          placeholder="강의명"
-          bind:value={className}
-        />] 기말 과제 제출 드립니다.
+        [<span 
+        placeholder="강의명"
+        contenteditable="true"
+        bind:innerHTML={className}>
+      </span>] 기말 과제 제출 드립니다.
       </p>
     </div>
 
     <!-- 내용 -->
-    <div class="mail__text">
+    <div id="copy" class="mail__text">
       안녕하세요, 교수님.
-      <input
-        type="text"
-        maxlength="20"
+      <span 
         placeholder="강의명"
-        bind:value={className}
-      />
+        contenteditable="true"
+        bind:innerHTML={className}>
+      </span>
       수업 수강하고 있는
-      <input
-        class="mail__department"
-        type="text"
-        maxlength="15"
+      <span
         placeholder="학과"
-        bind:value={department}
-      />
-      <input
-        class="mail__student-id"
-        type="text"
-        maxlength="10"
+        class="mail__department"
+        contenteditable="true"
+        bind:innerHTML={department}
+      >
+      </span>
+      <span
         placeholder="학번"
-        bind:value={studentId}
-      />
-      <input
-        class="mail__name"
-        type="text"
-        maxlength="10"
+        class="mail__student-id"
+        contenteditable="true"
+        bind:innerHTML={studentId}
+      >
+      </span>
+      <span
         placeholder="이름"
-        bind:value={name}
-      />
+        class="mail__name"
+        contenteditable="true"
+        bind:innerHTML={name}
+      >
+      </span>
       입니다.
 
       <!-- 사유 예시 -->
       <div class="mail__example">
         <div class="mail__example-header">
-          <div class="mail__reason">사유 예시</div>
+          <input class="mail__reason" value="사유 예시" readonly/>
         </div>
-        <textarea
-          bind:value={example}
+        <p
           placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
-        />
+          contenteditable="true"
+          bind:innerHTML={example} >
+        </p>
       </div>
 
-      <input
-        type="text"
-        maxlength="30"
+      <span
         placeholder="과제명"
-        bind:value={assignment}
-      />
+        contenteditable="true"
+        bind:innerHTML={assignment}
+      >
+      </span>
       과제 제출합니다. 감사합니다.
 
       <!-- 끝 인사 -->
       <div class="mail__last-words">
-        <input
-          type="text"
-          maxlength="200"
+        <span
           placeholder="요즘 코로나가 기승인데 건강 조심하시길 바랍니다."
-          bind:value={lastWords}
-        />
+          contenteditable="true"
+          bind:innerHTML={lastWords}
+        >
+        </span>
       </div>
 
-      <input
+      <span
         class="mail__name"
-        type="text"
-        maxlength="10"
         placeholder="이름"
-        bind:value={name}
-      /> 올림
+        contenteditable="true"
+        bind:innerHTML={name}
+      >
+      </span> 올림
     </div>
 
     <!-- 클립보드 복사 -->
     <div class="mail__copy">
-      <div class="mail__copy-btn">
+      <button class="mail__copy-btn" on:click={copy}>
         클립보드에 복사&nbsp;
         <i class="far fa-clone" />
-      </div>
+      </button>
+      <div id="clipboard"></div>
     </div>
 
     <!-- 끝 인사 -->

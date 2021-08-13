@@ -7,6 +7,7 @@
   margin-left: 30px;
 }
 .mail__content {
+  width: 90%;
   background-color: #e0f2f4;
   border-radius: 16px;
   padding: 32px;
@@ -20,6 +21,13 @@ textarea:focus {
 }
 button{
   cursor: pointer;
+  border: none;
+}
+span:empty:before{
+  content: attr(placeholder);
+}
+p:empty:before{
+  content: attr(placeholder);
 }
 
 /* 메일 상단 */
@@ -81,13 +89,11 @@ button{
   padding: 2px 15px;
   border-bottom: 2px solid #efefef;
 }
-.mail__title input {
+.mail__title span {
   border: none;
   color: #3f424d;
   font-size: 12px;
-}
-.mail__title input:focus {
-  outline: none;
+  padding: 0 10px;
 }
 .mail__title > p {
   color: #3f424d;
@@ -98,25 +104,18 @@ button{
 
 /* 내용 */
 .mail__text {
+  width: 100%;
   background-color: #ffffff;
   color: #3f424d;
   font-size: 12px;
   padding: 15px;
   border-bottom: 2px solid #efefef;
 }
-.mail__text input {
+.mail__text span:not(.mail__last-words span) {
   font-size: 12px;
   border: none;
   border-bottom: 1px solid #6cbcc6;
-}
-.mail__name {
-  width: 50px;
-}
-.mail__department {
-  width: 130px;
-}
-.mail__student-id {
-  width: 80px;
+  padding: 0 10px;
 }
 
 /* 사유 예시 */
@@ -135,50 +134,24 @@ button{
   margin-bottom: 5px;
 }
 .mail__reason {
+  border:none;
   font-size: 8px;
   color: #6cbcc6;
 }
-.mail__example textarea {
-  width: 100%;
-  height: 42px;
-  border: none;
-  font-size: 12px;
-  line-height: 20px;
-}
-.mail__example textarea::placeholder {
-  color: #cecece;
-  font-size: 12px;
-}
-.mail__example textarea::-webkit-scrollbar {
-  width: 6px;
-}
-.mail__example textarea::-webkit-scrollbar-track {
-  background-color: #efefef;
-  border-radius: 8px;
-}
-.mail__example textarea::-webkit-scrollbar-thumb {
-  background: #6cbcc6;
-  border-radius: 8px;
-}
-.mail__example textarea::-webkit-scrollbar-button {
-  display: none;
+.mail__example p:empty:before{
+  color:#cecece;
 }
 
 /* 끝 인사 */
-.mail__last-words {
-  width: 55%;
-  margin-top: 10px;
-  margin-bottom: 20px;
+.mail__last-words{
+  margin: 10px 0;
+}
+.mail__last-words span {
   border-bottom: 1px solid #f4bc77;
-}
-.mail__last-words input {
-  width: 100%;
-  border: none;
   font-size: 12px;
 }
-.mail__last-words input::placeholder {
-  color: #3f424d;
-  font-size: 12px;
+.mail__last-words span:empty:before {
+  color:#cecece;
 }
 
 /* 클립보드 복사 */
