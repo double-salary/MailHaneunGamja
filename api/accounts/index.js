@@ -8,26 +8,28 @@ const mongoose = require('mongoose');
 console.log(process.env.DATABASE_CONNECTION_STRING)
 
 mongoose.connect(
-    process.env.CONNECTION_STRING, // Retrieve connection string
+    process.env.DATABASE_CONNECTION_STRING, // Retrieve connection string
     { // boiler plate values
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useFindAndModify: false,
     }
 );
 
 // Create the schema or structure of our object in Mongoose
-const userDataSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 
     userId: String,
-    department: String, 
-    studentId: String,
-    bookmarks: [String] // ["courses/exception/1"]
+    name: { type: String, default: "name"},
+    major: { type: String, default: "major"},
+    studentId: { type: String, default: "studendID"},
+    bookmarks: { type: [String], default: []}
     
 });
 
 // Create a model using our schema
 // This model will be used to access the database
-const userDataModel = mongoose.model('userData', userDataSchema);
+const User = mongoose.model('user', userSchema);
 
 // Export our function
 module.exports = async function (context, req) {
@@ -45,21 +47,21 @@ module.exports = async function (context, req) {
         // If get, return all tasks
         case 'GET':
             console.log("GET")
-            // await getProfile(context);
-            // const tasks = await TaskModel.find();
-            // return all tasks
-            
-            context.res.body = { tasks: `tasks hehe`, 
-        id: `${id}` };
+            await getOrCreateUser(context);
             break;
-        // // If post, create new task
-        // case 'POST':
-        //     await createProfile(context);
-        //     break;
-        // // If put, update task
-        // case 'PUT':
-        //     await updateProfile(context);
-        //     break;
+            
+            // context.res.body = {
+            //     name: "name",
+            //     userId: "userId",
+            //     major: "major",
+            //     studentId: "studentId",
+            //     bookmarks: []
+            // }
+            break;
+
+
+        case 'POST': 
+            break;
     }
 };
 
@@ -101,4 +103,21 @@ async function updateTask(context) {
         // Item not found, status 404
         context.res.status = 404;
     }
+}
+
+async function getOrCreateUser(context) {
+
+    const id = context.bindingData.id;
+
+    const query = { userId: id };
+    const update = { userId: id };
+    const options = {
+        new: true,
+        upsert: true,
+        setDefaultsOnInsert: true
+    }
+
+    const user = await User.findOneAndUpdate(query, update, options);
+
+    context.res.body = await new User();
 }

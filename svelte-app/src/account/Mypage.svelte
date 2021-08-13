@@ -5,51 +5,25 @@
   import MutableTodo from './MutableTodo.svelte';
   import { getUserAction } from '../store';
 
-  async function main() {
-    const userInfo = await getUserInfo();
-    const userId = await userInfo.userId;
+  let name = null;
+  let major = null;
+  let studentId = null;
 
-    console.log(userId);
-
-    try {
-      // Uses fetch to call server
-      console.log(
-        `fetch api, connection string: ${process.env.DATABASE_CONNECTION_STRING}`,
-      );
-      const response = await fetch(`/api/accounts/${userId}`, {
-        method: 'GET',
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (myJson) {
-          console.log(JSON.stringify(myJson));
-        });
-      // Reads returned JSON, which contains one property called tasks
-      console.log(response);
-      const retrievedData = await response.json();
-      // Retrieve tasks, which contains an array of all tasks in database
-      console.log(retrievedData);
-      //   const retrievedTasks = retrievedData.tasks;
-      //   // Loop through all tasks
-      //   for (let task of retrievedTasks) {
-      //     // Add each task to the array
-      //     tasks.push(task);
-      //   }
-    } catch {
-      // If there is an error, display a generic message on the page
-      const messageElement = document.createElement('li');
-      messageElement.innerHTML =
-        "Could not pull data. Make sure you've <a href='https://github.com/geektrainer/aswa-starter/docs/add-database.md'>configured the database</a>.";
-      document.getElementById('task-list').appendChild(messageElement);
-    }
+  async function onMountLaunch() {
+    var userProfile = await getUserProfile();
+    console.log(userProfile.name);
+    console.log(userProfile.major);
+    console.log(userProfile.studentId);
+    console.log(userProfile.bookmarks);
+    console.log(userProfile.userId);
+    name = userProfile.name;
+    major = userProfile.major;
+    studentId = userProfile.studentId;
+    bookmarks = userProfile.bookmarks;
   }
 
-  onMount(async () => await main());
+  onMount(async () => await onMountLaunch());
 
-  let name = '김시연';
-  let major = '자유전공학부';
-  let studentId = '19학번';
   const handleSubmit = () => {
     console.log(name, major, studentId);
   };
@@ -103,6 +77,31 @@
     } catch (error) {
       console.error('No profile could be found');
       return undefined;
+    }
+  }
+
+  async function getUserProfile() {
+    const userId = await getUserInfo().then(function (response) {
+      return response.userId;
+    });
+
+    try {
+      // Uses fetch to call server
+      const response = await fetch(`/api/accounts/${userId}`, {
+        method: 'GET',
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          console.log(myJson);
+          return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
+        });
+
+      return response;
+    } catch {
+      // If there is an error, display a generic message on the page
+      console.log('User Profile Fetch Failed');
     }
   }
 </script>
