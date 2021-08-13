@@ -37,7 +37,7 @@
   <Route path="/scenarioList" component={ScenarioList} />
   <Route path="/login" component={Login} />
   <Route path="/about" component={About} />
-  <Route path="/account" component={Account} />
+  <Route path="/accounts/me" component={Account} />
   <Route path="/mails" component={Mails} />
   <Route path="**" component={PageNotFound} />
 </Router>

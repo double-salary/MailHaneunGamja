@@ -1,6 +1,7 @@
-<svelte:options immutable={false}/>
+<svelte:options immutable={false} />
 
 <script>
+
     import MutableTodo from './MutableTodo.svelte';
 
     let name="김시연";
@@ -34,16 +35,34 @@
         });
         clear(index);
     }
+  }
 
-    function clear(index) {
-        console.log(bookmarks);
-        bookmarks = bookmarks.filter(b => b.marked);
-        console.log(bookmarks);
+  async function getUserProfile() {
+    const userId = await getUserInfo().then(function (response) {
+      return response.userId;
+    });
+
+    try {
+      // Uses fetch to call server
+      const response = await fetch(`/api/accounts/${userId}`, {
+        method: 'GET',
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          console.log(myJson);
+          return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
+        });
+
+      return response;
+    } catch {
+      // If there is an error, display a generic message on the page
+      console.log('User Profile Fetch Failed');
     }
-    
-    let editing = false;
+  }
 </script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
 
 <div class="mypage">
     <div id="info-container">
@@ -114,7 +133,5 @@
 </div>
 
 
-
 <style>
-
 </style>
