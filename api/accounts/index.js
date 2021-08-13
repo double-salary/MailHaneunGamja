@@ -20,9 +20,9 @@ mongoose.connect(
 const userSchema = new mongoose.Schema({
 
     userId: String,
-    name: { type: String, default: "name"},
-    major: { type: String, default: "major"},
-    studentId: { type: String, default: "studendID"},
+    name: { type: String, default: null},
+    major: { type: String, default: null},
+    studentId: { type: String, default: null},
     bookmarks: { type: [String], default: []}
     
 });
@@ -40,27 +40,17 @@ module.exports = async function (context, req) {
         }
     }
 
-    const id = context.bindingData.userId;
+    
 
     // Read the method and determine the requested action
     switch (req.method) {
         // If get, return all tasks
         case 'GET':
-            console.log("GET")
             await getOrCreateUser(context);
             break;
-            
-            // context.res.body = {
-            //     name: "name",
-            //     userId: "userId",
-            //     major: "major",
-            //     studentId: "studentId",
-            //     bookmarks: []
-            // }
-            break;
-
 
         case 'POST': 
+            await updateUser(context);
             break;
     }
 };
@@ -107,7 +97,7 @@ async function updateTask(context) {
 
 async function getOrCreateUser(context) {
 
-    const id = context.bindingData.id;
+    const id = context.bindingData.userId;
 
     const query = { userId: id };
     const update = { userId: id };
@@ -117,7 +107,22 @@ async function getOrCreateUser(context) {
         setDefaultsOnInsert: true
     }
 
-    const user = await User.findOneAndUpdate(query, update, options);
+    context.res.body = await User.findOneAndUpdate(query, update, options);
+}
 
-    context.res.body = await new User();
+async function updateUser(context) {
+
+    const id = context.bindingData.userId;
+
+    const query = {userId: id};
+    const update = context.req.body;
+    const options = {
+        new: true,
+        setDefaultsOnInsert: true
+    }
+    
+    const updatedUser = await User.findOneAndUpdate(query, update, options);
+
+    context.res.body = updatedUser;
+
 }
