@@ -1,5 +1,4 @@
 <script>
-  import css from './Mail.css';
   import { slide } from 'svelte/transition';
   let name = '';
   let department = '';
@@ -24,9 +23,6 @@
   function apply(event) {
     const button = event.target;
     example = button.parentElement.firstChild.innerText;
-  }
-  function onChange(event) {
-    selected = event.currentTarget.value;
   }
   const toggle = () => (isOpen = !isOpen);
 </script>
@@ -104,7 +100,6 @@
       <div class="mail__example">
         <div class="mail__example-header">
           <div class="mail__reason">사유 예시</div>
-          <div class="mail__reason-btn">다양한 예시 보기</div>
         </div>
         <textarea
           bind:value={example}
@@ -164,7 +159,6 @@
               checked={selected === 'weather'}
               on:click={toggle}
               aria-expanded={isOpen}
-              on:change={onChange}
               type="radio"
               name="amount"
               value="계절별 안부인사"
@@ -184,7 +178,6 @@
               on:click={() => {
                 isOpen = false;
               }}
-              on:change={onChange}
               type="radio"
               name="amount"
               value="코시국 안부인사"
@@ -198,10 +191,10 @@
 
   <!-- 사유 예시 -->
   <div class="example">
-    <div class="example__title">사유 예시</div>
+    <div class="example__title">다양한 사유 보기</div>
     {#each Object.entries(exampleData) as example}
       <div class="example__content">
-        <p>{example}</p>
+        <p>{example[1]}</p>
         <button on:click={(e) => apply(e)}>
           적용
           <i class="fas fa-pencil-alt" />
