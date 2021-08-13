@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+* {
+  font-family: 'NanumSquareOTF_ac';
+}
