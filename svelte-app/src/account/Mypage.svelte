@@ -3,7 +3,7 @@
 <script>
   import { onMount } from 'svelte';
   import MutableTodo from './MutableTodo.svelte';
-  import { getUserAction, updateUserAction, getUserInfo } from '../store';
+  import { getUserAction, updateUserAction } from '../store/user-data';
 
   let name = null;
   let major = null;
@@ -20,7 +20,6 @@
 
   async function onMountLaunch() {
     var userProfile = await getUserAction();
-    console.log(userProfile.name);
     name = userProfile.name;
     major = userProfile.major;
     bookmarks = userProfile.bookmarks;

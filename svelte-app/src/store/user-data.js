@@ -30,7 +30,7 @@ export async function getUserAction() {
 
   try {
     // Uses fetch to call server
-    const response = await fetch(`/api/accounts/${userId}`, {
+    const response = await fetch(`${API}/accounts/${userId}`, {
       method: 'GET',
     })
       .then(function (response) {
@@ -55,7 +55,7 @@ export async function updateUserAction(userInfo) {
 
   try {
     // Uses fetch to call server
-    const response = await fetch(`/api/accounts/${userId}`, {
+    const response = await fetch(`${API}/accounts/${userId}`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // put task in body
       headers: {
@@ -76,4 +76,8 @@ export async function updateUserAction(userInfo) {
     console.log('User Profile POST Failed');
   }
   
+}
+
+export async function getTotalUserCount() {
+  return await User.countDocuments({});
 }
