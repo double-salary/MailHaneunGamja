@@ -8,23 +8,45 @@
   let lastWords = '';
   let example = '';
   let selected = 'weather';
-  let isOpen = true;
+  let min;
+  let max;
   const exampleData = {
     1: '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     2: '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     3: '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
   };
-  const weatherData = {
-    1: '봄',
-    2: '여름',
-    3: '가을',
-    4: '겨울',
-  };
+  
+  const weatherLastWords={
+    1: '날이 더운데 항상 감사드립니다.', 
+    2: '날이 추운데 감기 조심하시고, 건강하시길 기원합니다.', 
+    3: '날이 좋은데 어쩌구', 
+  }
+  const coronaLastWords={
+    1: '코로나가 다시 악화되었는데 건강하시길 바랍니다.', 
+    2: '건강이 어쩌구', 
+    3: '코로나 사태에도 불구하고 좋은 강의 감사합니다.', 
+  }
+  
   function apply(event) {
     const button = event.target;
     example = button.parentElement.firstChild.innerText;
   }
-  const toggle = () => (isOpen = !isOpen);
+
+  function randomApply(event) {
+    const input = document.getElementById('input');
+
+    /* 랜덤으로 index 결정 */
+    let i = Math.floor(Math.random() * (max - min + 1)) + min;
+    min = 1;
+    max = 3;
+
+    if (input.checked === true){
+      lastWords=weatherLastWords[i];
+    }
+    else {
+      lastWords=coronaLastWords[i];
+    }
+}
 </script>
 
 <div class="mail__wrapper">
@@ -153,38 +175,29 @@
         <span>멋진 안부인사 더하기</span>
       </div>
       <div class="mail__last-words-content">
-        <div class="mail__last-words-btn">
-          <label class="mail__btn-option">
-            <input
-              checked={selected === 'weather'}
-              on:click={toggle}
-              aria-expanded={isOpen}
-              type="radio"
-              name="amount"
-              value="계절별 안부인사"
-            />
-            <span> 계절별 안부인사 </span>
-            {#if isOpen}
-              <ul transition:slide={{ duration: 300 }}>
-                {#each Object.entries(weatherData) as weather}
-                  <li>{weather[1]}</li>
-                {/each}
-              </ul>
-            {/if}
-          </label>
-          <label class="mail__btn-option">
-            <input
-              checked={selected === 'corona'}
-              on:click={() => {
-                isOpen = false;
-              }}
-              type="radio"
-              name="amount"
-              value="코시국 안부인사"
-            />
-            <span> 코시국 안부인사 </span>
-          </label>
-        </div>
+        <label class="mail__btn-option">
+          <input
+          id="input"
+          checked={selected === 'weather'}
+          type="radio"
+          name="amount"
+          value="계절별 안부인사"
+          />
+          <span> 계절별 안부인사 </span>
+        </label>
+        <label class="mail__btn-option">
+          <input
+          checked={selected === 'corona'}
+          type="radio"
+          name="amount"
+          value="코시국 안부인사"
+          />
+          <span> 코시국 안부인사 </span>
+        </label>
+        <button on:click={(e) => randomApply(e)} class="mail__sync-btn">
+          다른 안부인사 보기
+          <i class="fas fa-sync-alt"></i>
+        </button>
       </div>
     </div>
   </div>

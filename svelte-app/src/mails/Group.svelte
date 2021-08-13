@@ -29,7 +29,9 @@
   import MailOthers1 from './mail/others/MailOthers1.svelte';
   import MailOthers2 from './mail/others/MailOthers2.svelte';
   import MailOthers3 from './mail/others/MailOthers3.svelte';
-
+  
+  import Mail from './mail/MailTemplate.svelte';
+  
   /* url params */
   export let params = {};
 
@@ -77,7 +79,7 @@
     <div class="mail">
       {#if params.subcategory === 'corrections'}
         {#if params.id === '1'}
-          <MailGradesCorrections1 />
+          <Mail />
         {/if}
       {:else if params.subcategory === 'inquiries'}
         {#if params.id === '1'}
