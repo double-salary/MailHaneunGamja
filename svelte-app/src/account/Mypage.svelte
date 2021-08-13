@@ -3,14 +3,23 @@
 <script>
   import { onMount } from 'svelte';
   import MutableTodo from './MutableTodo.svelte';
-  import { getUserAction } from '../store';
+  import { getUserAction, updateUserAction, getUserInfo } from '../store';
 
   let name = null;
   let major = null;
   let studentId = null;
+  let bookmarks = [];
+
+  $: userInfo = {
+    name: name ? name : null,
+    major: major ? major : null,
+    studentId: studentId ? studentId : null,
+  };
+
+  onMount(async () => await onMountLaunch());
 
   async function onMountLaunch() {
-    var userProfile = await getUserProfile();
+    var userProfile = await getUserAction();
     console.log(userProfile.name);
     console.log(userProfile.major);
     console.log(userProfile.studentId);
@@ -22,10 +31,15 @@
     bookmarks = userProfile.bookmarks;
   }
 
-  onMount(async () => await onMountLaunch());
-
-  const handleSubmit = () => {
-    console.log(name, major, studentId);
+  const handleSubmit = async () => {
+    if (editing) {
+      console.log(name, major, studentId);
+      console.log(userInfo);
+      var updatedUser = await updateUserAction(userInfo);
+      name = updatedUser.name;
+      major = updatedUser.major;
+      studentId = updatedUser.studentId;
+    }
   };
 
   $: bookmarks = [
@@ -67,43 +81,6 @@
   }
 
   let editing = false;
-
-  async function getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
-
-  async function getUserProfile() {
-    const userId = await getUserInfo().then(function (response) {
-      return response.userId;
-    });
-
-    try {
-      // Uses fetch to call server
-      const response = await fetch(`/api/accounts/${userId}`, {
-        method: 'GET',
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (myJson) {
-          console.log(myJson);
-          return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
-        });
-
-      return response;
-    } catch {
-      // If there is an error, display a generic message on the page
-      console.log('User Profile Fetch Failed');
-    }
-  }
 </script>
 
 <link
@@ -116,7 +93,12 @@
   <div class="info-title-wrap">
     <div class="info-title">개인 정보</div>
     <label class="editing-btn">
-      <input class="checkbox-rec" type="checkbox" bind:checked={editing} />
+      <input
+        class="checkbox-rec"
+        type="checkbox"
+        bind:checked={editing}
+        on:click={handleSubmit}
+      />
       <svg
         width="16"
         height="16"

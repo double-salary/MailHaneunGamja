@@ -60,3 +60,5 @@ export async function addProductAction(product) {
     console.error(error);
   }
 }
+
+
