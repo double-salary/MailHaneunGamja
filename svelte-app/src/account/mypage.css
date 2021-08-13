@@ -1,42 +1,40 @@
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
-*{font-family: 'NanumSquareOTF_ac', 'NanumSquare'}
+*{font-family: NanumSquare}
+.mypage{height: auto;}
 
-hr{}
+hr{margin:0 0 1rem !important;}
 #info-container{
-    border: 1px solid #9189EB; 
-    width: 70%;
-    margin: 0 15%;
+    width: 56%;
+    
+    margin: 2rem 22% 0;
 }
-.info-title-wrap{}
-.info-title{font-size: 3rem; color: #9189EB; font-weight: bold;}
+.info-title-wrap{overflow: hidden;}
+.info-title{font-size: 3rem; color: #9189EB; font-weight: bold; float:left;} 
 
-.editing-btn{color: #9189EB; float: right;}
+.editing-btn{position:relative; top: 3rem; color: #9189EB; float: right; }
 .checkbox-rec{display: none;}
 
 #info-container ul{}
 #editing-ul{}
 .info-box{border:1px solid #9189EB; border-radius: 5px; margin-bottom: 0.7rem; padding: 0.3rem;} /*1,2,3*/
 
-.name-label{color: #9189EB;}
-.major-label{color: #9189EB;}
-.studentId-label{color: #9189EB;}
+.name-label{margin-left:0.3rem; color: #9189EB;}
+.major-label{margin-left:0.3rem; color: #9189EB;}
+.studentId-label{margin-left:0.3rem; color: #9189EB;}
 
-.input-name{}
-.input-major{}
-.input-studentId{}
+.input-name{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
+.input-major{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
+.input-studentId{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 
 #static-ul{}
 
-.name-info{}
-.major-info{}
-.studentId-info{}
-
-
+.name-info{margin-left:0.3rem; font-size: 1.2rem;}
+.major-info{margin-left:0.3rem; font-size: 1.2rem;}
+.studentId-info{margin-left:0.3rem; font-size: 1.2rem;}
 
 #bookmark-container{
-    border: 1px solid #9189EB;
-    width: 70%;
-    margin: 0 15%;
+    width: 56%;
+    margin: 0 22%;
 }
 
 .bookmark-title{font-size: 3rem; color: #9189EB; font-weight: bold;}
@@ -48,9 +46,9 @@ hr{}
     width: 60%;
     float:left;
 }
-.bookmark-lcmc{overflow: hidden;}
-.large-category{background-color: #9189EB; color:white; float:left;}
-.medium-category{color: #9189EB; float:left}
-.small-category{}
-.bookmark-box svg{float:left;}
+.bookmark-lcmc{margin-left:0.3rem; overflow: hidden;}
+.large-category{margin-right: 0.5rem; border-radius: 7px; padding: 0 0.5rem; background-color: #9189EB; color:white; float:left;}
+.medium-category{border:1px solid #9189EB; border-radius: 7px; padding: 0 0.5rem; color: #9189EB; float:left}
+.small-category{margin-left: 0.3rem;}
+.bookmark-box img{cursor: pointer;  float:right; position:relative; top: 1rem; right: 1rem; filter: invert(68%) sepia(44%) saturate(4440%) hue-rotate(208deg) brightness(96%) contrast(92%);}
 

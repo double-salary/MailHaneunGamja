@@ -1,6 +1,7 @@
 <script>
   /* css */
   import './account/mypage.css';
+  import './landings/scenarioList.css';
   import './landings/landings.css';
   import './styles.scss';
   import './global.css';
@@ -11,17 +12,24 @@
   import Landing from './landings/Landing.svelte';
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
+  import ScenarioList from './landings/ScenarioList.svelte';
+  import Login from './login/Login.svelte';
 
   /* router */
   import Router from 'svelte-spa-router';
 
   const routes = new Map();
 
+  // ex #/account
   routes.set('/', Landing);
-  routes.set('/account/', Account); // #/account
-  routes.set('/mails', Mails); // #/mails
-  routes.set('/mails/*', Mails); // #/mails
+  routes.set('/scenarioList', ScenarioList);
+  routes.set('/login', Login);
+  routes.set('/account', Account);
+  routes.set('/accounts/me', Account);
+  routes.set('/mails', Mails);
+  routes.set('/mails/*', Mails);
   routes.set('*', PageNotFound);
+
 </script>
 
 <svelte:head>
