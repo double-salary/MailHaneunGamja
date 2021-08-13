@@ -1,6 +1,7 @@
 .mail__wrapper {
   display: flex;
   justify-content: space-between;
+  margin-left: 30px;
 }
 .mail__content {
   background-color: #e0f2f4;
@@ -125,18 +126,11 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .mail__reason {
   font-size: 8px;
   color: #6cbcc6;
-}
-.mail__reason-btn {
-  font-size: 8px;
-  background-color: #6cbcc6;
-  border-radius: 8px;
-  color: #ffffff;
-  padding: 0 4px;
 }
 .mail__example textarea {
   width: 100%;
@@ -177,7 +171,7 @@ textarea:focus {
   font-size: 12px;
 }
 .mail__last-words input::placeholder {
-  color: #cecece;
+  color: #3f424d;
   font-size: 12px;
 }
 
