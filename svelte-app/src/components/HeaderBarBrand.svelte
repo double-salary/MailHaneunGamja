@@ -12,7 +12,7 @@
     </div>
 
     <div class="new_dropdown">
-      <button class="new_dropbtn"
+      <button class="new_dropbtn for_svg"
         >성적
         <img
           src="../resources/img/cheveron-down.svg"
@@ -28,7 +28,7 @@
     </div>
 
     <div class="new_dropdown">
-      <button class="new_dropbtn"
+      <button class="new_dropbtn for_svg"
         >수업
         <img
           src="../resources/img/cheveron-down.svg"
@@ -43,7 +43,7 @@
     </div>
 
     <div class="new_dropdown">
-      <button class="new_dropbtn"
+      <button class="new_dropbtn for_svg"
         >수강신청
         <img
           src="../resources/img/cheveron-down.svg"
@@ -58,7 +58,7 @@
     </div>
 
     <div class="new_dropdown">
-      <button class="new_dropbtn" style="cursor: pointer"
+      <button class="new_dropbtn for_svg" style="cursor: pointer"
         >
         <Link to='others/1'><span>기타문의</span></Link>
       </button>
@@ -121,6 +121,10 @@
   .new_dropbtn:hover, .new_dropbtn span:hover{
     color: var(--purple-main);
     fill: var(--purple-main);
+  }
+
+  /*svg 화살표 hover때 색깔 바꾸기*/
+  .for_svg:hover{
     filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg) brightness(100%) contrast(85%);
   }
 
