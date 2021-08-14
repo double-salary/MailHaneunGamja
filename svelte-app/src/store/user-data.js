@@ -113,7 +113,7 @@ export async function isTemplateSaved(path) {
 }
 
 
-function remove(a, path) {
+export function remove(a, path) {
   const idx = a.indexOf(path);
   if (idx > -1) a.splice(idx, 1)
 }
