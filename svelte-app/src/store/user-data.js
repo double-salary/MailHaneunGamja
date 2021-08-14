@@ -1,6 +1,5 @@
 import API from './config';
 
-
 export async function getUserInfo() {
   try {
     const response = await fetch('/.auth/me');
@@ -16,7 +15,8 @@ export async function getUserInfo() {
 export async function getUserId() {
 
   const userId = await getUserInfo().then(function (response) {
-    return response.userId;
+    if (response) return response.userId;
+    else return null;
   });
   return userId;
 
@@ -28,6 +28,8 @@ export async function getUserAction() {
 
   const userId = await getUserId();
 
+  if (!userId) return null;
+
   try {
     // Uses fetch to call server
     const response = await fetch(`${API}/accounts/${userId}`, {
@@ -37,7 +39,7 @@ export async function getUserAction() {
         return response.json();
       })
       .then(function (myJson) {
-        console.log(myJson);
+        // console.log(myJson);
         return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
       });
 
@@ -80,4 +82,38 @@ export async function updateUserAction(userInfo) {
 
 export async function getTotalUserCount() {
   return await User.countDocuments({});
+}
+
+export async function bookmarkAction(path) {
+  var user = await getUserAction();
+  const isBookmarked = user.bookmarks.includes(path);
+  var newBookmarks = user.bookmarks;
+
+  if (isBookmarked) {
+    remove(newBookmarks, path);
+  } else {
+    newBookmarks.push(path)
+  }
+
+  user = await updateUserAction({
+    bookmarks: newBookmarks
+  })
+  
+  return user.bookmarks.includes(path);
+}
+
+export async function isTemplateSaved(path) {
+
+  const user = await getUserAction();
+
+  if (!user) return false;
+
+  return user.bookmarks.includes(path);
+
+}
+
+
+function remove(a, path) {
+  const idx = a.indexOf(path);
+  if (idx > -1) a.splice(idx, 1)
 }
