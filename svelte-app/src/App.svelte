@@ -6,9 +6,9 @@
   import './styles.scss';
   import './global.css';
 
+
   /* svelte */
   import { HeaderBar, PageNotFound } from './components';
-
   import Landing from './landings/Landing.svelte';
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
@@ -24,7 +24,6 @@
   routes.set('/', Landing);
   routes.set('/scenarioList', ScenarioList);
   routes.set('/login', Login);
-  routes.set('/account', Account);
   routes.set('/accounts/me', Account);
   routes.set('/mails', Mails);
   routes.set('/mails/*', Mails);
