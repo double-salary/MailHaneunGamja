@@ -63,7 +63,7 @@
     ],
   };
   const othersData = {
-    기타문의: ['면담 문의', '추천서 문의', '인턴십 신청'],
+    기타문의: ['others', ['면담 문의', '추천서 문의', '인턴십 신청']],
   };
 </script>
 
@@ -166,11 +166,14 @@
     </div>
   {:else if params.category === 'others'}
     <div class="side-bar">
-      {#each Object.entries(othersData) as entry}
+      {#each Object.entries(othersData) as [title, slugScenarios]}
         <SideBar
+          scenarioTitle={title}
+          pathSubcategory={params.subcategory}
           category={params.category}
-          subcategory={params.subcategory}
-          scenario={entry}
+          subcategory={slugScenarios[0]}
+          scenarios={slugScenarios[1]}
+          isOpen={params.subcategory === slugScenarios[0]}
         />
       {/each}
     </div>
