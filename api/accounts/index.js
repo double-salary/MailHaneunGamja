@@ -35,7 +35,8 @@ async function getOrCreateUser(context) {
         setDefaultsOnInsert: true
     }
 
-    context.res.body = await mongooseDB.User.findOneAndUpdate(query, update, options);
+    const updatedUser = await mongooseDB.User.findOneAndUpdate(query, update, options);
+    context.res.body = updatedUser;
 }
 
 async function updateUser(context) {
