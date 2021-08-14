@@ -67,6 +67,7 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
+      <span>예상보다 낮은 학점</span>
       <div class="mail__bookmark" hidden={hideBookmark}>
         {#if bookmarked}
           <i class="fas fa-bookmark" on:click={handleBookmark} />

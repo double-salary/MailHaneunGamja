@@ -10,23 +10,30 @@
 .login-container .login-explain{
     font-family: 'NanumSquare';
     font-size: 80px;
-    font-weight: bold;
     line-height: 100px;
     color: var(--yellow-main);
     border: none;
     outline: none;
 }
-
+.login-container .login-potato{
+    position: relative;
+    top: 4.5rem;
+    left: -16rem;
+    width:10%;
+    transform: rotate(-30deg);
+    z-index: -10;
+}
 .login-container .login-google{
+    background-color: white;
+    z-index:10;
     font-family: 'NanumSquare';
     font-size: 32px;
-    font-weight: bold;
     color: var(--darkGray-text);
     border: 3px solid var(--purple-main);
     border-radius: 15px;
     text-align: center;
     width: 500px;
-    margin-top:50px;
+    /* margin-top:50px; */
     padding: 7px;
 
     /*아이콘이랑 글씨 모두 가운데 정렬*/
