@@ -3,16 +3,18 @@
 
   export let category;
   export let subcategory;
-  export let scenario;
+  export let scenarioTitle;
+  export let scenarios;
+  export let pathSubcategory;
 
-  let isOpen = false;
+  export let isOpen;
 
   const toggle = () => (isOpen = !isOpen);
 </script>
 
 <button id="button" on:click={toggle} aria-expanded={isOpen}>
   <span>
-    {scenario[0]}
+    {scenarioTitle}
   </span>
   {#if category != 'others'}
     <svg
@@ -34,7 +36,7 @@
 {#if category != 'others'}
   {#if isOpen}
     <ul transition:slide={{ duration: 300 }}>
-      {#each scenario[1] as item, index}
+      {#each scenarios as item, index}
         <a href="/#/mails/{category}/{subcategory}/{index + 1}">
           <li>
             {item}

@@ -29,33 +29,37 @@
   import MailOthers1 from './mail/others/MailOthers1.svelte';
   import MailOthers2 from './mail/others/MailOthers2.svelte';
   import MailOthers3 from './mail/others/MailOthers3.svelte';
-  
+
   import Mail from './mail/MailTemplate.svelte';
-  
+
   /* url params */
   export let params = {};
 
   /* side bar data */
   const gradesData = {
-    성적정정: ['예상보다 낮은 학점'],
-    점수문의: ['시험 점수 조회 ', '채점 기준 정정', '점수 분포 문의'],
-    평가방식: ['퀴즈 평가', '성적 평가'],
+    성적정정: ['corrections', ['예상보다 낮은 학점']],
+    점수문의: [
+      'inquiries',
+      ['시험 점수 조회 ', '채점 기준 정정', '점수 분포 문의'],
+    ],
+    평가방식: ['evaluations', ['퀴즈 평가', '성적 평가']],
   };
   const coursesData = {
     과제제출: [
-      '지각제출/재제출',
-      '최종 자료 제출',
-      '과제 내용 문의',
-      '과제 마감기한',
+      'submissions',
+      ['지각제출/재제출', '최종 자료 제출', '과제 내용 문의', '과제 마감기한'],
     ],
-    출결사항: ['공결/병결/개인 사유', '녹강/배속'],
+    출결사항: ['attendance', ['공결/병결/개인 사유', '녹강/배속']],
   };
   const registrationData = {
-    정원외수강신청: ['가능 여부', '허락 문의'],
+    정원외수강신청: ['exception', ['가능 여부', '허락 문의']],
     이수규정: [
-      '수강 제한/타 학과 전공',
-      '역수강/선수과목 미이수',
-      '대체 과목 수강 가능 여부',
+      'rule',
+      [
+        '수강 제한/타 학과 전공',
+        '역수강/선수과목 미이수',
+        '대체 과목 수강 가능 여부',
+      ],
     ],
   };
   const othersData = {
@@ -68,11 +72,14 @@
 <div class="container">
   {#if params.category === 'grades'}
     <div class="side-bar">
-      {#each Object.entries(gradesData) as entry}
+      {#each Object.entries(gradesData) as [title, slugScenarios]}
         <SideBar
+          scenarioTitle={title}
+          pathSubcategory={params.subcategory}
           category={params.category}
-          subcategory={params.subcategory}
-          scenario={entry}
+          subcategory={slugScenarios[0]}
+          scenarios={slugScenarios[1]}
+          isOpen={params.subcategory === slugScenarios[0]}
         />
       {/each}
     </div>
@@ -99,11 +106,14 @@
     </div>
   {:else if params.category === 'courses'}
     <div class="side-bar">
-      {#each Object.entries(coursesData) as entry}
+      {#each Object.entries(coursesData) as [title, slugScenarios]}
         <SideBar
+          scenarioTitle={title}
+          pathSubcategory={params.subcategory}
           category={params.category}
-          subcategory={params.subcategory}
-          scenario={entry}
+          subcategory={slugScenarios[0]}
+          scenarios={slugScenarios[1]}
+          isOpen={params.subcategory === slugScenarios[0]}
         />
       {/each}
     </div>
@@ -128,11 +138,14 @@
     </div>
   {:else if params.category === 'registration'}
     <div class="side-bar">
-      {#each Object.entries(registrationData) as entry}
+      {#each Object.entries(registrationData) as [title, slugScenarios]}
         <SideBar
+          scenarioTitle={title}
+          pathSubcategory={params.subcategory}
           category={params.category}
-          subcategory={params.subcategory}
-          scenario={entry}
+          subcategory={slugScenarios[0]}
+          scenarios={slugScenarios[1]}
+          isOpen={params.subcategory === slugScenarios[0]}
         />
       {/each}
     </div>
