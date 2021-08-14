@@ -2,18 +2,8 @@
   import { slide } from 'svelte/transition';
   import { onMount } from 'svelte';
   import { getRandomLastWords } from './lastWords/lastWords-data';
-  import {
-    bookmarkAction,
-    isTemplateSaved,
-    getUserInfo,
-  } from '../../store/user-data';
+  import { bookmarkAction, getUserAction } from '../../store/user-data';
   import { location } from 'svelte-spa-router';
-
-  const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-  ];
 
   let name = '';
   let department = '';
@@ -26,14 +16,23 @@
   var bookmarked = false;
   let hideBookmark = true;
 
+  const exampleData = [
+    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+  ];
+
   onMount(async () => {
     lastWords = getRandomLastWords(checkedWeather);
-    const userInfo = await getUserInfo();
+    const userInfo = await getUserAction();
     if (userInfo == null) {
       hideBookmark = true;
     } else {
       hideBookmark = false;
-      bookmarked = await isTemplateSaved();
+      bookmarked = userInfo.bookmarks.includes($location);
+      name = userInfo.name;
+      department = userInfo.major;
+      studentId = userInfo.studentId;
     }
   });
 
