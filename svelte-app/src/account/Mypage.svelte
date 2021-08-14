@@ -6,9 +6,9 @@
   import { getUserAction, updateUserAction, remove } from '../store/user-data';
   document.body.classList.remove('disable-scroll');
 
-  let name = "";
-  let major = "";
-  let studentId = "";
+  let name = '';
+  let major = '';
+  let studentId = '';
   let bookmarks = [];
 
   $: userInfo = {
@@ -20,10 +20,7 @@
   onMount(async () => await onMountLaunch());
 
   async function onMountLaunch() {
-    userProfile = await getUserAction();
-    console(userProfile.name);
-    console(userProfile.major);
-    console(userProfile.bookmark);
+    const userProfile = await getUserAction();
     name = userProfile.name;
     major = userProfile.major;
     bookmarks = userProfile.bookmarks;
@@ -159,15 +156,33 @@
       <ul id="static-ul">
         <li class="info-box info-box1">
           <div class="name-label">이름</div>
-          <div class="name-info" placeholder="(예) 홍길동" contenteditable="true">{name}</div>
+          <div
+            class="name-info"
+            placeholder="(예) 홍길동"
+            contenteditable="true"
+          >
+            {name}
+          </div>
         </li>
         <li class="info-box info-box2">
           <div class="major-label">학과</div>
-          <div class="name-info" placeholder="(예) 영어영문학과" contenteditable="true">{major}</div>
+          <div
+            class="name-info"
+            placeholder="(예) 영어영문학과"
+            contenteditable="true"
+          >
+            {major}
+          </div>
         </li>
         <li class="info-box info-box3">
           <div class="studentId-label">학번</div>
-          <div class="name-info" placeholder="(예) 18학번 또는 2021-12345" contenteditable="true">{studentId}</div>
+          <div
+            class="name-info"
+            placeholder="(예) 18학번 또는 2021-12345"
+            contenteditable="true"
+          >
+            {studentId}
+          </div>
         </li>
       </ul>
     {/if}

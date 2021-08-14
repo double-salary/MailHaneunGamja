@@ -2,11 +2,7 @@
   import { slide } from 'svelte/transition';
   import { onMount } from 'svelte';
   import { getRandomLastWords } from './lastWords/lastWords-data';
-  import {
-    bookmarkAction,
-    isTemplateSaved,
-    getUserInfo,
-  } from '../../store/user-data';
+  import { bookmarkAction, getUserAction } from '../../store/user-data';
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
@@ -28,12 +24,15 @@
 
   onMount(async () => {
     lastWords = getRandomLastWords(checkedWeather);
-    const userInfo = await getUserInfo();
+    const userInfo = await getUserAction();
     if (userInfo == null) {
       hideBookmark = true;
     } else {
       hideBookmark = false;
-      bookmarked = await isTemplateSaved();
+      bookmarked = userInfo.bookmarks.includes($location);
+      name = userInfo.name;
+      department = userInfo.major;
+      studentId = userInfo.studentId;
     }
   });
 
@@ -131,7 +130,7 @@
       <!-- 사유 예시 -->
       <div class="mail__example">
         <div class="mail__example-header">
-          <input class="mail__reason" value="사유" readonly/>
+          <input class="mail__reason" value="사유" readonly />
         </div>
         <p
           placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."

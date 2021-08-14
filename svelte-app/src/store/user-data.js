@@ -39,10 +39,10 @@ export async function getUserAction() {
         return response.json();
       })
       .then(function (myJson) {
-        // console.log(myJson);
         return myJson; // return JSON 이 궁금할 경우 api/accounts/index.js 확인할 것
       });
 
+    console.log(response);
     return response;
     
   } catch {

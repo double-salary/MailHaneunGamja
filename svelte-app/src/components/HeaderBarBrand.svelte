@@ -103,8 +103,9 @@
   {/if}
   {#if userInfo}
     <div style="margin-right:10px;">
-      <a href="#/accounts/me"><span>x번째 말하는 감자</span></a
-      ><!--마이페이지로 연결-->
+      <a href="#/accounts/me"><span>감자 프로필</span>
+        <!-- <div><img src="../resources/img/short-potato.png"></div> -->
+      </a><!--마이페이지로 연결-->
     </div>
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
