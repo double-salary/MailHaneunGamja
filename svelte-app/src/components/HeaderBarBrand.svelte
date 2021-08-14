@@ -1,15 +1,50 @@
-<Router {url}>
-  <div class="new_navbar">
-    <div class="new_dropdown" onclick="location.href='/landing';">
-      <button class="new_dropbtn" style="cursor: pointer">
-        <img
-          src="../resources/img/logo.png"
-          alt="멜하는감자"
-          style="height: 40px"
-        />
-        <!--이미지 경로 기준은 public 폴더-->
-      </button>
-    </div>
+
+
+<script>
+  import { onMount } from 'svelte';
+  import { Link } from 'svelte-routing';
+
+  const providers = ['google'];
+  const redirect = window.location.pathname;
+  let userInfo = undefined;
+
+  onMount(async () => (userInfo = await getUserInfo()));
+
+  async function getUserInfo() {
+    try {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error('No profile could be found');
+      return undefined;
+    }
+  }
+
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
+    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
+
+    // The object returned here is spread on the anchor element's attributes
+    if (isActive) {
+      return { class: 'router-link-active' };
+    }
+    return {};
+  }
+</script>
+
+<div class="new_navbar">
+  <div class="new_dropdown" onclick="location.href='/landing';">
+    <button class="new_dropbtn" style="cursor: pointer">
+      <img
+        src="../resources/img/logo.png"
+        alt="멜하는감자"
+        style="height: 40px"
+      />
+      <!--이미지 경로 기준은 public 폴더-->
+    </button>
+  </div>
+
 
     <div class="new_dropdown">
       <button class="new_dropbtn"
@@ -57,25 +92,26 @@
       </div>
     </div>
 
-    <div class="new_dropdown">
-      <button class="new_dropbtn" style="cursor: pointer"
-        >
-        <Link to='others/1'><span>기타문의</span></Link>
-      </button>
-    </div>
+  <div class="new_dropdown">
+    <button
+      class="new_dropbtn"
+      style="cursor: pointer"
+      onclick="location.href='#';"
+      >기타문의
+    </button>
   </div>
-  <div class="new_login">
-    {#if !userInfo}
-      <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
-    {/if}
-    {#if userInfo}
-      <div style="margin-right:10px;">
-        <Link to='/account'><span>x번째 말하는 감자</span></Link><!--마이페이지로 연결-->
-      </div>
-      <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
-    {/if}
-  </div>
-</Router>
+</div>
+<div class="new_login">
+  {#if !userInfo}
+    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
+  {/if}
+  {#if userInfo}
+    <a href="/accounts/me" style="margin-right:10px;">x번째 말하는 감자</a>
+    <!--마이페이지로 연결-->
+    <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
+  {/if}
+</div>
+
 
 <style>
   .new_navbar {
@@ -128,7 +164,7 @@
     margin-left: 6px;
   }
 
-  .new_dropbtn_img:hover{
+  .new_dropbtn_img:hover {
     fill: var(--purple-main);
   }
 
@@ -193,38 +229,3 @@
     }
   }
 </style>
-
-<script>
-  import { onMount } from 'svelte';
-  import { Router, Link, Route } from 'svelte-routing';
-  export let url = '';
-  export let routePath = '';
-
-  const providers = ['google'];
-  const redirect = window.location.pathname;
-  let userInfo = undefined;
-
-  onMount(async () => (userInfo = await getUserInfo()));
-
-  async function getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
-
-  function getProps({ href, isPartiallyCurrent, isCurrent }) {
-    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
-
-    // The object returned here is spread on the anchor element's attributes
-    if (isActive) {
-      return { class: 'router-link-active' };
-    }
-    return {};
-  }
-</script>
