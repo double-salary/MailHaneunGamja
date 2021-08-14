@@ -20,19 +20,14 @@ mongoose.connect(
     process.exit(-1);
   });
 
-
-
-
 // Create the schema or structure of our object in Mongoose
 const userSchema = new mongoose.Schema({
     seq :{ type: Number, default: 0},
     userId: String,
-    name: { type: String, default: null},
-    major: { type: String, default: null},
-    studentId: { type: String, default: null},
+    name: { type: String, default: ""},
+    major: { type: String, default: ""},
+    studentId: { type: String, default: ""},
     bookmarks: { type: [String], default: []}
-
-    
 });
 
 

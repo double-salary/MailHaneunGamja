@@ -2,12 +2,14 @@
   import { slide } from 'svelte/transition';
   import { onMount } from 'svelte';
   import { getRandomLastWords } from './lastWords/lastWords-data';
-  import {
-    bookmarkAction,
-    isTemplateSaved,
-    getUserInfo,
-  } from '../../store/user-data';
+  import { bookmarkAction, getUserAction } from '../../store/user-data';
   import { location } from 'svelte-spa-router';
+
+  const exampleData = [
+    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+  ];
 
   let name = '';
   let department = '';
@@ -22,33 +24,17 @@
 
   onMount(async () => {
     lastWords = getRandomLastWords(checkedWeather);
-    const userInfo = await getUserInfo();
+    const userInfo = await getUserAction();
     if (userInfo == null) {
       hideBookmark = true;
     } else {
       hideBookmark = false;
-      bookmarked = await isTemplateSaved();
+      bookmarked = userInfo.bookmarks.includes($location);
+      name = userInfo.name;
+      department = userInfo.major;
+      studentId = userInfo.studentId;
     }
   });
-
-  function refreshLastWords() {
-    lastWords = getRandomLastWords(checkedWeather);
-  }
-
-  async function handleBookmark() {
-    bookmarked = await bookmarkAction($location);
-  }
-
-  const exampleData = {
-    1: '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    2: '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    3: '다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-  };
-
-  function apply(event) {
-    const button = event.target;
-    example = button.parentElement.firstChild.innerText;
-  }
 
   import CopyClipBoard from '../CopyClipBoard.svelte';
 
@@ -62,6 +48,14 @@
     app.$destroy();
     alert('Copied to clipboard!');
   };
+
+  function refreshLastWords() {
+    lastWords = getRandomLastWords(checkedWeather);
+  }
+
+  async function handleBookmark() {
+    bookmarked = await bookmarkAction($location);
+  }
 </script>
 
 <div class="mail__wrapper">
@@ -135,7 +129,7 @@
       <!-- 사유 예시 -->
       <div class="mail__example">
         <div class="mail__example-header">
-          <input class="mail__reason" value="사유 예시" readonly />
+          <input class="mail__reason" value="사유" readonly />
         </div>
         <p
           placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
@@ -223,10 +217,14 @@
   <!-- 사유 예시 -->
   <div class="example">
     <div class="example__title">다양한 사유 보기</div>
-    {#each Object.entries(exampleData) as example}
+    {#each exampleData as ex, id}
       <div class="example__content">
-        <p>{example[1]}</p>
-        <button on:click={(e) => apply(e)}>
+        <p>{ex}</p>
+        <button
+          on:click={() => {
+            example = ex;
+          }}
+        >
           적용
           <i class="fas fa-pencil-alt" />
         </button>
