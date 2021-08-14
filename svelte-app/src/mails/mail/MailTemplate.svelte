@@ -9,6 +9,12 @@
   } from '../../store/user-data';
   import { location } from 'svelte-spa-router';
 
+  const exampleData = [
+    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+  ];
+
   let name = '';
   let department = '';
   let studentId = '';
@@ -31,25 +37,6 @@
     }
   });
 
-  function refreshLastWords() {
-    lastWords = getRandomLastWords(checkedWeather);
-  }
-
-  async function handleBookmark() {
-    bookmarked = await bookmarkAction($location);
-  }
-
-  const exampleData = {
-    1: '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    2: '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    3: '다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-  };
-
-  function apply(event) {
-    const button = event.target;
-    example = button.parentElement.firstChild.innerText;
-  }
-
   import CopyClipBoard from '../CopyClipBoard.svelte';
 
   const copy = () => {
@@ -62,6 +49,14 @@
     app.$destroy();
     alert('Copied to clipboard!');
   };
+
+  function refreshLastWords() {
+    lastWords = getRandomLastWords(checkedWeather);
+  }
+
+  async function handleBookmark() {
+    bookmarked = await bookmarkAction($location);
+  }
 </script>
 
 <div class="mail__wrapper">
@@ -223,10 +218,14 @@
   <!-- 사유 예시 -->
   <div class="example">
     <div class="example__title">다양한 사유 보기</div>
-    {#each Object.entries(exampleData) as example}
+    {#each exampleData as ex, id}
       <div class="example__content">
-        <p>{example[1]}</p>
-        <button on:click={(e) => apply(e)}>
+        <p>{ex}</p>
+        <button
+          on:click={() => {
+            example = ex;
+          }}
+        >
           적용
           <i class="fas fa-pencil-alt" />
         </button>
