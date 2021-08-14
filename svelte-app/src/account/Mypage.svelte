@@ -7,6 +7,7 @@
     let name="김시연";
     let major="자유전공학부";
     let studentId="19학번";
+    let editing=false;
 
 
     console.log(name, major, studentId);
@@ -35,7 +36,7 @@
         });
         clear(index);
     }
-  }
+
 
   async function getUserProfile() {
     const userId = await getUserInfo().then(function (response) {
