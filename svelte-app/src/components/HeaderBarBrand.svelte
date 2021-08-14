@@ -2,7 +2,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { Link } from 'svelte-routing';
 
   const providers = ['google'];
   const redirect = window.location.pathname;
@@ -35,79 +34,83 @@
 
 <div class="new_navbar">
   <div class="new_dropdown" onclick="location.href='/landing';">
-    <button class="new_dropbtn" style="cursor: pointer">
-      <img
-        src="../resources/img/logo.png"
-        alt="멜하는감자"
-        style="height: 40px"
-      />
-      <!--이미지 경로 기준은 public 폴더-->
-    </button>
+    <a href="/">
+      <button class="new_dropbtn" style="cursor: pointer">
+        <img
+          src="../resources/img/logo.png"
+          alt="멜하는감자"
+          style="height: 40px"
+        />
+        <!--이미지 경로 기준은 public 폴더-->
+      </button>
+    </a>
   </div>
 
 
-    <div class="new_dropdown">
-      <button class="new_dropbtn"
-        >성적
-        <img
-          src="../resources/img/cheveron-down.svg"
-          alt="down button"
-          class="new_dropbtn_img responsive"
-        />
-      </button>
-      <div class="new_dropdown-content">
-        <Link to='grades/corrections/1'><span>성적정정</span></Link>
-        <Link to='grades/inquiries/1'><span>점수문의</span></Link>
-        <Link to='grades/evaluations/1'><span>평가방식</span></Link>
-      </div>
+  <div class="new_dropdown">
+    <button class="new_dropbtn for_svg"
+      >성적
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href='#/mails/grades/corrections/1'><span>성적정정</span></a>
+      <a href='#/mails/grades/inquiries/1'><span>점수문의</span></a>
+      <a href='#/mails/grades/evaluations/1'><span>평가방식</span></a>
+
     </div>
 
-    <div class="new_dropdown">
-      <button class="new_dropbtn"
-        >수업
-        <img
-          src="../resources/img/cheveron-down.svg"
-          alt="down button"
-          class="new_dropbtn_img responsive"
-        />
-      </button>
-      <div class="new_dropdown-content">
-        <Link to='courses/submissions/1'><span>과제제출</span></Link>
-        <Link to='courses/attendence/1'><span>출결사항</span></Link>
-      </div>
-    </div>
-
-    <div class="new_dropdown">
-      <button class="new_dropbtn"
-        >수강신청
-        <img
-          src="../resources/img/cheveron-down.svg"
-          alt="down button"
-          class="new_dropbtn_img responsive"
-        />
-      </button>
-      <div class="new_dropdown-content">
-        <Link to='registration/exception/1'><span>정원외 수강신청</span></Link>
-        <Link to='registration/rule/1'><span>이수규정</span></Link>
-      </div>
-    </div>
 
   <div class="new_dropdown">
-    <button
-      class="new_dropbtn"
-      style="cursor: pointer"
-      onclick="location.href='#';"
-      >기타문의
+    <button class="new_dropbtn for_svg"
+      >수업
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href='#/mails/courses/submissions/1'><span>과제제출</span></a>
+      <a href='#/mails/courses/attendance/1'><span>출결사항</span></a>
+
+    </div>
+
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn for_svg"
+      >수강신청
+      <img
+        src="../resources/img/cheveron-down.svg"
+        alt="down button"
+        class="new_dropbtn_img responsive"
+      />
+    </button>
+    <div class="new_dropdown-content">
+      <a href='#/mails/registration/exception/1'><span>정원외 수강신청</span></a>
+      <a href='#/mails/registration/rule/1'><span>이수규정</span></a>
+
+    </div>
+
+
+  <div class="new_dropdown">
+    <button class="new_dropbtn for_svg" style="cursor: pointer"
+      >
+      <a href='#/mails/others/other/1'><span>기타문의</span></a>
     </button>
   </div>
 </div>
 <div class="new_login">
   {#if !userInfo}
-    <a href="/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
+    <a href="#/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
-    <a href="/accounts/me" style="margin-right:10px;">x번째 말하는 감자</a>
-    <!--마이페이지로 연결-->
+    <div style="margin-right:10px;">
+      <a href='#/account'><span>x번째 말하는 감자</span></a><!--마이페이지로 연결-->
+    </div>
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
@@ -159,14 +162,21 @@
     fill: var(--purple-main);
   }
 
+  /*svg 화살표 hover때 색깔 바꾸기*/
+  .for_svg:hover{
+    filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg) brightness(100%) contrast(85%);
+  }
+
   .new_dropbtn_img {
     max-width: 9px;
     margin-left: 6px;
   }
 
+
   .new_dropbtn_img:hover {
     fill: var(--purple-main);
   }
+
 
   .new_dropdown-content {
     display: none;
@@ -228,4 +238,6 @@
       width: 100%;
     }
   }
+
 </style>
+
