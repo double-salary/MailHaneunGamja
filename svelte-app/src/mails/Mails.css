@@ -1,7 +1,14 @@
-.container {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 16px 0;
+}
+.side-bar{
+  width:20%;
+}
+.mail{
+  width:100%;
 }
 * {
   font-family: 'NanumSquareOTF_ac';

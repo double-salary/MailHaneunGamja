@@ -3,7 +3,12 @@
 <script>
   import { onMount } from 'svelte';
   import MutableTodo from './MutableTodo.svelte';
-  import { getUserAction, updateUserAction, remove } from '../store/user-data';
+  import {
+    getUserAction,
+    updateUserAction,
+    cancelBookmarkAction,
+  } from '../store/user-data';
+  import { getTitle } from './uri-info';
   document.body.classList.remove('disable-scroll');
 
   let name = '';
@@ -12,9 +17,9 @@
   let bookmarks = [];
 
   $: userInfo = {
-    name: name ? name : null,
-    major: major ? major : null,
-    studentId: studentId ? studentId : null,
+    name: name ? name : '',
+    major: major ? major : '',
+    studentId: studentId ? studentId : '',
   };
 
   onMount(async () => await onMountLaunch());
@@ -24,6 +29,7 @@
     name = userProfile.name;
     major = userProfile.major;
     bookmarks = userProfile.bookmarks;
+    console.log(processedBookmarks);
   }
 
   const handleSubmit = async () => {
@@ -37,54 +43,25 @@
     }
   };
 
-  $: bookmarks = [
-    {
-      marked: true,
-      lc: '성적',
-      mc: '점수문의',
-      sc: '시험 사항 확인 문제 조회',
-    },
-    { marked: true, lc: '수강신청', sc: '정원외 수강신청 가능 여부' },
-    {
-      marked: true,
-      lc: '수업 이외',
-      sc: '교수님을 만나뵙기 위해 날을 잡아야 하는 상황',
-    },
-  ];
+  async function cancelBookmark(id) {
+    bookmarks = await cancelBookmarkAction(bookmarks[id]);
+  }
 
-  $: processedBookmarks = function processBookmarks(bookmarks) {
-    res = [];
-    for (var bookmark in bookmarks) {
-      segments = bookmark.split('/');
+  $: processedBookmarks = processBookmarks(bookmarks);
+
+  function processBookmarks(bookmarks) {
+    let res = [];
+    bookmarks.forEach((bookmark) => {
+      let pathSlugs = getTitle(bookmark);
+      let segments = pathSlugs.split('/');
+      console.log(segments);
       if (segments == 2) {
         res.push({ lc: segments[0], mc: undefined, sc: segments[1] });
       } else {
         res.push({ lc: segments[0], mc: segments[1], sc: segments[2] });
       }
-    }
-  };
-
-  function cancelBookmark(index) {
-    bookmarks = bookmarks.map((bookmark) => {
-      if (bookmark === bookmarks[index]) {
-        console.log(bookmark.id);
-        return {
-          index,
-          marked: !bookmark.marked,
-          lc: bookmark.lc,
-          mc: bookmark.mc,
-          sc: bookmark.sc,
-        };
-      }
-      return bookmark;
     });
-    clear(index);
-  }
-
-  function clear(index) {
-    console.log(bookmarks);
-    bookmarks = bookmarks.filter((b) => b.marked);
-    console.log(bookmarks);
+    return res;
   }
 
   let editing = false;
@@ -194,9 +171,9 @@
     <div class="bookmark-title">자주 찾는 양식</div>
     <hr />
     <ul>
-      <!-- {#each processedBookmarks as bookmark, id}
+      {#each processedBookmarks as bookmark, id}
         <MutableTodo {bookmark} on:click={() => cancelBookmark(id)} />
-      {/each} -->
+      {/each}
     </ul>
     <br /><br />
   </div>
