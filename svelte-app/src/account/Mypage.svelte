@@ -6,9 +6,9 @@
   import { getUserAction, updateUserAction, remove } from '../store/user-data';
   document.body.classList.remove('disable-scroll');
 
-  let name = null;
-  let major = null;
-  let studentId = null;
+  let name = "";
+  let major = "";
+  let studentId = "";
   let bookmarks = [];
 
   $: userInfo = {
@@ -159,24 +159,15 @@
       <ul id="static-ul">
         <li class="info-box info-box1">
           <div class="name-label">이름</div>
-          {#if { name } == undefined}
-            <div class="name-info">이름</div>
-          {:else}<div class="name-info">{name}</div>
-          {/if}
+          <div class="name-info" placeholder="(예) 홍길동" contenteditable="true">{name}</div>
         </li>
         <li class="info-box info-box2">
           <div class="major-label">학과</div>
-          {#if { major } == undefined}
-            <div class="major-info">전공</div>
-          {:else}<div class="major-info">{major}</div>
-          {/if}
+          <div class="name-info" placeholder="(예) 영어영문학과" contenteditable="true">{major}</div>
         </li>
         <li class="info-box info-box3">
           <div class="studentId-label">학번</div>
-          {#if { studentId } == undefined}
-            <div class="studentId-info">학번</div>
-          {:else}<div class="studentId-info">{studentId}</div>
-          {/if}
+          <div class="name-info" placeholder="(예) 18학번 또는 2021-12345" contenteditable="true">{studentId}</div>
         </li>
       </ul>
     {/if}
