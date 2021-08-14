@@ -29,6 +29,9 @@ hr{margin:0 0 1rem !important;}
 #static-ul{}
 
 .name-info{margin-left:0.3rem; font-size: 1.2rem;}
+.name-info:empty:before{
+    content: attr(placeholder);
+  }
 .major-info{margin-left:0.3rem; font-size: 1.2rem;}
 .studentId-info{margin-left:0.3rem; font-size: 1.2rem;}
 

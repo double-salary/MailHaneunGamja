@@ -117,7 +117,7 @@
             <ul id="static-ul">
                 <li class="info-box info-box1">
                     <div class="name-label">이름</div>
-                    {#if {name} == undefined} <div class="name-info">이름</div> {:else}<div class="name-info">{name}</div> {/if}
+                    <div class="name-info" placeholder="홍길동" contenteditable="true">{name}</div>
                 </li>
                 <li class="info-box info-box2"> 
                     <div class="major-label">학과</div>
@@ -140,9 +140,9 @@
         <div class="bookmark-title">자주 찾는 양식</div>
         <hr>
         <ul>
-            {#each bookmarks as bookmark, id}
+            <!-- {#each bookmarks as bookmark, id}
                     <MutableTodo {bookmark} on:click = "{() => toggle(id)}"></MutableTodo>
-            {/each}
+            {/each} -->
         </ul>
         <br/><br/>
     
