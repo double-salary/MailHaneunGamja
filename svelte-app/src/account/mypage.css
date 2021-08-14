@@ -1,10 +1,11 @@
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
-*{font-family: 'NanumSquareOTF_ac', 'NanumSquare'}
-html, body{height: auto !important;}
+*{font-family: NanumSquare}
+.mypage{height: auto;}
 
 hr{margin:0 0 1rem !important;}
 #info-container{
     width: 56%;
+    
     margin: 2rem 22% 0;
 }
 .info-title-wrap{overflow: hidden;}
@@ -28,12 +29,21 @@ hr{margin:0 0 1rem !important;}
 #static-ul{}
 
 .name-info{margin-left:0.3rem; font-size: 1.2rem;}
+.name-info:empty:before{
+    content: attr(placeholder);
+  }
 .major-info{margin-left:0.3rem; font-size: 1.2rem;}
+.major-info:empty:before{
+    content: attr(placeholder);
+  }
 .studentId-info{margin-left:0.3rem; font-size: 1.2rem;}
+.studentId-info:empty:before{
+    content: attr(placeholder);
+  }
 
 #bookmark-container{
     width: 56%;
-    margin: 0 22% 4rem;
+    margin: 0 22%;
 }
 
 .bookmark-title{font-size: 3rem; color: #9189EB; font-weight: bold;}
