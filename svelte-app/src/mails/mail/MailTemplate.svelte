@@ -1,6 +1,14 @@
 <script>
   import { slide } from 'svelte/transition';
   import { onMount } from 'svelte';
+  import { getRandomLastWords } from './lastWords/lastWords-data';
+  import {
+    bookmarkAction,
+    isTemplateSaved,
+    getUserInfo,
+  } from '../../store/user-data';
+  import { location } from 'svelte-spa-router';
+
   let name = '';
   let department = '';
   let studentId = '';
@@ -8,60 +16,52 @@
   let assignment = '';
   let lastWords = '';
   let example = '';
-  let selected = 'weather';
-  let min;
-  let max;
+  let checkedWeather = true;
+  var bookmarked = false;
+  let hideBookmark = true;
+
+  onMount(async () => {
+    lastWords = getRandomLastWords(checkedWeather);
+    const userInfo = await getUserInfo();
+    if (userInfo == null) {
+      hideBookmark = true;
+    } else {
+      hideBookmark = false;
+      bookmarked = await isTemplateSaved();
+    }
+  });
+
+  function refreshLastWords() {
+    lastWords = getRandomLastWords(checkedWeather);
+  }
+
+  async function handleBookmark() {
+    bookmarked = await bookmarkAction($location);
+  }
+
   const exampleData = {
     1: '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     2: '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     3: '다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
   };
-  
-  const weatherLastWords={
-    1: '날이 더운데 항상 감사드립니다.', 
-    2: '날이 추운데 감기 조심하시고, 건강하시길 기원합니다.', 
-    3: '날이 좋은데 어쩌구', 
-  }
-  const coronaLastWords={
-    1: '코로나가 다시 악화되었는데 건강하시길 바랍니다.', 
-    2: '건강이 어쩌구', 
-    3: '코로나 사태에도 불구하고 좋은 강의 감사합니다.', 
-  }
-  
+
   function apply(event) {
     const button = event.target;
     example = button.parentElement.firstChild.innerText;
   }
 
-  function randomApply(event) {
-    const input = document.getElementById('input');
+  import CopyClipBoard from '../CopyClipBoard.svelte';
 
-    /* 랜덤으로 index 결정 */
-    let i = Math.floor(Math.random() * (max - min + 1)) + min;
-    min = 1;
-    max = 3;
-
-    if (input.checked === true){
-      lastWords=weatherLastWords[i];
-    }
-    else {
-      lastWords=coronaLastWords[i];
-    }
-  }
-
-	import CopyClipBoard from '../CopyClipBoard.svelte';
-
-  
-	const copy = () => {
+  const copy = () => {
     let mail = document.getElementById('copy').innerText;
 
-		const app = new CopyClipBoard({
-			target: document.getElementById('clipboard'),
-			props: { mail },
-		});
-		app.$destroy();
+    const app = new CopyClipBoard({
+      target: document.getElementById('clipboard'),
+      props: { mail },
+    });
+    app.$destroy();
     alert('Copied to clipboard!');
-	}
+  };
 </script>
 
 <div class="mail__wrapper">
@@ -73,8 +73,12 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <div class="mail__bookmark">
-        <i class="fas fa-bookmark" />
+      <div class="mail__bookmark" hidden={hideBookmark}>
+        {#if bookmarked}
+          <i class="fas fa-bookmark" on:click={handleBookmark} />
+        {:else}
+          <i class="far fa-bookmark" on:click={handleBookmark} />
+        {/if}
       </div>
     </div>
 
@@ -91,64 +95,60 @@
     <div class="mail__title">
       제목:
       <p>
-        [<span 
-        placeholder="강의명"
-        contenteditable="true"
-        bind:innerHTML={className}>
-      </span>] 기말 과제 제출 드립니다.
+        [<span
+          placeholder="강의명"
+          contenteditable="true"
+          bind:innerHTML={className}
+        />] 기말 과제 제출 드립니다.
       </p>
     </div>
 
     <!-- 내용 -->
     <div id="copy" class="mail__text">
       안녕하세요, 교수님.
-      <span 
+      <span
         placeholder="강의명"
         contenteditable="true"
-        bind:innerHTML={className}>
-      </span>
+        bind:innerHTML={className}
+      />
       수업 수강하고 있는
       <span
         placeholder="학과"
         class="mail__department"
         contenteditable="true"
         bind:innerHTML={department}
-      >
-      </span>
+      />
       <span
         placeholder="학번"
         class="mail__student-id"
         contenteditable="true"
         bind:innerHTML={studentId}
-      >
-      </span>
+      />
       <span
         placeholder="이름"
         class="mail__name"
         contenteditable="true"
         bind:innerHTML={name}
-      >
-      </span>
+      />
       입니다.
 
       <!-- 사유 예시 -->
       <div class="mail__example">
         <div class="mail__example-header">
-          <input class="mail__reason" value="사유 예시" readonly/>
+          <input class="mail__reason" value="사유 예시" readonly />
         </div>
         <p
           placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
           contenteditable="true"
-          bind:innerHTML={example} >
-        </p>
+          bind:innerHTML={example}
+        />
       </div>
 
       <span
         placeholder="과제명"
         contenteditable="true"
         bind:innerHTML={assignment}
-      >
-      </span>
+      />
       과제 제출합니다. 감사합니다.
 
       <!-- 끝 인사 -->
@@ -157,8 +157,7 @@
           placeholder="요즘 코로나가 기승인데 건강 조심하시길 바랍니다."
           contenteditable="true"
           bind:innerHTML={lastWords}
-        >
-        </span>
+        />
       </div>
 
       <span
@@ -166,17 +165,20 @@
         placeholder="이름"
         contenteditable="true"
         bind:innerHTML={name}
-      >
-      </span> 올림
+      /> 올림
     </div>
 
     <!-- 클립보드 복사 -->
     <div class="mail__copy">
-      <button class="mail__copy-btn" on:click={copy}>
+      <button
+        class="mail__copy-btn"
+        on:click={copy}
+        data-clipboard-target="#bar"
+      >
         클립보드에 복사&nbsp;
         <i class="far fa-clone" />
       </button>
-      <div id="clipboard"></div>
+      <div id="clipboard" />
     </div>
 
     <!-- 끝 인사 -->
@@ -192,26 +194,27 @@
       <div class="mail__last-words-content">
         <label class="mail__btn-option">
           <input
-          id="input"
-          checked={selected === 'weather'}
-          type="radio"
-          name="amount"
-          value="계절별 안부인사"
+            id="input"
+            type="radio"
+            bind:group={checkedWeather}
+            name="amount"
+            value={true}
+            placeholder="계절별 안부인사"
           />
           <span> 계절별 안부인사 </span>
         </label>
         <label class="mail__btn-option">
           <input
-          checked={selected === 'corona'}
-          type="radio"
-          name="amount"
-          value="코시국 안부인사"
+            type="radio"
+            bind:group={checkedWeather}
+            name="amount"
+            value={false}
           />
           <span> 코시국 안부인사 </span>
         </label>
-        <button on:click={(e) => randomApply(e)} class="mail__sync-btn">
+        <button on:click={refreshLastWords} class="mail__sync-btn">
           다른 안부인사 보기
-          <i class="fas fa-sync-alt"></i>
+          <i class="fas fa-sync-alt" />
         </button>
       </div>
     </div>

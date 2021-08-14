@@ -1,5 +1,3 @@
-
-
 <script>
   import { onMount } from 'svelte';
 
@@ -46,7 +44,6 @@
     </a>
   </div>
 
-
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
       >성적
@@ -57,12 +54,11 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href='#/mails/grades/corrections/1'><span>성적정정</span></a>
-      <a href='#/mails/grades/inquiries/1'><span>점수문의</span></a>
-      <a href='#/mails/grades/evaluations/1'><span>평가방식</span></a>
-
+      <a href="#/mails/grades/corrections/1"><span>성적정정</span></a>
+      <a href="#/mails/grades/inquiries/1"><span>점수문의</span></a>
+      <a href="#/mails/grades/evaluations/1"><span>평가방식</span></a>
     </div>
-
+  </div>
 
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
@@ -74,11 +70,10 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href='#/mails/courses/submissions/1'><span>과제제출</span></a>
-      <a href='#/mails/courses/attendance/1'><span>출결사항</span></a>
-
+      <a href="#/mails/courses/submissions/1"><span>과제제출</span></a>
+      <a href="#/mails/courses/attendance/1"><span>출결사항</span></a>
     </div>
-
+  </div>
 
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
@@ -90,16 +85,15 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href='#/mails/registration/exception/1'><span>정원외 수강신청</span></a>
-      <a href='#/mails/registration/rule/1'><span>이수규정</span></a>
-
+      <a href="#/mails/registration/exception/1"><span>정원외 수강신청</span></a
+      >
+      <a href="#/mails/registration/rule/1"><span>이수규정</span></a>
     </div>
-
+  </div>
 
   <div class="new_dropdown">
-    <button class="new_dropbtn for_svg" style="cursor: pointer"
-      >
-      <a href='#/mails/others/other/1'><span>기타문의</span></a>
+    <button class="new_dropbtn for_svg" style="cursor: pointer">
+      <a href="#/mails/others/other/1"><span>기타문의</span></a>
     </button>
   </div>
 </div>
@@ -109,12 +103,12 @@
   {/if}
   {#if userInfo}
     <div style="margin-right:10px;">
-      <a href='#/account'><span>x번째 말하는 감자</span></a><!--마이페이지로 연결-->
+      <a href="#/account"><span>x번째 말하는 감자</span></a
+      ><!--마이페이지로 연결-->
     </div>
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
-
 
 <style>
   .new_navbar {
@@ -140,7 +134,8 @@
   }
 
   /*기타문의때문에 뒤에 있는 선택자 필요*/
-  .new_dropdown .new_dropbtn, .new_dropdown .new_dropbtn span {
+  .new_dropdown .new_dropbtn,
+  .new_dropdown .new_dropbtn span {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
@@ -157,14 +152,16 @@
   }
 
   /*기타문의때문에 뒤에 있는 선택자 필요*/
-  .new_dropbtn:hover, .new_dropbtn span:hover{
+  .new_dropbtn:hover,
+  .new_dropbtn span:hover {
     color: var(--purple-main);
     fill: var(--purple-main);
   }
 
   /*svg 화살표 hover때 색깔 바꾸기*/
-  .for_svg:hover{
-    filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg) brightness(100%) contrast(85%);
+  .for_svg:hover {
+    filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg)
+      brightness(100%) contrast(85%);
   }
 
   .new_dropbtn_img {
@@ -172,11 +169,9 @@
     margin-left: 6px;
   }
 
-
   .new_dropbtn_img:hover {
     fill: var(--purple-main);
   }
-
 
   .new_dropdown-content {
     display: none;
@@ -215,7 +210,9 @@
   }
 
   /*선택자 조금 괴상하지만 Link태그 인식문제로 우선 이렇게 했습니다*/
-  .new_login a, .new_login span, .new_login div {
+  .new_login a,
+  .new_login span,
+  .new_login div {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
@@ -238,6 +235,4 @@
       width: 100%;
     }
   }
-
 </style>
-
