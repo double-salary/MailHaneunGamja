@@ -6,7 +6,6 @@
   import './global.css';
   import { Router, Link, Route } from 'svelte-routing';
   import About from './About.svelte';
-  import Products from './products/Products.svelte';
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
   import Landing from './landings/Landing.svelte';
@@ -34,7 +33,7 @@
   <Route path="/landing" component={Landing} />
   <Route path="/login" component={Login} />
   <Route path="/about" component={About} />
-  <Route path="/account" component={Account} />
+  <Route path="/accounts/me" component={Account} />
   <Route path="/mails" component={Mails} />
   <Route path="**" component={PageNotFound} />
 </Router>
