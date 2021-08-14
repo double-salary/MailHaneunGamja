@@ -6,9 +6,9 @@
   import './styles.scss';
   import './global.css';
 
+
   /* svelte */
   import { HeaderBar, PageNotFound } from './components';
-
   import Landing from './landings/Landing.svelte';
   import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';

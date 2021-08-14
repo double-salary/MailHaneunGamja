@@ -1,3 +1,5 @@
+
+
 <script>
   import { onMount } from 'svelte';
 
@@ -44,6 +46,7 @@
     </a>
   </div>
 
+
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
       >성적
@@ -57,8 +60,9 @@
       <a href='#/mails/grades/corrections/1'><span>성적정정</span></a>
       <a href='#/mails/grades/inquiries/1'><span>점수문의</span></a>
       <a href='#/mails/grades/evaluations/1'><span>평가방식</span></a>
+
     </div>
-  </div>
+
 
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
@@ -72,8 +76,9 @@
     <div class="new_dropdown-content">
       <a href='#/mails/courses/submissions/1'><span>과제제출</span></a>
       <a href='#/mails/courses/attendance/1'><span>출결사항</span></a>
+
     </div>
-  </div>
+
 
   <div class="new_dropdown">
     <button class="new_dropbtn for_svg"
@@ -87,8 +92,8 @@
     <div class="new_dropdown-content">
       <a href='#/mails/registration/exception/1'><span>정원외 수강신청</span></a>
       <a href='#/mails/registration/rule/1'><span>이수규정</span></a>
+
     </div>
-  </div>
 
 
   <div class="new_dropdown">
@@ -109,6 +114,7 @@
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
+
 
 <style>
   .new_navbar {
@@ -232,5 +238,6 @@
       width: 100%;
     }
   }
+
 </style>
 
