@@ -6,17 +6,16 @@
   import './styles.scss';
   import './global.css';
 
-
   /* svelte */
   import { HeaderBar, PageNotFound } from './components';
   import Landing from './landings/Landing.svelte';
-  import Account from './account/Mypage.svelte';
   import Mails from './mails/Mails.svelte';
   import ScenarioList from './landings/ScenarioList.svelte';
   import Login from './login/Login.svelte';
 
   /* router */
   import Router from 'svelte-spa-router';
+  import Mypage from './account/Mypage.svelte';
 
   const routes = new Map();
 
@@ -24,11 +23,10 @@
   routes.set('/', Landing);
   routes.set('/scenarioList', ScenarioList);
   routes.set('/login', Login);
-  routes.set('/accounts/me', Account);
+  routes.set('/accounts/me', Mypage);
   routes.set('/mails', Mails);
   routes.set('/mails/*', Mails);
   routes.set('*', PageNotFound);
-
 </script>
 
 <svelte:head>
