@@ -3,7 +3,7 @@
 <script>
 
     import MutableTodo from './MutableTodo.svelte';
-
+    document.body.classList.remove('disable-scroll');
     let name="김시연";
     let major="자유전공학부";
     let studentId="19학번";
@@ -12,8 +12,6 @@
 
     console.log(name, major, studentId);
 
-
-    
     $: bookmarks = [
         { marked: true, lc: "성적", mc: "점수문의", sc: "시험 사항 확인 문제 조회"},
         { marked: true, lc: "수강신청", sc: "정원외 수강신청 가능 여부"},
