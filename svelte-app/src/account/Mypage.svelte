@@ -159,7 +159,6 @@
           <div
             class="name-info"
             placeholder="(예) 홍길동"
-            contenteditable="true"
           >
             {name}
           </div>
@@ -169,7 +168,6 @@
           <div
             class="name-info"
             placeholder="(예) 영어영문학과"
-            contenteditable="true"
           >
             {major}
           </div>
@@ -179,7 +177,6 @@
           <div
             class="name-info"
             placeholder="(예) 18학번 또는 2021-12345"
-            contenteditable="true"
           >
             {studentId}
           </div>
