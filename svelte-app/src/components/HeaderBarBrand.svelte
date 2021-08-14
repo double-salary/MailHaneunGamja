@@ -1,3 +1,5 @@
+
+
 <script>
   import { onMount } from 'svelte';
   import { Link } from 'svelte-routing';
@@ -43,51 +45,52 @@
     </button>
   </div>
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >성적
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">성적정정</a>
-      <a href="#">점수문의</a>
-      <a href="#">평가방식</a>
-    </div>
-  </div>
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >수업
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">과제제출</a>
-      <a href="#">출결사항</a>
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >성적
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='grades/corrections/1'><span>성적정정</span></Link>
+        <Link to='grades/inquiries/1'><span>점수문의</span></Link>
+        <Link to='grades/evaluations/1'><span>평가방식</span></Link>
+      </div>
     </div>
-  </div>
 
-  <div class="new_dropdown">
-    <button class="new_dropbtn"
-      >수강신청
-      <img
-        src="../resources/img/cheveron-down.svg"
-        alt="down button"
-        class="new_dropbtn_img responsive"
-      />
-    </button>
-    <div class="new_dropdown-content">
-      <a href="#">정원외 수강신청</a>
-      <a href="#">이수규정</a>
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >수업
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='courses/submissions/1'><span>과제제출</span></Link>
+        <Link to='courses/attendence/1'><span>출결사항</span></Link>
+      </div>
     </div>
-  </div>
+
+    <div class="new_dropdown">
+      <button class="new_dropbtn"
+        >수강신청
+        <img
+          src="../resources/img/cheveron-down.svg"
+          alt="down button"
+          class="new_dropbtn_img responsive"
+        />
+      </button>
+      <div class="new_dropdown-content">
+        <Link to='registration/exception/1'><span>정원외 수강신청</span></Link>
+        <Link to='registration/rule/1'><span>이수규정</span></Link>
+      </div>
+    </div>
 
   <div class="new_dropdown">
     <button
@@ -109,6 +112,7 @@
   {/if}
 </div>
 
+
 <style>
   .new_navbar {
     width: 70%; /*new_navbar와 new_login 7:3으로 width 분할(화면좁아서 개행되면 width 100%로 사용)*/
@@ -119,7 +123,7 @@
     height: 90px;
   }
 
-  .new_navbar a {
+  .new_navbar span {
     float: left;
     font-size: 16px;
     text-align: center;
@@ -132,7 +136,8 @@
     justify-content: center; /*가운데정렬*/
   }
 
-  .new_dropdown .new_dropbtn {
+  /*기타문의때문에 뒤에 있는 선택자 필요*/
+  .new_dropdown .new_dropbtn, .new_dropdown .new_dropbtn span {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
@@ -148,7 +153,8 @@
     justify-content: center;
   }
 
-  .new_dropbtn:hover {
+  /*기타문의때문에 뒤에 있는 선택자 필요*/
+  .new_dropbtn:hover, .new_dropbtn span:hover{
     color: var(--purple-main);
     fill: var(--purple-main);
   }
@@ -172,7 +178,7 @@
     z-index: 1;
   }
 
-  .new_dropdown-content a {
+  .new_dropdown-content span {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -181,7 +187,7 @@
     text-align: left;
   }
 
-  .new_dropdown-content a:hover {
+  .new_dropdown-content span:hover {
     background-color: #ddd; /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
   }
 
@@ -198,7 +204,8 @@
     height: 90px;
   }
 
-  .new_login a {
+  /*선택자 조금 괴상하지만 Link태그 인식문제로 우선 이렇게 했습니다*/
+  .new_login a, .new_login span, .new_login div {
     font-family: 'NanumSquare';
     font-size: 20px;
     font-weight: bold;
