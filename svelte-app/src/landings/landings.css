@@ -2,11 +2,19 @@
   z-index: -1;
 }
 
+.landing-potato{
+  width: 25%;
+  z-index:20;
+  position:relative;
+  top: -17rem;
+  left: 68rem;
+}
 .flex-container {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  align-items:center;
   justify-content: center;
   padding-bottom: 8%;
 }
@@ -16,7 +24,7 @@
   flex-direction: row;
   max-width: 1200px;
   width: 100%;
-  height: 65%;
+  height: 80%;
 }
 
 .left-div {
@@ -61,6 +69,7 @@
 
 .right-div {
   width: 60%;
+  height: 85%;
   background-color: white;
   border-radius: 16px;
   display: flex;
