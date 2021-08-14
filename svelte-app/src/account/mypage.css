@@ -33,7 +33,13 @@ hr{margin:0 0 1rem !important;}
     content: attr(placeholder);
   }
 .major-info{margin-left:0.3rem; font-size: 1.2rem;}
+.major-info:empty:before{
+    content: attr(placeholder);
+  }
 .studentId-info{margin-left:0.3rem; font-size: 1.2rem;}
+.studentId-info:empty:before{
+    content: attr(placeholder);
+  }
 
 #bookmark-container{
     width: 56%;
