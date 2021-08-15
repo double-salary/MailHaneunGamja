@@ -2,7 +2,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import MutableTodo from './MutableTodo.svelte';
   import {
     getUserAction,
     updateUserAction,
@@ -14,7 +13,7 @@
   let name = '';
   let major = '';
   let studentId = '';
-  let bookmarks = [];
+  let bookmarks = []
 
   $: userInfo = {
     name: name ? name : '',
@@ -162,15 +161,26 @@
     {/if}
   </div>
 
-  <br /><br />
+  <br />
 
   <div id="bookmark-container">
     <div class="bookmark-title">자주 찾는 양식</div>
     <hr />
     <ul>
       {#each processedBookmarks as bookmark, id}
-        <MutableTodo {bookmark} on:click={() => cancelBookmark(id)} />
+        <!-- <MutableTodo {bookmark} on:click={() => cancelBookmark(id)} /> -->
+      <li class="bookmark-box">
+        <div class="bookmark-categories">
+            <div class="bookmark-lcmc">
+                <div class="large-category">{ bookmark.lc }</div>
+                {#if bookmark.mc == "undefined"}<div></div> {:else}<div class="medium-category">{ bookmark.mc }</div>{/if}            
+            </div>
+            <a href="#{bookmarks[id]}" class="small-category">{ bookmark.sc }</a>
+        </div>
+        <img on:click src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
+      </li>
       {/each}
+
     </ul>
     <br /><br />
   </div>

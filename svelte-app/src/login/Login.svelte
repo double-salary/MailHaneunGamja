@@ -38,9 +38,9 @@
     되어버리셨나요?
     </div>
     <!--div태그 전체에 로그인 링크 달기-->
-    <img class="login-potato" src="../resources/img/long-potato.png">
+    <img class="login-potato" src="../resources/img/long-potato.png" alt="login-potato">
     <div class="login-google" onclick="location.href='/.auth/login/google?post_login_redirect_uri=/landing/';">
-        <img src="https://img.icons8.com/color/35/000000/google-logo.png"/>
+        <img src="https://img.icons8.com/color/35/000000/google-logo.png" alt="google-logo"/>
         <span>구글 로그인 하러가기</span>
     </div>
 </div>

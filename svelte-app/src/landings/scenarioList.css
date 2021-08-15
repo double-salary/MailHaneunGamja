@@ -11,29 +11,27 @@
     margin-bottom: 0.2rem;
     font-size: 12px;
     cursor: pointer;}
+.sclist-ul li:hover a{
+    color:#6CBCC6 !important;
+    }
+.sclist-ul li:focus a{
+    color:#6CBCC6 !important;
+    }
+
 .sclist-ul li a{font-size: 1.2rem; color:black !important;}
 .lc{padding: 0 2rem; margin: 0 10% 3rem 10%; width: 80%;}
 .lc-title{font-size:2rem; color: #6CBCC6; margin-bottom: 0.2rem;}
 
 
-/* .mc{margin-top: 2rem;}
-.mc-title{font-size: 1.5rem; padding:0 0.5rem; width:fit-content; margin-bottom: 0.5rem; background-color: #6CBCC6; color:white; border-radius: 10px; } */
+/* responsive */
 
-/* #grades-container{}
-.title-grades{font-size: 2rem;}
-/* .grades-corrections{border: 1px solid #9189EB;}
-.grades-inquiries{border: 1px solid #9189EB;}
-.grades-evaluations{border: 1px solid #9189EB;} */
-
-/* #courses-container{}
-.title-courses{font-size: 2rem;}
-/* .courses-submissions{border: 1px solid #9189EB;}
-.courses-attendance{border: 1px solid #9189EB;} */
-/* 
-#registration-container{}
-.title-registration{font-size: 2rem;} */
-/* .registration-exception{border: 1px solid #9189EB;}
-.registration-rule{border: 1px solid #9189EB;} */
-
-/* #others-container{} 
-.others-title{font-size: 2rem;}  */
+@media screen and (max-width:953px){
+    .sclist-ul li{
+        width: 45%;
+    }
+}
+@media screen and (max-width:702px){
+    .sclist-ul li{
+        width: 90%;
+    }
+}

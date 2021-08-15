@@ -26,6 +26,7 @@ hr{margin:0 0 1rem !important;}
 .input-major{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 .input-studentId{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 
+
 #static-ul{}
 
 .name-info{margin-left:0.3rem; font-size: 1.2rem;}
@@ -55,9 +56,24 @@ hr{margin:0 0 1rem !important;}
     width: 60%;
     float:left;
 }
-.bookmark-lcmc{margin-left:0.3rem; overflow: hidden;}
-.large-category{margin-right: 0.5rem; border-radius: 7px; padding: 0 0.5rem; background-color: #9189EB; color:white; float:left;}
-.medium-category{border:1px solid #9189EB; border-radius: 7px; padding: 0 0.5rem; color: #9189EB; float:left}
-.small-category{margin-left: 0.3rem;}
+.bookmark-lcmc{margin-left:0.3rem; margin-bottom: 0.2rem;overflow: hidden;}
+.large-category{margin-right: 0.5rem; border-radius: 7px; padding: 0.2rem 0.5rem 0; background-color: #9189EB; color:white; float:left;}
+.medium-category{border:1px solid #9189EB; border-radius: 7px; padding: 0.2rem 0.5rem 0; color: #9189EB; float:left}
+.small-category{margin-left: 0.4rem;  color:black !important;}
 .bookmark-box img{cursor: pointer;  float:right; position:relative; top: 1rem; right: 1rem; filter: invert(68%) sepia(44%) saturate(4440%) hue-rotate(208deg) brightness(96%) contrast(92%);}
 
+@media screen and (max-width: 700px){
+  .bookmark-categories{width:80%;}
+  #info-container, #bookmark-container{width:76%; margin: 2rem 12% 0;}
+  .info-title, .bookmark-title{font-size:2.5rem;}
+  .editing-btn{position:relative; top: 2.4rem; color: #9189EB; float: right; }
+}
+@media screen and (max-width: 400px){
+  .bookmark-categories{width:90%;}
+  #info-container, #bookmark-container{width:82%; margin: 2rem 9% 0;}
+  .info-title, .bookmark-title{font-size:2rem;}
+  .editing-btn{position:relative; top: 1.5rem; color: #9189EB; float: right;}
+  .name-label, .major-label, .studentId-label{font-size: 0.8rem;}
+  .input-name, .input-major, .input-studentId{font-size: 1rem;}
+  .name-info, .major-info, .studentId-info{font-size: 1rem;}
+}
