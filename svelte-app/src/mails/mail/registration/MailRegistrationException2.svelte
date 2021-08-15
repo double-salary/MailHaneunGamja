@@ -115,7 +115,7 @@
             <input class="mail__reason" value="사유 예시" readonly/>
           </div>
           <p
-            placeholder="저는 웹 개발 동아리와 <정보문화기술입문> 팀프로젝트를 하면서 웹 개발 분야에 관심을 쌓게 되었고, 이 과목을 수강하면서 루비 온 레일즈를 활용한 웹 개발 지식을 쌓고자 하였습니다. "
+            placeholder="저는 웹 개발 동아리와 <정보문화기술입문> 팀프로젝트를 하면서 개발 분야에 관심을 쌓게 되었고, 이 과목을 수강하면서 루비 온 레일즈를 활용한 웹 개발 지식을 쌓고 싶습니다."
             contenteditable="true"
             bind:innerHTML={example} >
           </p>

@@ -63,7 +63,7 @@
     ],
   };
   const othersData = {
-    기타문의: ['others', ['면담 문의', '추천서 문의', '인턴십 신청']],
+    기타문의: ['other', ['면담 문의', '추천서 문의', '인턴십 신청']],
   };
 
   document.body.classList.remove('disable-scroll');
