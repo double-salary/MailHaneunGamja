@@ -1,7 +1,7 @@
 <script>
   /* css */
   import MailCss from './Mail.css';
-  import SideBarCss from './Sidebar.css';
+  import SideBarCss from './SideBar.css';
 
   /* svelte */
   import SideBar from './SideBar.svelte';
