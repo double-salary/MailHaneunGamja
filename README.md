@@ -1,106 +1,96 @@
+<img src="https://img.shields.io/badge/AzureStaticWebApp-00599C?style=flat-square&logo=microsoftazure&logoColor=white"/> &nbsp; 
+<img src="https://img.shields.io/badge/MongoDB-65A456?style=flat-square&logo=mongodb&logoColor=white"/> &nbsp;
+<img src="https://img.shields.io/badge/Svelte-FF633E?style=flat-square&logo=svelte&logoColor=white"/> &nbsp;
+<img src="https://img.shields.io/badge/GitHubActions-0E1117?style=flat-square&logo=githubactions&logoColor=white"/>
+
+# `말하는 감자🥔` - made by `월급두배받는법`
+
+![ServiceMain](https://user-images.githubusercontent.com/57657135/129477887-0d8ea662-7cbe-4eed-9938-6ee005c9d482.gif)
+
+# 멜하는 감자의 기획 의도
 ---
-page_type: sample
-languages:
-  - javascript
-  - typescript
-products:
-  - azure functions
-description: 'Apps that can be used with as a starting point for some MS Learn Modules.'
-urlFragment: 'https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication'
+예기치 못하게 길어진 코로나 사태로 인해 가시밭길 대학생활을 하고 있는 대학생들이 점점 늘어나는 요즘😢 서비스 `멜하는 감자`는 교수님께 메일을 보내려고 창만 열면 말하는 감자가 되어버리는 수많은 대학생들을 위해 만들어졌습니다. `멜하는 감자` 는 제작자 @subeenpark-io , @HoYoungChun, @ksiyeon27, @seoljiwon 와 그 주변인들의 눈물젖은 메일들을 기반으로 만들어졌으며, 
+최소한의 입력을 통해 `교수님에게 보낼 수 있는 예의바른 메일✉️`을 뚝딱! 만들어주는 웹서비스입니다. 수업, 성적, 면담 문의 등 교수님께 보낼 다양한 메일을 쉽게 작성해보세요!
+
+# 사용된 기술들
 ---
+\* Server - <img src="https://img.shields.io/badge/AzureStaticWebApp-00599C?style=flat-square&logo=microsoftazure&logoColor=white"/>&nbsp; <img src="https://img.shields.io/badge/MongoDB-65A456?style=flat-square&logo=mongodb&logoColor=white"/>
 
-# Official Microsoft Sample
+\* Client - <img src="https://img.shields.io/badge/Svelte-FF633E?style=flat-square&logo=svelte&logoColor=white"/> 
 
-Follow the hands-on tutorial to [authenticate users in a web app using Angular, React, Svelte, or Vue JavaScript with Azure Static Web App](https://docs.microsoft.com/learn/modules/publish-static-web-app-authentication/?WT.mc_id=javascript-12560-yolasors).
+\* 그리고... <img src="https://img.shields.io/badge/GitHubActions-0E1117?style=flat-square&logo=githubactions&logoColor=white"/>
 
-## Static Web App
+# 실행 방법
+## 준비 사항
+* `NodeJS` - v14.17.4
+* `Azure Functions Core Tools` : v3.0.3477
+* `npm` - v6.14.14
+* `Azure Static Web App CLI` - v0.6.1
+* `Azure` 계정
+* `GitHub` 계정
+* VSCode `Azure Static Web App` & `Azure Functions` extension 
+* `Azure Cosmos DB Instance` [참고](https://docs.microsoft.com/en-us/azure/static-web-apps/add-mongoose) 와 그 `PRIMARY CONNECTION STRING`
 
-This repository contains apps that can be used with as a starting point for some MS Learn Modules. because everyone has their own preference for their JavaScript frameworks/library, you can choose which one you prefer.
 
-The shopping theme is used throughout the app.
+## 로컬에서 실행하는 법
+### settings(DB setting)
+#### {BASE_DIR}/api/local.settings.json
+```
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "DATABASE_CONNECTION_STRING": {YOUR AZURE DB PRIMARY CONNECT STRING}
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}
+```
 
-## Contents
+### shell1 - svelte 실행
+```shell
+git clone https://github.com/double-salary/MailHaneunGamja.git
+cd MailHaneunGamja
+cd svelte-app
+npm install
+npm run dev
+```
+### shell2 - api 실행 (시작 directory : MailHaneunGamja)
+```shell
+cd api
+npm install
+func start
+````
 
-The apps written in the following JavaScript frameworks/libraries:
 
-| folder          | Description                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------- |
-| **angular-app** | [Sample Angular app](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication/blob/main/angular-app)         |
-| **api** | [Sample Azure Functions app](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication/blob/main/api) |
-| **react-app**   | [Sample React app](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication/blob/main/react-app)             |
-| **svelte-app**  | [Sample Svelte app](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication/blob/main/svelte-app)           |
-| **vue-app**     | [Sample Vue app](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication/blob/main/vue-app)                 |
+### shell3 - swa 실행 (시작 directory : MailHaneunGamja)
+```shell
+cd api
+swa start http://localhost:5000 --api ./api 
+````
+### 접속
+`http://localhost:4280/`로 접속
 
-## Prerequisites
+## GitHub Actions를 위한 배포
+### 
+1. Azure 계정에 로그인 
+2. [포탈](https://portal.azure.com/#home)에 접속, `create a resource`를 누른다. 
+3. `Static Web App`을 검색해 선택 후 `create`을 누른다.
+4. 각종 옵션을 선택한 후 `Sign in with GitHub`를 눌러 인증을 진행한다.
+    * Subscription - {본인 계정},
+    * **Resource Group - {CosmosDB와 같은 그룹}**
+    * Plan type - {free}
+    * Azure Functions and staging details - {West US 2}
+    * Source - {GitHub}
+5. 인스턴스 접속 후 Configuration에서 DATABASE_CONNECTION_STRING을 등록한다.  
 
-- A GitHub account
-- [Node.js and Git](https://nodejs.org/)
-- [Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=javascript-12560-yolasors) installed
-- The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions?WT.mc_id=javascript-12560-yolasors) installed
-- The [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local?WT.mc_id=javascript-12560-yolasors) installed
 
-## Problems or Suggestions
+* 이 레포지토리는 [2021 HackaLearn](https://github.com/devrel-kr/HackaLearn) 참가를 위해 만들어진 서비스 **말하는 감자**의 코드를 담고 있습니다. 
+* This repository is about 'MailingPotato', the web service for [2021 HackaLearn](https://github.com/devrel-kr/HackaLearn).
+* 이 레포지토리는 [Azure Static Web App Template](https://github.com/MicrosoftDocs/mslearn-staticwebapp-authentication)을 이용해 만들어졌습니다.
 
-[Open an issue here](https://github.com/MicrosoftDocs/mslearn-staticwebapp-api/issues)
 
-## Resources
 
-### Azure Static Web Apps
 
-- Learn how to [Publish an Angular, React, Svelte, or Vue JavaScript app and API with Azure Static Web Apps](https://docs.microsoft.com/learn/modules/publish-app-service-static-web-app-api?wt.mc_id=javascript-12560-yolasors)
-- [API support in Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/apis?wt.mc_id=javascript-12560-yolasors)
-- [Add an API to Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/add-api?wt.mc_id=javascript-12560-yolasors)
-- [Authentication and authorization](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization?wt.mc_id=javascript-12560-yolasors)
-- [Routes](https://docs.microsoft.com/azure/static-web-apps/routes?wt.mc_id=javascript-12560-yolasors)
-- [Review pre-production environments](https://docs.microsoft.com/azure/static-web-apps/review-publish-pull-requests?wt.mc_id=javascript-12560-yolasors)
-
-### Azure Functions
-
-- Learn how to [Refactor Node.js and Express APIs to Serverless APIs with Azure Functions](https://docs.microsoft.com/learn/modules/shift-nodejs-express-apis-serverless/?wt.mc_id=javascript-12560-yolasors)
-- Learn about the Azure Functions [local.settings.json](https://docs.microsoft.com/azure/azure-functions/functions-run-local#local-settings-file?wt.mc_id=javascript-12560-yolasors) file
-- Learn how to [Deploy to Azure Using Azure Functions](https://code.visualstudio.com/tutorials/functions-extension/getting-started?wt.mc_id=javascript-12560-yolasors)
-- Sign up for a [Free Trial of Azure](https://azure.microsoft.com/free/?wt.mc_id=javascript-12560-yolasors)
-
-### Visual Studio Code
-
-- [Azure Free Trial](https://azure.microsoft.com/free/?wt.mc_id=javascript-12560-yolasors)
-- [VS Code](https://code.visualstudio.com?wt.mc_id=javascript-12560-yolasors)
-- [VS Code Extension for Node on Azure](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack&WT.mc_id=javascript-12560-yolasors)
-- Azure Functions [local.settings.json](https://docs.microsoft.com/azure/azure-functions/functions-run-local#local-settings-file?WT.mc_id=javascript-12560-yolasors) file
-
-### Debugging Resources
-
-- [Debugging Angular in VS Code](https://code.visualstudio.com/docs/nodejs/angular-tutorial?wt.mc_id=javascript-12560-yolasors)
-- [Debugging React in VS Code](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial?wt.mc_id=javascript-12560-yolasors)
-- [Debugging Vue in VS Code](https://code.visualstudio.com/docs/nodejs/vuejs-tutorial?wt.mc_id=javascript-12560-yolasors)
-
-# Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-# Legal Notices
-
-Microsoft and any contributors grant you a license to the Microsoft documentation and other content
-in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode),
-see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
-[LICENSE-CODE](LICENSE-CODE) file.
-
-Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation
-may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries.
-The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
-Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
-
-Privacy information can be found at https://privacy.microsoft.com/en-us/
-
-Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,
-or trademarks, whether by implication, estoppel or otherwise.
