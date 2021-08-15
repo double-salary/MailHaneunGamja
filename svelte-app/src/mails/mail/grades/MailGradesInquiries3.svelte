@@ -6,9 +6,9 @@
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '매우 재밌게 들은 강의였고, 배운 내용을 충분히 숙지하고 시험에 임했다고 생각했음에도 불구하고 예상했던 것 만큼 성적이 좋지 않아 실례를 무릅쓰고 문의드립니다.',
+    '중요한 전공 과목이라는 말을 워낙 많이 들어서, 제 객관적인 위치를 파악하고 싶어 문의드립니다.',
+    '노력을 충분히 들였다고 생각했는데, 예상보다 낮은 점수를 받아 분반의 전반적인 성적 분포를 알고싶습니다.',
   ];
 
   let name = '';
@@ -67,7 +67,7 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <span>예상보다 낮은 학점</span>
+      <span>정확한 성적 분포가 궁금할 때</span>
       <div
         class="mail__bookmark"
         style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
@@ -97,19 +97,25 @@
           placeholder="강의명"
           contenteditable="true"
           bind:innerHTML={className}
-        />] 기말 과제 제출 드립니다.
+        />]
+        <span
+          placeholder="시험 종류"
+          contenteditable="true"
+          bind:innerHTML={assignment}
+        /> 성적 분포 관련 문의 드립니다
       </p>
     </div>
 
     <!-- 내용 -->
     <div id="copy" class="mail__text">
-      안녕하세요, 교수님.
+      안녕하세요 교수님, <br />
+      이번 학기
       <span
         placeholder="강의명"
         contenteditable="true"
         bind:innerHTML={className}
       />
-      수업 수강하고 있는
+      강의를 수강하고 있는
       <span
         placeholder="학과"
         class="mail__department"
@@ -129,6 +135,13 @@
         bind:innerHTML={name}
       />
       입니다.
+      <br />
+      다름이 아니라
+      <span
+        placeholder="시험 종류"
+        contenteditable="true"
+        bind:innerHTML={assignment}
+      />의 성적 및 분포를 자세히 알고싶어 연락드렸습니다.
 
       <!-- 사유 예시 -->
       <div class="mail__example">
@@ -136,18 +149,13 @@
           <input class="mail__reason" value="사유" readonly />
         </div>
         <p
-          placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
+          placeholder="매우 재밌게 들은 강의였고, 배운 내용을 충분히 숙지하고 시험에 임했다고 생각했음에도 불구하고 예상했던 것 만큼 성적이 좋지 않아 실례를 무릅쓰고 문의드립니다."
           contenteditable="true"
           bind:innerHTML={example}
         />
       </div>
 
-      <span
-        placeholder="과제명"
-        contenteditable="true"
-        bind:innerHTML={assignment}
-      />
-      과제 제출합니다. 감사합니다.
+      항상 좋은 강의 덕분에 즐겁게 배우고 있습니다. 감사합니다.
 
       <!-- 끝 인사 -->
       <div class="mail__last-words">

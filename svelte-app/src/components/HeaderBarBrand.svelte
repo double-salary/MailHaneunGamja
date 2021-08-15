@@ -7,6 +7,10 @@
 
   onMount(async () => (userInfo = await getUserInfo()));
 
+  function onClickMenu() {
+    console.log('hello');
+  }
+
   async function getUserInfo() {
     try {
       const response = await fetch('/.auth/me');
@@ -66,15 +70,15 @@
 <div class="new_navbar" id="for_toggle">
   <div class="new_dropdown broad_logo" onclick="location.href='/landing';">
     <button class="new_dropbtn" style="cursor: pointer">
-        <a href="/">
+      <a href="/">
         <img
           src="../resources/img/logo.png"
           alt="멜하는감자"
           style="height: 40px"
         />
         <!--이미지 경로 기준은 public 폴더-->
-        </a>
-      </button>
+      </a>
+    </button>
   </div>
 
   <div class="new_dropdown">
@@ -87,9 +91,13 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/grades/corrections/1"><span class="first">성적정정</span></a>
+      <a href="#/mails/grades/corrections/1"
+        ><span class="first" on:click={onClickMenu}>성적정정</span></a
+      >
       <a href="#/mails/grades/inquiries/1"><span>점수문의</span></a>
-      <a href="#/mails/grades/evaluations/1"><span class="last">평가방식</span></a>
+      <a href="#/mails/grades/evaluations/1"
+        ><span class="last">평가방식</span></a
+      >
     </div>
   </div>
 
@@ -103,8 +111,12 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/courses/submissions/1"><span class="first">과제제출</span></a>
-      <a href="#/mails/courses/attendance/1"><span class="last">출결사항</span></a>
+      <a href="#/mails/courses/submissions/1"
+        ><span class="first">과제제출</span></a
+      >
+      <a href="#/mails/courses/attendance/1"
+        ><span class="last">출결사항</span></a
+      >
     </div>
   </div>
 
@@ -118,8 +130,12 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/registration/exception/1"><span class="first">정원 외 수강신청</span></a>
-      <a href="#/mails/registration/rule/1"><span class="last">이수규정</span></a>
+      <a href="#/mails/registration/exception/1"
+        ><span class="first">정원 외 수강신청</span></a
+      >
+      <a href="#/mails/registration/rule/1"
+        ><span class="last">이수규정</span></a
+      >
     </div>
   </div>
 
@@ -182,7 +198,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:100%;
+    width: 100%;
   }
 
   /*기타문의때문에 뒤에 있는 선택자 필요*/
@@ -228,11 +244,11 @@
     font-weight: 500;
   }
 
-  .new_dropdown-content .first{
+  .new_dropdown-content .first {
     border-radius: 8px 8px 0 0;
   }
 
-  .new_dropdown-content .last{
+  .new_dropdown-content .last {
     border-radius: 0 0 8px 8px;
   }
 
@@ -240,7 +256,6 @@
     background-color: var(--purple-main); /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
     color: #ffffff;
   }
-
 
   .new_dropdown:hover .new_dropdown-content {
     display: block;
@@ -273,12 +288,13 @@
 
     
   }
-
+  /*로그인/회원가입, 감자, 로그아웃 box shadow*/
   .new_login a:hover{
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
-
+  
+  /*화면 넓을때는 햄버거 안보이게*/
   .hamburger{
       display:none;
     }
@@ -295,7 +311,7 @@
       flex-direction: column;
     }
     .new_dropdown-content {
-      margin-top:50px; 
+      margin-top:50px; /*hover했을때 내려오는 세부카테고리 높이 맞추기*/
     }
 
     #for_toggle, #for_toggle_login{
@@ -310,7 +326,14 @@
 
     .hamburger .icon{
       color: var(--yellow-main);
-      margin-top:10px;
+      margin-top:10px; /*왼쪽이랑 높이 맞추기 위해*/
+    }
+
+    /*TODO for 수빈의 테두리 이쁘게 만들기*/
+    .hamburger .icon i{
+      border: solid 2px var(--yellow-main);
+      padding: 5px;
+      border-radius: 16px;
     }
 
     .new_dropbtn_hamburger{
@@ -322,7 +345,7 @@
       display:none; /* 원래로고 감추기 */
     }
 
-    .etc{ /* 기타문의 간격맞추기 */
+    .etc{ /* 기타문의 화살표 없는거 때문에 간격맞추기 */
       height: 55px;
     }
   }

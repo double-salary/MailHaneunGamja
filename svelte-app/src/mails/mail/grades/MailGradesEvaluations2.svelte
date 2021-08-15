@@ -6,9 +6,9 @@
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '다른 여러 수업들이 절대평가로 평가 방식을 변경한 것으로 알고 있는데, 본 수업의 경우 성적 평가방식에 있어서 변경 사항이 있나요?',
+    '수강인원이 20명 이하인 수업은 절대평가가 가능한 것으로 알고 있는데, 이번 강의의 경우 성적 평가 방식이 어떻게 되는지 여쭤보고 싶습니다.',
+    '다름이 아니오라, 다음 식물 파트 시험 날짜 및 비대면/대면 방식이 확정이 되었는지 궁금하여 메일 드립니다. 아직 확정되지 않았다면 강의계획서에 나온대로 5월 둘째주에 시험을 본다고 생각하면 될까요?',
   ];
 
   let name = '';
@@ -67,7 +67,7 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <span>예상보다 낮은 학점</span>
+      <span>성적 평가 방식이 궁금할 때</span>
       <div
         class="mail__bookmark"
         style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
@@ -97,7 +97,7 @@
           placeholder="강의명"
           contenteditable="true"
           bind:innerHTML={className}
-        />] 기말 과제 제출 드립니다.
+        />] 성적 평가 방식 관련 문의 드립니다
       </p>
     </div>
 
@@ -136,7 +136,7 @@
           <input class="mail__reason" value="사유" readonly />
         </div>
         <p
-          placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
+          placeholder="다른 여러 수업들이 절대평가로 평가 방식을 변경한 것으로 알고 있는데, 본 수업의 경우 성적 평가방식에 있어서 변경 사항이 있나요?"
           contenteditable="true"
           bind:innerHTML={example}
         />

@@ -6,9 +6,9 @@
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '올려주신 공지에는 자료에 대한 별다른 언급이 없는데, 오픈북 시험이라고 이해하면 될까요?',
+    '지난번에 메일로 문의드렸을 때는 퀴즈1의 경우 수업 자료 참고가 가능하다고 답해주셨는데 퀴즈 3의 경우 불가한건가요?',
+    '공지에 오픈북인지 여부가 나와있지 않은데, 오픈북으로 시험보는지 여부를 알 수 있을까요?',
   ];
 
   let name = '';
@@ -67,7 +67,7 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <span>예상보다 낮은 학점</span>
+      <span>퀴즈 평가 방식이 궁금할 때</span>
       <div
         class="mail__bookmark"
         style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
@@ -97,19 +97,21 @@
           placeholder="강의명"
           contenteditable="true"
           bind:innerHTML={className}
-        />] 기말 과제 제출 드립니다.
+        />] 퀴즈 진행 방식 관련 문의 드립니다
       </p>
     </div>
 
     <!-- 내용 -->
     <div id="copy" class="mail__text">
-      안녕하세요, 교수님.
+      안녕하세요 교수님,
+      <br />
+      이번 학기
       <span
         placeholder="강의명"
         contenteditable="true"
         bind:innerHTML={className}
       />
-      수업 수강하고 있는
+      강의를 수강하고 있는
       <span
         placeholder="학과"
         class="mail__department"
@@ -128,7 +130,7 @@
         contenteditable="true"
         bind:innerHTML={name}
       />
-      입니다.
+      입니다. <br />
 
       <!-- 사유 예시 -->
       <div class="mail__example">
@@ -136,18 +138,14 @@
           <input class="mail__reason" value="사유" readonly />
         </div>
         <p
-          placeholder="다름이 아니라 저번학기에 이어 제가 이번학기에도 컴퓨터의 개념 및 실습의 수강 신청에 실패했는데, 이번학기에도 듣지 못한다면 계속해서 이후 수강신청에도 차질이 생길 것 같습니다."
+          placeholder="공지에 오픈북인지 여부가 나와있지 않은데, 오픈북으로 시험보는지 여부를 알 수 있을까요?"
           contenteditable="true"
           bind:innerHTML={example}
         />
       </div>
 
-      <span
-        placeholder="과제명"
-        contenteditable="true"
-        bind:innerHTML={assignment}
-      />
-      과제 제출합니다. 감사합니다.
+      이미 공지된 내용을 확인 못하고 질문드리는 내용이라면 죄송합니다.<br />
+      항상 좋은 수업 해주셔서 감사합니다.
 
       <!-- 끝 인사 -->
       <div class="mail__last-words">
