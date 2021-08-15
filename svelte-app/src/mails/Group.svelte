@@ -61,6 +61,8 @@
   const othersData = {
     기타문의: ['면담 문의', '추천서 문의', '인턴십 신청'],
   };
+
+  document.body.classList.remove('disable-scroll');
 </script>
 
 <div class="wrapper">
