@@ -6,7 +6,7 @@
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절ㅇㄴㄹㄴㄹㄴㅇㄹㄴㄹㄴㅇㄹㄴㄹㄴ절',
     '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
   ];
@@ -68,7 +68,10 @@
         <i class="fas fa-circle" />
       </div>
       <span>예상보다 낮은 학점</span>
-      <div class="mail__bookmark" hidden={hideBookmark}>
+      <div
+      class="mail__bookmark"
+      style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+      >
         {#if bookmarked}
           <i class="fas fa-bookmark" on:click={handleBookmark} />
         {:else}
