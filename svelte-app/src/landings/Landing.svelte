@@ -93,7 +93,9 @@
           class="link-button__text"
           style="font-size: {buttonFontSize}px"
         >
-          가능한 시나리오 보러가기
+          <span>
+            가능한 시나리오 보러가기
+          </span>
         </a>
         <!-- <div class="link-button__text" style="font-size: {buttonFontSize}px">
           가능한 시나리오 보러가기
