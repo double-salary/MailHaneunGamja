@@ -6,7 +6,7 @@
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절ㅇㄴㄹㄴㄹㄴㅇㄹㄴㄹㄴㅇㄹㄴㄹㄴ절',
     '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
     '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
   ];
@@ -67,7 +67,11 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <div class="mail__bookmark" hidden={hideBookmark}>
+      <span>예상보다 낮은 학점</span>
+      <div
+      class="mail__bookmark"
+      style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+      >
         {#if bookmarked}
           <i class="fas fa-bookmark" on:click={handleBookmark} />
         {:else}
@@ -217,18 +221,20 @@
   <!-- 사유 예시 -->
   <div class="example">
     <div class="example__title">다양한 사유 보기</div>
-    {#each exampleData as ex, id}
-      <div class="example__content">
-        <p>{ex}</p>
-        <button
-          on:click={() => {
-            example = ex;
-          }}
-        >
-          적용
-          <i class="fas fa-pencil-alt" />
-        </button>
-      </div>
-    {/each}
+    <div class="example__data">
+      {#each exampleData as ex, id}
+        <div class="example__content">
+          <p>{ex}</p>
+          <button
+            on:click={() => {
+              example = ex;
+            }}
+          >
+            적용
+            <i class="fas fa-pencil-alt" />
+          </button>
+        </div>
+      {/each}
+    </div>
   </div>
 </div>

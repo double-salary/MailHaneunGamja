@@ -1,4 +1,4 @@
-export const SCENARIOs = {
+const SCENARIOs = {
     "grades": {
         "slug": "성적",
         "corrections": {
@@ -62,36 +62,47 @@ export const SCENARIOs = {
         }
     },
     "others": {
-        "slug": "기타문의",
-        "scenarios" : {
-            "1" : "면담 신청",
-            "2" : "추천서 문의",
-            "3" : "인턴십 신청"
+        "slug" : "기타문의",
+        "other": {
+            "scenarios" : {
+                "1" : "면담 신청",
+                "2" : "추천서 문의",
+                "3" : "인턴십 신청"
+            }
         }
     }
 };
 
-export function getTitle(uri) {
+function getTitle(uri) {
 
     let segments = uri.split('/');
-    
+    console.log(segments);
+
     // othes/{scenarioId}
-    if ( segments.length == 2 ) {
-        let category1 = segments[0];
-        let scenarioId = segments[1];
+    if ( segments.length == 4 ) {
+        let category1 = segments[2];
+        let scenarioId = segments[3];
+
         let category1slug = SCENARIOs[category1]['slug'];
         let title = SCENARIOs[category1]['scenarios'][scenarioId];
+
         return category1slug + "/" + title;
     } 
-    else if (segments.length == 3) {
-        let category1 = segments[0];
+    else if (segments.length == 5) {
+        let category1 = segments[2];
         let category1slug = SCENARIOs[category1]['slug'];
-        let category2 = segments[1];
-        let scenarioId = segments[2];
+        let category2 = segments[3];
+        let scenarioId = segments[4];
         let category2slug = SCENARIOs[category1][category2]['slug'];
         let title = SCENARIOs[category1][category2]['scenarios'][scenarioId];
+
         return `${category1slug}/${category2slug}/${title}`
     }
     
 }
 
+
+module.exports = {
+    SCENARIOs: SCENARIOs,
+    getTitle: getTitle
+};

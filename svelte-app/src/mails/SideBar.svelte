@@ -3,18 +3,19 @@
 
   export let category;
   export let subcategory;
-  export let scenario;
-
-  let isOpen = false;
+  export let scenarioTitle;
+  export let scenarios;
+  export let pathSubcategory;
+  export let isOpen;
 
   const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button id="button" on:click={toggle} aria-expanded={isOpen}>
-  <span>
-    {scenario[0]}
-  </span>
-  {#if category != 'others'}
+<div class="menu">
+  <button id="button" on:click={toggle} aria-expanded={isOpen}>
+    <span>
+      {scenarioTitle}
+    </span>
     <svg
       width="10"
       height="6"
@@ -29,12 +30,10 @@
         fill="#3F424D"
       />
     </svg>
-  {/if}
-</button>
-{#if category != 'others'}
+  </button>
   {#if isOpen}
     <ul transition:slide={{ duration: 300 }}>
-      {#each scenario[1] as item, index}
+      {#each scenarios as item, index}
         <a href="/#/mails/{category}/{subcategory}/{index + 1}">
           <li>
             {item}
@@ -43,12 +42,9 @@
       {/each}
     </ul>
   {/if}
-{/if}
+</div>
 
 <style>
-  .side-bar {
-    width: 30%;
-  }
   button {
     width: 100%;
     border: none;
@@ -65,7 +61,7 @@
     text-align: start;
     width: 150px;
     color: #9189eb;
-    font-size: 14px;
+    font-size: 20px;
   }
   svg {
     transition: transform 0.2s ease-in;
@@ -74,16 +70,66 @@
     fill: #9189eb;
   }
   ul {
-    padding: 10px 20px;
-    line-height: 14px;
+    padding: 16px 20px;
+    line-height: 18px;
   }
   li {
-    font-size: 12px;
-    padding: 8px 0;
+    font-size: 18px;
+    padding: 10px 0;
     color: #8992b0;
   }
 
   [aria-expanded='true'] svg {
     transform: rotate(0.5turn);
+  }
+
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .menu {
+      position: relative;
+      text-align: center;
+      width: 150px;
+      display: inline-block;
+      margin: 8px;
+      height: 100%;
+    }
+    span {
+      text-align: center;
+      float: none;
+      font-size: 16px;
+    }
+    svg {
+      margin-left: 10px;
+    }
+    ul {
+      width: 150px;
+      display: block;
+      position: absolute;
+      line-height: 14px;
+      text-align: center;
+      background-color: #ffffff;
+      padding: 5px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+    li {
+      font-size: 14px;
+    }
+  }
+
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    span {
+      font-size: 14px;
+    }
+    .menu {
+      width: 80px;
+    }
+    ul {
+      width: 80px;
+    }
+    li {
+      font-size: 12px;
+    }
   }
 </style>

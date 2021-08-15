@@ -2,10 +2,18 @@
   z-index: -1;
 }
 
+.landing-potato {
+  width: 25%;
+  z-index: 20;
+  position: relative;
+  top: -17rem;
+  left: 68rem;
+}
 .flex-container {
   width: 100%;
   height: 100%;
   display: flex;
+  /* align-items: center; */
   align-items: center;
   justify-content: center;
   padding-bottom: 8%;
@@ -16,7 +24,7 @@
   flex-direction: row;
   max-width: 1200px;
   width: 100%;
-  height: 65%;
+  height: 80%;
 }
 
 .left-div {
@@ -39,7 +47,19 @@
   padding: 8px 24px;
 }
 
+.link-button:hover {
+  box-shadow: 0px 2px 16px rgba(108, 188, 198, 0.6);
+}
+
 .link-button__text {
+  display: inline-flexbox;
+  font-family: 'NanumSquare';
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.link-button__text:hover {
   display: inline-flexbox;
   font-family: 'NanumSquare';
   font-size: 24px;
@@ -61,6 +81,7 @@
 
 .right-div {
   width: 60%;
+  height: 85%;
   background-color: white;
   border-radius: 16px;
   display: flex;
@@ -158,4 +179,60 @@
   line-height: 28px;
   margin-top: 22px;
   margin-left: 24px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .main-layer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-div{
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px;
+    margin-bottom: 20px;
+  }
+  .right-div{
+    width: 85%;
+    margin:20px;
+    height: 50%;
+  }
+  br{
+    display: none;
+  }
+  .link-button{
+    height: 60px;
+    width: 60px;
+    padding: 8px;
+    display: block;
+    font-size: 6px;
+    position: relative;
+  }
+  .link-button__text span{
+    visibility: hidden;
+    z-index: 99;
+  }
+  .link-button__img{
+    position: absolute;
+    top:40%;
+    left: 40%;
+    width:14px;
+    height: 10px;
+    margin-left: 0;
+    padding:0;
+  }
+  .mail-to_prof{
+    font-size: 12px;
+    margin-left: 0;
+  }
+  .mail-to_field, .mail-to_title, .mail-to_text{
+    font-size: 12px;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
 }

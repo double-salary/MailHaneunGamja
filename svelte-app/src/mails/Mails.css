@@ -1,8 +1,29 @@
-.container {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 16px 0;
+}
+.side-bar{
+  width:20%;
+}
+.mail{
+  width:100%;
 }
 * {
   font-family: 'NanumSquareOTF_ac';
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .wrapper {
+    display: block;
+    margin: 16px 0;
+  }
+  .side-bar{
+    width:100%;
+    width: 80%;
+    margin:0 auto;
+    text-align: center;
+  }
 }
