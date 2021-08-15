@@ -100,7 +100,7 @@ p:empty:before {
   border: none;
   color: #3f424d;
   font-size: 16px;
-  padding: 0 10px;
+  padding: 0px;
 }
 .mail__title > p {
   color: #3f424d;
@@ -123,7 +123,7 @@ p:empty:before {
   font-size: 16px;
   border: none;
   border-bottom: 1px solid #6cbcc6;
-  padding: 0 10px;
+  padding: 0px 2px;
 }
 
 /* 사유 예시 */
@@ -151,13 +151,10 @@ p:empty:before {
 }
 
 /* 끝 인사 */
-.mail__last-words {
-  margin: 10px 0;
-}
 .mail__last-words span {
   border-bottom: 1px solid #f4bc77;
   font-size: 16px;
-  padding: 0 10px;
+  padding: 0px;
 }
 .mail__last-words span:empty:before {
   color: #cecece;
@@ -313,69 +310,67 @@ span:empty:before {
   color: #cecece;
 }
 
-
-  /* On screens that are less than 700px wide, make the sidebar into a topbar */
-  @media screen and (max-width: 700px) {
-    .mail__wrapper{
-      display: block;
-      margin-left: 0;
-      margin:30px;
-    }
-    .mail__last-words-content{
-      height: 80px;
-    }
-    .mail__content{
-      width: 100%;
-    }
-    .example{
-      width: 100%;
-      padding: 0;
-      margin:30px 0;
-      padding-bottom: 10px;
-    }
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .mail__wrapper {
+    display: block;
+    margin-left: 0;
+    margin: 30px;
   }
-
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-  @media screen and (max-width: 400px) {
-    .mail__last-words-content{
-      height: 90px;
-    }
-    .mail__btn-option{
-      font-size: 12px;
-      width:50%;
-    }
-    .mail__last-words-content input[type='radio'] {
-      margin-right: 5px;
-    }
-    .mail__header span{
-      font-size: 12px;
-    }
-    .mail__recipient{
-      font-size: 12px;
-    }
-    .mail__title{
-      font-size: 12px;
-    }
-    .mail__title > p{
-      font-size: 12px;
-    }
-    .mail__title span{
-      font-size: 12px;
-    }
-    .mail__text{
-      font-size: 12px;
-    }
-    .mail__text span:empty:before{
-      font-size: 12px;
-    }
-    .mail__example input{
-      font-size: 12px;
-    }
-    .mail__last-words span{
-      font-size: 12px;
-    }
-    .example__content{
-      font-size: 12px;
-    }
+  .mail__last-words-content {
+    height: 80px;
   }
+  .mail__content {
+    width: 100%;
+  }
+  .example {
+    width: 100%;
+    padding: 0;
+    margin: 30px 0;
+    padding-bottom: 10px;
+  }
+}
 
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .mail__last-words-content {
+    height: 90px;
+  }
+  .mail__btn-option {
+    font-size: 12px;
+    width: 50%;
+  }
+  .mail__last-words-content input[type='radio'] {
+    margin-right: 5px;
+  }
+  .mail__header span {
+    font-size: 12px;
+  }
+  .mail__recipient {
+    font-size: 12px;
+  }
+  .mail__title {
+    font-size: 12px;
+  }
+  .mail__title > p {
+    font-size: 12px;
+  }
+  .mail__title span {
+    font-size: 12px;
+  }
+  .mail__text {
+    font-size: 12px;
+  }
+  .mail__text span:empty:before {
+    font-size: 12px;
+  }
+  .mail__example input {
+    font-size: 12px;
+  }
+  .mail__last-words span {
+    font-size: 12px;
+  }
+  .example__content {
+    font-size: 12px;
+  }
+}
