@@ -235,6 +235,13 @@
     padding: 0px 12px;
     background-color: var(--purple-main);
     border-radius: 16px;
+
+    
+  }
+
+  .new_login a:hover{
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
 
   /*new_navbar와 new_login 화면좁아서 개행되면 width 100%로 사용)*/
