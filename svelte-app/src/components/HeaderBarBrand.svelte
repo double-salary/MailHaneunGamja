@@ -30,17 +30,25 @@
   }
 
   function toggle() {
+    
     var x = document.getElementById("for_toggle");
-    if (x.style.display === "block") {
+    if (x.style.display === "flex") {
       x.style.display = "none";
     } else {
-      x.style.display = "block";
+      x.style.display = "flex";
+    }
+    //돌아가는거 보려고 일단 이렇게둠ㅋㅋㅋ 
+    var y = document.getElementById("for_toggle_login");
+    if (y.style.display === "flex") {
+      y.style.display = "none";
+    } else {
+      y.style.display = "flex";
     }
   }
 
 </script>
 
-<div class="hambuger">
+<div class="hamburger">
   <button class="new_dropbtn_hamburger" style="cursor: pointer">
     <a href="/">
     <img
@@ -52,7 +60,7 @@
     </a>
   </button>
   <a href="javascript:void(0);" class="icon" on:click={toggle}>
-    <i class="fa fa-bars fa-3x"></i>
+    <i class="fa fa-bars fa-2x"></i>
   </a>
 </div>
 <div class="new_navbar" id="for_toggle">
@@ -123,7 +131,7 @@
 </div>
 
 
-<div class="new_login">
+<div class="new_login" id="for_toggle_login">
   {#if !userInfo}
     <a href="#/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
@@ -271,7 +279,7 @@
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
 
-  .hambuger{
+  .hamburger{
       display:none;
     }
 
@@ -290,18 +298,24 @@
       margin-top:50px; 
     }
 
-    #for_toggle{
+    #for_toggle, #for_toggle_login{
       display:none;
     }
 
-    .hambuger{
+    .hamburger{
       display:flex;
       justify-content: space-between; /*양 옆 끝에 몰기 */
       margin:20px; /*옆에 딱 붙기 막기*/
     }
 
+    .hamburger .icon{
+      color: white;
+      margin-top:10px;
+    }
+
     .new_dropbtn_hamburger{
       display:flex;
+      background-color:white;/* 배경 이상하게 들어가서 */
     }
 
     .broad_logo{
