@@ -309,7 +309,7 @@
     }
 
     .hamburger .icon{
-      color: white;
+      color: var(--yellow-main);
       margin-top:10px;
     }
 
