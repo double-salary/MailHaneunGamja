@@ -12,8 +12,9 @@ $link: $primary; // #00b3e6; // #ff4081;
 $info: $primary;
 $shade-light: #fafafa;
 $light-gray: #777;
-$green-main: #6CBCC6;
+$green-main: #6cbcc6;
 
+@import '~bulma/bulma.sass';
 
 .menu-list .active-link,
 .menu-list .router-link-active {

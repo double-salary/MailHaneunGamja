@@ -5,6 +5,8 @@
   import './landings/landings.css';
   import './styles.scss';
   import './global.css';
+  import './mails/Sidebar.css';
+  import './mails/Group.css';
 
   /* svelte */
   import { HeaderBar, PageNotFound } from './components';
