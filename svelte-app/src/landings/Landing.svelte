@@ -93,7 +93,9 @@
           class="link-button__text"
           style="font-size: {buttonFontSize}px"
         >
-          가능한 시나리오 보러가기
+          <span>
+            가능한 시나리오 보러가기
+          </span>
         </a>
         <!-- <div class="link-button__text" style="font-size: {buttonFontSize}px">
           가능한 시나리오 보러가기
@@ -129,4 +131,4 @@
   </div>
 </div>
 
-<img class="landing-potato" src="../resources/img/long-potato.png" />
+<img class="landing-potato" src="../resources/img/long-potato.png" alt="landing-potato"/>
