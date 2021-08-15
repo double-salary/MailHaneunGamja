@@ -37,7 +37,7 @@
     } else {
       x.style.display = "flex";
     }
-    //돌아가는거 보려고 일단 이렇게둠ㅋㅋㅋ 
+    //돌아가는거 보려고 일단 이렇게둠ㅎ
     var y = document.getElementById("for_toggle_login");
     if (y.style.display === "flex") {
       y.style.display = "none";
@@ -124,7 +124,7 @@
   </div>
 
   <div class="new_dropdown">
-    <button class="new_dropbtn for_svg" style="cursor: pointer">
+    <button class="new_dropbtn for_svg etc" style="cursor: pointer; margin-right:15px;">
       <a href="#/mails/others/other/1"><span>기타문의</span></a>
     </button>
   </div>
@@ -320,6 +320,10 @@
 
     .broad_logo{
       display:none; /* 원래로고 감추기 */
+    }
+
+    .etc{ /* 기타문의 간격맞추기 */
+      height: 55px;
     }
   }
 </style>
