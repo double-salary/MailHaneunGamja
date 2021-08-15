@@ -101,11 +101,9 @@
     <a href="#/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
-    <div style="margin-right:10px;">
-      <a href="#/accounts/me"><span>감자 프로필</span>
+    <a href="#/accounts/me" style="margin-right:10px;"><span>감자 프로필</span>
         <!-- <div><img src="../resources/img/short-potato.png"></div> -->
-      </a><!--마이페이지로 연결-->
-    </div>
+    </a><!--마이페이지로 연결-->
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
