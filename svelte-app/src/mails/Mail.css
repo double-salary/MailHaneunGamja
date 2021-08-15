@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   margin-left: 30px;
+  padding-bottom: 30px;
 }
 .mail__content {
   width: 90%;
@@ -199,7 +200,7 @@ p:empty:before {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  height: 70px;
+  height: 80px;
 }
 .mail__last-words-content input[type='radio'] {
   -webkit-appearance: none;
@@ -289,3 +290,70 @@ span:empty:before {
   content: attr(placeholder);
   color: #cecece;
 }
+
+
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .mail__wrapper{
+      display: block;
+      margin-left: 0;
+      margin:30px;
+    }
+    .mail__last-words-content{
+      height: 80px;
+    }
+    .mail__content{
+      width: 100%;
+    }
+    .example{
+      width: 100%;
+      padding: 0;
+      margin:30px 0;
+      padding-bottom: 10px;
+    }
+  }
+
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .mail__last-words-content{
+      height: 90px;
+    }
+    .mail__btn-option{
+      font-size: 12px;
+      width:50%;
+    }
+    .mail__last-words-content input[type='radio'] {
+      margin-right: 5px;
+    }
+    .mail__header span{
+      font-size: 12px;
+    }
+    .mail__recipient{
+      font-size: 12px;
+    }
+    .mail__title{
+      font-size: 12px;
+    }
+    .mail__title > p{
+      font-size: 12px;
+    }
+    .mail__title span{
+      font-size: 12px;
+    }
+    .mail__text{
+      font-size: 12px;
+    }
+    .mail__text span:empty:before{
+      font-size: 12px;
+    }
+    .mail__example input{
+      font-size: 12px;
+    }
+    .mail__last-words span{
+      font-size: 12px;
+    }
+    .example__content{
+      font-size: 12px;
+    }
+  }
+

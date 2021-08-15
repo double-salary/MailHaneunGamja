@@ -12,7 +12,9 @@
   const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button id="button" on:click={toggle} aria-expanded={isOpen}>
+
+<div class="menu">
+  <button id="button" on:click={toggle} aria-expanded={isOpen}>
   <span>
     {scenarioTitle}
   </span>
@@ -42,6 +44,8 @@
       {/each}
     </ul>
   {/if}
+</div>
+
 
 <style>
   button {
@@ -70,7 +74,7 @@
   }
   ul {
     padding: 16px 20px;
-    line-height: 14px;
+    line-height: 18px;
   }
   li {
     font-size: 18px;
@@ -80,5 +84,55 @@
 
   [aria-expanded='true'] svg {
     transform: rotate(0.5turn);
+  }
+
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .menu{
+      position: relative;
+      text-align: center;
+      width:150px;
+      display:inline-block;
+      margin:8px;
+      height: 100%;
+    }
+    span {
+      text-align: center;
+      float: none;
+      font-size:16px;
+    }
+    svg{
+      margin-left:10px;
+    }
+    ul{
+      width:150px;
+      display: block;
+      position: absolute;
+      line-height: 14px;
+      text-align:center;
+      background-color: #ffffff;
+      padding:5px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+    li{
+      font-size: 14px;
+    }
+  }
+
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    span {
+      font-size:14px;
+    }
+    .menu{
+      width:80px;
+    }
+    ul{
+      width:80px;
+    }
+    li{
+      font-size: 12px;
+    }
   }
 </style>
