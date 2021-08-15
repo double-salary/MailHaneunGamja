@@ -1,14 +1,14 @@
 <script>
   import { slide } from 'svelte/transition';
-  import { beforeUpdate, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { getRandomLastWords } from '../lastWords/lastWords-data';
   import { bookmarkAction, getUserAction } from '../../../store/user-data';
   import { location } from 'svelte-spa-router';
 
   const exampleData = [
-    '1예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '2예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
-    '3예시예시 슬슬 디자인이 귀찮아지기 시작해씅ㅁ 구구절절 구구절절',
+    '올려주신 결과를 확인하니 총 12점이 감점되어 있었는데,  1-3번 문제와 2-4번 문제에서 감점된 것이 맞을까요?',
+    '올려주신 총 점수는 확인했으나, 중요한 전공 과목인 만큼 오개념이 있다면 이번 기회를 통해 바로잡고 가기 위해 정확히 어느 문항에서 감점이 되었는지 알고싶어 이렇게 문의드리게 되었습니다.',
+    '성적부에 등록해주신 점수는 확인했으나 구체적으로 어느 문항에서 감점되었는지는 확인할 수 없어 이를 여쭤보고자 메일 드리게 되었습니다.',
   ];
 
   let name = '';
@@ -22,7 +22,7 @@
   var bookmarked = false;
   let hideBookmark = true;
 
-  beforeUpdate(async () => {
+  onMount(async () => {
     lastWords = getRandomLastWords(checkedWeather);
     const userInfo = await getUserAction();
     if (userInfo == null) {
@@ -67,7 +67,7 @@
         <i class="fas fa-circle" />
         <i class="fas fa-circle" />
       </div>
-      <span>정확한 시험 점수를 알고싶을 때</span>
+      <span>정확한 시험 점수를 확인하고 싶을 때</span>
       <div
         class="mail__bookmark"
         style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
@@ -97,14 +97,20 @@
           placeholder="강의명"
           contenteditable="true"
           bind:innerHTML={className}
-        />] 시험 점수 관련 문의 드립니다
+        />]
+        <span
+          placeholder="시험 종류"
+          contenteditable="true"
+          bind:innerHTML={assignment}
+        /> 점수 관련 문의 드립니다
       </p>
     </div>
 
     <!-- 내용 -->
     <div id="copy" class="mail__text">
-      안녕하세요 교수님,<br />
-      이번학기
+      안녕하세요 교수님,
+      <br />
+      이번 학기
       <span
         placeholder="강의명"
         contenteditable="true"
@@ -133,11 +139,10 @@
 
       이번
       <span
-        placeholder="시험명"
+        placeholder="시험 종류"
         contenteditable="true"
         bind:innerHTML={assignment}
       />
-
       채점 결과를 확인하고 여쭙고자 하는 사항이 있어 메일 드립니다.
 
       <!-- 사유 예시 -->
@@ -146,13 +151,13 @@
           <input class="mail__reason" value="사유" readonly />
         </div>
         <p
-          placeholder="결과를 확인하니 12점이 감점되어 있었는데, 3-2번 문제에서 감점된 것이 맞을까요?"
+          placeholder="올려주신 결과를 확인하니 총 12점이 감점되어 있었는데,  1-3번 문제와 2-4번 문제에서 감점된 것이 맞을까요?"
           contenteditable="true"
           bind:innerHTML={example}
         />
       </div>
 
-      번거로운 확인 부탁드려 죄송합니다.
+      번거로운 확인 부탁드려 죄송합니다. 감사합니다.
 
       <!-- 끝 인사 -->
       <div class="mail__last-words">

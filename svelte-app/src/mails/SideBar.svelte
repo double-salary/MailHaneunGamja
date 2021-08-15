@@ -6,18 +6,16 @@
   export let scenarioTitle;
   export let scenarios;
   export let pathSubcategory;
-
   export let isOpen;
 
   const toggle = () => (isOpen = !isOpen);
 </script>
 
-
 <div class="menu">
   <button id="button" on:click={toggle} aria-expanded={isOpen}>
-  <span>
-    {scenarioTitle}
-  </span>
+    <span>
+      {scenarioTitle}
+    </span>
     <svg
       width="10"
       height="6"
@@ -32,7 +30,7 @@
         fill="#3F424D"
       />
     </svg>
-</button>
+  </button>
   {#if isOpen}
     <ul transition:slide={{ duration: 300 }}>
       {#each scenarios as item, index}
@@ -45,7 +43,6 @@
     </ul>
   {/if}
 </div>
-
 
 <style>
   button {
@@ -88,34 +85,34 @@
 
   /* On screens that are less than 700px wide, make the sidebar into a topbar */
   @media screen and (max-width: 700px) {
-    .menu{
+    .menu {
       position: relative;
       text-align: center;
-      width:150px;
-      display:inline-block;
-      margin:8px;
+      width: 150px;
+      display: inline-block;
+      margin: 8px;
       height: 100%;
     }
     span {
       text-align: center;
       float: none;
-      font-size:16px;
+      font-size: 16px;
     }
-    svg{
-      margin-left:10px;
+    svg {
+      margin-left: 10px;
     }
-    ul{
-      width:150px;
+    ul {
+      width: 150px;
       display: block;
       position: absolute;
       line-height: 14px;
-      text-align:center;
+      text-align: center;
       background-color: #ffffff;
-      padding:5px;
+      padding: 5px;
       border-radius: 8px;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     }
-    li{
+    li {
       font-size: 14px;
     }
   }
@@ -123,15 +120,15 @@
   /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
   @media screen and (max-width: 400px) {
     span {
-      font-size:14px;
+      font-size: 14px;
     }
-    .menu{
-      width:80px;
+    .menu {
+      width: 80px;
     }
-    ul{
-      width:80px;
+    ul {
+      width: 80px;
     }
-    li{
+    li {
       font-size: 12px;
     }
   }
