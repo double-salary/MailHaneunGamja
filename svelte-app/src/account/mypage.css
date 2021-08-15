@@ -26,6 +26,7 @@ hr{margin:0 0 1rem !important;}
 .input-major{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 .input-studentId{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 
+
 #static-ul{}
 
 .name-info{margin-left:0.3rem; font-size: 1.2rem;}
@@ -61,3 +62,16 @@ hr{margin:0 0 1rem !important;}
 .small-category{margin-left: 0.3rem;}
 .bookmark-box img{cursor: pointer;  float:right; position:relative; top: 1rem; right: 1rem; filter: invert(68%) sepia(44%) saturate(4440%) hue-rotate(208deg) brightness(96%) contrast(92%);}
 
+@media screen and (max-width: 700px){
+  #info-container, #bookmark-container{width:76%; margin: 2rem 12% 0;}
+  .info-title, .bookmark-title{font-size:2.5rem;}
+  .editing-btn{position:relative; top: 2.4rem; color: #9189EB; float: right; }
+}
+@media screen and (max-width: 400px){
+  #info-container, #bookmark-container{width:82%; margin: 2rem 9% 0;}
+  .info-title, .bookmark-title{font-size:2rem;}
+  .editing-btn{position:relative; top: 1.5rem; color: #9189EB; float: right;}
+  .name-label, .major-label, .studentId-label{font-size: 0.8rem;}
+  .input-name, .input-major, .input-studentId{font-size: 1rem;}
+  .name-info, .major-info, .studentId-info{font-size: 1rem;}
+}

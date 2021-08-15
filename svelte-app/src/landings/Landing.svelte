@@ -129,4 +129,4 @@
   </div>
 </div>
 
-<img class="landing-potato" src="../resources/img/long-potato.png" />
+<img class="landing-potato" src="../resources/img/long-potato.png" alt="landing-potato"/>

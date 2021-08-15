@@ -14,7 +14,7 @@
   let name = '';
   let major = '';
   let studentId = '';
-  let bookmarks = [];
+  let bookmarks = []
 
   $: userInfo = {
     name: name ? name : '',
@@ -162,7 +162,7 @@
     {/if}
   </div>
 
-  <br /><br />
+  <br />
 
   <div id="bookmark-container">
     <div class="bookmark-title">자주 찾는 양식</div>
