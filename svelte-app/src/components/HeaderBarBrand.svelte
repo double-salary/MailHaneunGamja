@@ -85,7 +85,7 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/registration/exception/1"><span class="first">정원외 수강신청</span></a>
+      <a href="#/mails/registration/exception/1"><span class="first">정원 외 수강신청</span></a>
       <a href="#/mails/registration/rule/1"><span class="last">이수규정</span></a>
     </div>
   </div>
