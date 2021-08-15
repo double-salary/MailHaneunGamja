@@ -31,6 +31,9 @@
     }
 }
 @media screen and (max-width:702px){
+    .lc{
+        padding:0;
+    }
     .sclist-ul li{
         width: 90%;
     }
