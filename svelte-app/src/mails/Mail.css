@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   margin-left: 30px;
+  padding-bottom: 30px;
 }
 .mail__content {
   width: 90%;
@@ -200,7 +201,7 @@ p:empty:before{
   justify-content: center;
   align-items:flex-start;
   position: relative;
-  height: 70px;
+  height: 80px;
 }
 .mail__last-words-content input[type='radio'] {
   -webkit-appearance: none;
