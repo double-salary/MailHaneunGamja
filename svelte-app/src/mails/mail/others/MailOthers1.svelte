@@ -68,7 +68,10 @@
           <i class="fas fa-circle" />
         </div>
         <span>면담 신청할 때</span>
-        <div class="mail__bookmark" hidden={hideBookmark}>
+        <div
+        class="mail__bookmark"
+        style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+        >
           {#if bookmarked}
             <i class="fas fa-bookmark" on:click={handleBookmark} />
           {:else}

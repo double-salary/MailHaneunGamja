@@ -6,9 +6,8 @@
     import { location } from 'svelte-spa-router';
   
     const exampleData = [
-      '제 전공에 배정된 수업이 다른 수업과 시간이 겹치게 되어서 그런데 타과 학생들에게 배정된 이 수업을 수강할 수 있을까요? 혹시 가능하다면 이 수업의 정원 외 수강신청을 받아 주실 수 있는지 여쭤보고 싶습니다! ',
-      '2',
-      '3',
+      '다름이 아니라 제 전공에 배정된 통계학 수업이 다른 수업과 시간이 겹치게 되어서 타과 학생들에게 배정된 이 수업을 수강할 수 있을지 여쭙고 싶습니다.  혹시 가능하다면 이 수업의 정원 외 수강신청을 받아 주실 수 있을까요?',
+      '다름이 아니라 제가 주전공에 배정된 통계학 수업의 수강신청을 아쉽게도 실패하였습니다. 혹시 가능하다면 타과 학생들에게 배정된 이 수업의 정원 외 수강신청을 받아 주실 수 있는지 여쭤보고 싶습니다.',
     ];
   
     let name = '';
@@ -68,7 +67,10 @@
           <i class="fas fa-circle" />
         </div>
         <span>대체과목 수강 가능 여부 문의할 때</span>
-        <div class="mail__bookmark" hidden={hideBookmark}>
+        <div
+        class="mail__bookmark"
+        style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+        >
           {#if bookmarked}
             <i class="fas fa-bookmark" on:click={handleBookmark} />
           {:else}
@@ -103,7 +105,7 @@
         <span placeholder="이름" class="mail__name" contenteditable="true" bind:innerHTML={name}></span>
         입니다.
         <br>
-        다름이 아니라 정원 외 수강신청 관련해서 문의드릴 게 몇가지 있어 메일 드리게 되었습니다.
+        정원 외 수강신청 관련해서 문의드릴 게 몇가지 있어 메일 드리게 되었습니다.
         
         <!-- 사유 예시 -->
         <div class="mail__example">

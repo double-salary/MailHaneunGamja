@@ -6,8 +6,8 @@
     import { location } from 'svelte-spa-router';
   
     const exampleData = [
-      '다름이 아니라 제가 선한 인재 장학금을 신청하게 되었는데, 교수님께 추천서를 부탁드리고 싶어서 메일드리게 되었습니다. 자세한 내용은 첨부파일에 적혀 있습니다. 가능하시다면 추천서를 부탁드려도 될까요?',
-      '다름이 아니라 제가 대학원 랩을 신청하게 되었는데, 교수님께 추천서를 부탁드리고 싶어서 메일드리게 되었습니다. 자세한 내용은 첨부파일에 적혀 있습니다. 가능하시다면 추천서를 부탁드려도 될까요?',
+      '다름이 아니라 제가 선한 인재 장학금을 신청하게 되었는데, 교수님께 추천서를 부탁드리고 싶어서 메일드리게 되었습니다. 자세한 내용은 첨부파일로 확인하실 수 있습니다. 가능하시다면 추천서를 부탁드려도 될까요?',
+      '다름이 아니라 제가 2학기 교환학생을 지원하고자 하는데, 지원 과정에서 교수님의 추천서가 필요하여 메일 드리게 되었습니다. 자세한 내용은 첨부파일로 확인하실 수 있습니다. 가능하시다면 추천서를 부탁드려도 될까요?',
     ];
   
     let name = '';
@@ -67,7 +67,10 @@
           <i class="fas fa-circle" />
         </div>
         <span>추천서 부탁드릴 때</span>
-        <div class="mail__bookmark" hidden={hideBookmark}>
+        <div
+        class="mail__bookmark"
+        style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+        >
           {#if bookmarked}
             <i class="fas fa-bookmark" on:click={handleBookmark} />
           {:else}

@@ -6,9 +6,9 @@
     import { location } from 'svelte-spa-router';
   
     const exampleData = [
-      '이 과목을 이번 학기에 수강하면서 전공에 대한 흥미를 키우고 적합성을 판단하고 싶습니다.',
-      '2',
-      '3',
+      '꼭 이 과목을 이번 학기에 수강하면서 정치학과에 대한 흥미를 키우고 복수전공 적합성을 판단하고 싶습니다.',
+      '저는 이번 학기에 경영학과 부전공 신청을 할 예정입니다. 이번 학기에 이 수업을 듣지 못하면 부전공 승인이 나더라도 전공 필수 과목을 모두 채우지 못해 졸업이 한 학기 미뤄질 듯 합니다. ',
+      '저는 고등학교 때부터 심리학 연구에 관심이 많았으며, 이번 학기에 심리학 전공 탐색으로 꼭 이 과목을 수강하며 학문의 기초를 배우고 싶습니다. ',
     ];
   
     let name = '';
@@ -69,7 +69,10 @@
           <i class="fas fa-circle" />
         </div>
         <span>타과 수강 제한 시 수강신청 문의할 때</span>
-        <div class="mail__bookmark" hidden={hideBookmark}>
+        <div
+        class="mail__bookmark"
+        style="visibility: {hideBookmark ? 'hidden' : 'visible'}"
+        >
           {#if bookmarked}
             <i class="fas fa-bookmark" on:click={handleBookmark} />
           {:else}
@@ -104,8 +107,7 @@
         <span placeholder="이름" class="mail__name" contenteditable="true" bind:innerHTML={name}></span>
         입니다.
   
-        다름이 아니라 제가 <span placeholder="원하는 전공" class="mail__assignment" contenteditable="true" bind:innerHTML={desiredmajor}></span> 
-        복수 전공/전공 진입/부전공을 고려하고 있어 이번 학기에 교수님의 <span placeholder="강의명" contenteditable="true" bind:innerHTML={className}></span>을 수강하고자 하는데, 
+        다름이 아니라 제가 이번 학기에 교수님의 <span placeholder="강의명" contenteditable="true" bind:innerHTML={className}></span>을 수강하고자 하는데, 
         수강 신청 대상이 <span placeholder="원하는 전공" class="mail__assignment" contenteditable="true" bind:innerHTML={desiredmajor}></span> 학생들만 가능하게 제한 되어 있어서 이렇게 메일 드리게 되었습니다. 
        
         <!-- 사유 예시 -->
@@ -114,13 +116,13 @@
               <input class="mail__reason" value="사유 예시" readonly/>
             </div>
             <p
-              placeholder="이 과목을 이번 학기에 수강하면서 전공에 대한 흥미를 키우고 적합성을 판단하고 싶습니다."
+              placeholder="꼭 이 과목을 이번 학기에 수강하면서 정치학과에 대한 흥미를 키우고 복수전공 적합성을 판단하고 싶습니다."
               contenteditable="true"
               bind:innerHTML={example} >
             </p>
         </div>
     
-        가능하다면 정원 외 신청을 받아 주실 수 있는지 여쭙고자 메일을 드렸습니다. 이번 학기에 꼭 
+        그래서 가능하다면 정원 외 신청을 받아 주실 수 있는지 여쭙고자 메일을 드렸습니다. 이번 학기에 꼭 
         <span placeholder="강의명" contenteditable="true" bind:innerHTML={className}></span>을 수강하고 싶습니다.
         <br>
         메일 읽어주셔서 감사드립니다. 답신 기다리고 있겠습니다!
