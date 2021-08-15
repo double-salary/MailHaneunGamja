@@ -1,5 +1,6 @@
 <script>
   import { slide } from 'svelte/transition';
+  import './SideBar.css';
 
   export let category;
   export let subcategory;
