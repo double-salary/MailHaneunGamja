@@ -7,6 +7,10 @@
 
   onMount(async () => (userInfo = await getUserInfo()));
 
+  function onClickMenu() {
+    console.log('hello');
+  }
+
   async function getUserInfo() {
     try {
       const response = await fetch('/.auth/me');
@@ -33,15 +37,15 @@
 <div class="new_navbar">
   <div class="new_dropdown" onclick="location.href='/landing';">
     <button class="new_dropbtn" style="cursor: pointer">
-        <a href="/">
+      <a href="/">
         <img
           src="../resources/img/logo.png"
           alt="멜하는감자"
           style="height: 40px"
         />
         <!--이미지 경로 기준은 public 폴더-->
-        </a>
-      </button>
+      </a>
+    </button>
   </div>
 
   <div class="new_dropdown">
@@ -54,9 +58,13 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/grades/corrections/1"><span class="first">성적정정</span></a>
+      <a href="#/mails/grades/corrections/1"
+        ><span class="first" on:click={onClickMenu}>성적정정</span></a
+      >
       <a href="#/mails/grades/inquiries/1"><span>점수문의</span></a>
-      <a href="#/mails/grades/evaluations/1"><span class="last">평가방식</span></a>
+      <a href="#/mails/grades/evaluations/1"
+        ><span class="last">평가방식</span></a
+      >
     </div>
   </div>
 
@@ -70,8 +78,12 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/courses/submissions/1"><span class="first">과제제출</span></a>
-      <a href="#/mails/courses/attendance/1"><span class="last">출결사항</span></a>
+      <a href="#/mails/courses/submissions/1"
+        ><span class="first">과제제출</span></a
+      >
+      <a href="#/mails/courses/attendance/1"
+        ><span class="last">출결사항</span></a
+      >
     </div>
   </div>
 
@@ -85,8 +97,12 @@
       />
     </button>
     <div class="new_dropdown-content">
-      <a href="#/mails/registration/exception/1"><span class="first">정원 외 수강신청</span></a>
-      <a href="#/mails/registration/rule/1"><span class="last">이수규정</span></a>
+      <a href="#/mails/registration/exception/1"
+        ><span class="first">정원 외 수강신청</span></a
+      >
+      <a href="#/mails/registration/rule/1"
+        ><span class="last">이수규정</span></a
+      >
     </div>
   </div>
 
@@ -102,7 +118,8 @@
   {/if}
   {#if userInfo}
     <div style="margin-right:10px;">
-      <a href="#/accounts/me"><span>감자 프로필</span>
+      <a href="#/accounts/me"
+        ><span>감자 프로필</span>
         <!-- <div><img src="../resources/img/short-potato.png"></div> -->
       </a><!--마이페이지로 연결-->
     </div>
@@ -148,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:100%;
+    width: 100%;
   }
 
   /*기타문의때문에 뒤에 있는 선택자 필요*/
@@ -194,11 +211,11 @@
     font-weight: 500;
   }
 
-  .new_dropdown-content .first{
+  .new_dropdown-content .first {
     border-radius: 8px 8px 0 0;
   }
 
-  .new_dropdown-content .last{
+  .new_dropdown-content .last {
     border-radius: 0 0 8px 8px;
   }
 
@@ -206,7 +223,6 @@
     background-color: #9189eb; /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
     color: #ffffff;
   }
-
 
   .new_dropdown:hover .new_dropdown-content {
     display: block;
