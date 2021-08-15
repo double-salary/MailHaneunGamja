@@ -1,10 +1,11 @@
 <script>
   /* css */
-  import MailCss from './Mail.css';
-  import SideBarCss from './Sidebar.css';
 
   /* svelte */
   import SideBar from './SideBar.svelte';
+  import './SideBar.css';
+  import './Mail.css';
+
   /* mail - grades */
   import MailGradesCorrections1 from './mail/grades/MailGradesCorrections1.svelte';
   import MailGradesEvaluations1 from './mail/grades/MailGradesEvaluations1.svelte';
