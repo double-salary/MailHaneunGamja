@@ -59,13 +59,11 @@
     ],
   };
   const othersData = {
-    면담문의: [],
-    추천서문의: [],
-    인턴십신청: [],
+    기타문의: ['면담 문의', '추천서 문의', '인턴십 신청'],
   };
 </script>
 
-<div class="container">
+<div class="wrapper">
   {#if params.category === 'grades'}
     <div class="side-bar">
       {#each Object.entries(gradesData) as entry}

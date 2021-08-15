@@ -14,7 +14,6 @@
   <span>
     {scenario[0]}
   </span>
-  {#if category != 'others'}
     <svg
       width="10"
       height="6"
@@ -29,9 +28,7 @@
         fill="#3F424D"
       />
     </svg>
-  {/if}
 </button>
-{#if category != 'others'}
   {#if isOpen}
     <ul transition:slide={{ duration: 300 }}>
       {#each scenario[1] as item, index}
@@ -43,12 +40,8 @@
       {/each}
     </ul>
   {/if}
-{/if}
 
 <style>
-  .side-bar {
-    width: 30%;
-  }
   button {
     width: 100%;
     border: none;
@@ -65,7 +58,7 @@
     text-align: start;
     width: 150px;
     color: #9189eb;
-    font-size: 14px;
+    font-size: 20px;
   }
   svg {
     transition: transform 0.2s ease-in;
@@ -74,12 +67,12 @@
     fill: #9189eb;
   }
   ul {
-    padding: 10px 20px;
+    padding: 16px 20px;
     line-height: 14px;
   }
   li {
-    font-size: 12px;
-    padding: 8px 0;
+    font-size: 18px;
+    padding: 10px 0;
     color: #8992b0;
   }
 
