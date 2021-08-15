@@ -177,7 +177,7 @@
             </div>
             <a href="#{bookmarks[id]}" class="small-category">{ bookmark.sc }</a>
         </div>
-        <img on:click src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
+        <img on:click={() => cancelBookmark(id)} src="../resources/img/bookmark-solid.svg" alt="bookmark"width="16" height="22" viewBox="0 0 16 22">
       </li>
       {/each}
 
