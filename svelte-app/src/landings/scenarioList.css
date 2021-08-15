@@ -1,28 +1,39 @@
-.scenario-list{overflow:hidden; margin-top: 3rem;}
+.scenario-list{ 
+    margin-top: 2rem;
+    margin-bottom: 2rem;}
 
-.sclist-ul{list-style: circle !important; margin-left:1rem !important;}
-.sclist-ul li{margin-bottom: 1rem;}
+.sclist-ul{margin: 0px;
+    padding: 0px;
+    width: 100%;}
+.sclist-ul li{display: inline-block;
+    width: 32%;
+    padding: 0.2rem 1rem ;
+    margin-bottom: 0.2rem;
+    font-size: 12px;
+    cursor: pointer;}
 .sclist-ul li a{font-size: 1.2rem; color:black !important;}
-.lc{padding: 1rem 2rem; margin-left: 4rem; }
-.lc-title{font-size:4rem; color: #6CBCC6; font-weight: bold; margin-bottom: 0.5rem;}
-.mc{margin-top: 2rem;}
-.mc-title{font-size: 1.5rem; padding:0 0.5rem; width:fit-content; margin-bottom: 0.5rem; background-color: #6CBCC6; color:white; border-radius: 10px; }
+.lc{padding: 0 2rem; margin: 0 10% 3rem 10%; width: 80%;}
+.lc-title{font-size:2rem; color: #6CBCC6; margin-bottom: 0.2rem;}
 
-#grades-container{float:left; margin-left: 6rem;}
+
+/* .mc{margin-top: 2rem;}
+.mc-title{font-size: 1.5rem; padding:0 0.5rem; width:fit-content; margin-bottom: 0.5rem; background-color: #6CBCC6; color:white; border-radius: 10px; } */
+
+/* #grades-container{}
 .title-grades{font-size: 2rem;}
 /* .grades-corrections{border: 1px solid #9189EB;}
 .grades-inquiries{border: 1px solid #9189EB;}
 .grades-evaluations{border: 1px solid #9189EB;} */
 
-#courses-container{float:left;}
+/* #courses-container{}
 .title-courses{font-size: 2rem;}
 /* .courses-submissions{border: 1px solid #9189EB;}
 .courses-attendance{border: 1px solid #9189EB;} */
-
-#registration-container{float:left;}
-.title-registration{font-size: 2rem;}
+/* 
+#registration-container{}
+.title-registration{font-size: 2rem;} */
 /* .registration-exception{border: 1px solid #9189EB;}
 .registration-rule{border: 1px solid #9189EB;} */
 
-#others-container{float:left;} 
-.others-title{font-size: 2rem;}
+/* #others-container{} 
+.others-title{font-size: 2rem;}  */

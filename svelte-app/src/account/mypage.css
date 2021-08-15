@@ -5,7 +5,6 @@
 hr{margin:0 0 1rem !important;}
 #info-container{
     width: 56%;
-    
     margin: 2rem 22% 0;
 }
 .info-title-wrap{overflow: hidden;}
@@ -18,13 +17,14 @@ hr{margin:0 0 1rem !important;}
 #editing-ul{}
 .info-box{border:1px solid #9189EB; border-radius: 5px; margin-bottom: 0.7rem; padding: 0.3rem;} /*1,2,3*/
 
+
 .name-label{margin-left:0.3rem; color: #9189EB;}
 .major-label{margin-left:0.3rem; color: #9189EB;}
 .studentId-label{margin-left:0.3rem; color: #9189EB;}
 
-.input-name{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
-.input-major{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
-.input-studentId{margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
+.input-name{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
+.input-major{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
+.input-studentId{width:90%; margin-left:0.3rem; border:none; outline:none; font-size: 1.2rem;}
 
 #static-ul{}
 

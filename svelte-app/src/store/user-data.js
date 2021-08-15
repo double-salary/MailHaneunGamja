@@ -117,3 +117,23 @@ export function remove(a, path) {
   const idx = a.indexOf(path);
   if (idx > -1) a.splice(idx, 1)
 }
+
+export async function cancelBookmarkAction(path) {
+
+  var user = await getUserAction();
+  const isBookmarked = user.bookmarks.includes(path);
+  var newBookmarks = user.bookmarks;
+
+  if (isBookmarked) {
+    remove(newBookmarks, path);
+  } else {
+    newBookmarks.push(path)
+  }
+
+  user = await updateUserAction({
+    bookmarks: newBookmarks
+  })
+  
+  return user.bookmarks;
+}
+  
