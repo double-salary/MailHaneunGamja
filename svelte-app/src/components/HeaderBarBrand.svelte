@@ -28,10 +28,35 @@
     }
     return {};
   }
+
+  function toggle() {
+    var x = document.getElementById("for_toggle");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
 </script>
 
-<div class="new_navbar">
-  <div class="new_dropdown" onclick="location.href='/landing';">
+<div class="hambuger">
+  <button class="new_dropbtn_hamburger" style="cursor: pointer">
+    <a href="/">
+    <img
+      src="../resources/img/logo.png"
+      alt="멜하는감자"
+      style="height: 40px"
+    />
+    <!--이미지 경로 기준은 public 폴더-->
+    </a>
+  </button>
+  <a href="javascript:void(0);" class="icon" on:click={toggle}>
+    <i class="fa fa-bars fa-3x"></i>
+  </a>
+</div>
+<div class="new_navbar" id="for_toggle">
+  <div class="new_dropdown broad_logo" onclick="location.href='/landing';">
     <button class="new_dropbtn" style="cursor: pointer">
         <a href="/">
         <img
@@ -96,6 +121,8 @@
     </button>
   </div>
 </div>
+
+
 <div class="new_login">
   {#if !userInfo}
     <a href="#/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
@@ -116,7 +143,7 @@
     justify-content: space-evenly; /*적당히 가운데 몰리게*/
     margin-top: 0px;
     background-color: rgba(0, 0, 0, 0);
-    height: 90px;
+    /*height: 90px;*/
   }
 
   .new_navbar span {
@@ -244,6 +271,10 @@
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
 
+  .hambuger{
+      display:none;
+    }
+
   /*new_navbar와 new_login 화면좁아서 개행되면 width 100%로 사용)*/
   @media screen and (max-width: 1024px) {
     .new_login {
@@ -251,6 +282,30 @@
     }
     .new_navbar {
       width: 100%;
+    }
+    .new_navbar {
+      flex-direction: column;
+    }
+    .new_dropdown-content {
+      margin-top:50px; 
+    }
+
+    #for_toggle{
+      display:none;
+    }
+
+    .hambuger{
+      display:flex;
+      justify-content: space-between; /*양 옆 끝에 몰기 */
+      margin:20px; /*옆에 딱 붙기 막기*/
+    }
+
+    .new_dropbtn_hamburger{
+      display:flex;
+    }
+
+    .broad_logo{
+      display:none; /* 원래로고 감추기 */
     }
   }
 </style>
