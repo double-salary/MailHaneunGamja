@@ -62,8 +62,8 @@ const SCENARIOs = {
         }
     },
     "others": {
+        "slug" : "기타문의",
         "other": {
-            "slug" : "기타문의",
             "scenarios" : {
                 "1" : "면담 신청",
                 "2" : "추천서 문의",
