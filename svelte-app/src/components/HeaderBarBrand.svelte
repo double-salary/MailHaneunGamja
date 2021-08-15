@@ -101,9 +101,10 @@
     <a href="#/login/">로그인 / 회원가입</a><!--로그인페이지로 이동-->
   {/if}
   {#if userInfo}
-    <a href="#/accounts/me" style="margin-right:10px;"><span>감자 프로필</span>
-        <!-- <div><img src="../resources/img/short-potato.png"></div> -->
+    <a href="#/accounts/me" style="margin-right:10px;">
+      <span>감자 프로필</span>
     </a><!--마이페이지로 연결-->
+    <!--<img src="../resources/img/short-potato.png" style="height:80px">-->
     <a href="/.auth/logout?post_logout_redirect_uri=/landing/">로그아웃</a>
   {/if}
 </div>
@@ -156,10 +157,10 @@
     fill: var(--purple-main);
   }
 
-  /*svg 화살표 hover때 색깔 바꾸기*/
-  .for_svg:hover {
-    filter: invert(61%) sepia(89%) saturate(2528%) hue-rotate(210deg)
-      brightness(100%) contrast(85%);
+  /*svg 화살표 hover때 색깔 바꾸기 #9189eb*/
+  .for_svg:hover > img{ 
+    filter: invert(68%) sepia(40%) saturate(4334%)
+    hue-rotate(207deg) brightness(94%) contrast(96%);
   }
 
   .new_dropbtn_img {
@@ -201,7 +202,7 @@
   }
 
   .new_dropdown-content span:hover {
-    background-color: #9189eb; /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
+    background-color: var(--purple-main); /*뒷배경 넣어도 여기는 회색처리 해야할듯*/
     color: #ffffff;
   }
 
