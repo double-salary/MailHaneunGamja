@@ -5,7 +5,6 @@
 hr{margin:0 0 1rem !important;}
 #info-container{
     width: 56%;
-    
     margin: 2rem 22% 0;
 }
 .info-title-wrap{overflow: hidden;}
@@ -29,8 +28,17 @@ hr{margin:0 0 1rem !important;}
 #static-ul{}
 
 .name-info{margin-left:0.3rem; font-size: 1.2rem;}
+.name-info:empty:before{
+    content: attr(placeholder);
+  }
 .major-info{margin-left:0.3rem; font-size: 1.2rem;}
+.major-info:empty:before{
+    content: attr(placeholder);
+  }
 .studentId-info{margin-left:0.3rem; font-size: 1.2rem;}
+.studentId-info:empty:before{
+    content: attr(placeholder);
+  }
 
 #bookmark-container{
     width: 56%;

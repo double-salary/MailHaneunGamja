@@ -1,22 +1,32 @@
 <script>
+  /* css */
   import './account/mypage.css';
-  import './mails/Mails.css';
   import './landings/scenarioList.css';
   import './landings/landings.css';
   import './styles.scss';
   import './global.css';
-  import { Router, Link, Route } from 'svelte-routing';
-  import About from './About.svelte';
-  import Products from './products/Products.svelte';
-  import Account from './account/Mypage.svelte';
-  import Mails from './mails/Mails.svelte';
+
+  /* svelte */
+  import { HeaderBar, PageNotFound } from './components';
   import Landing from './landings/Landing.svelte';
+  import Mails from './mails/Mails.svelte';
   import ScenarioList from './landings/ScenarioList.svelte';
   import Login from './login/Login.svelte';
 
-  import { HeaderBar, NavBar, PageNotFound, Redirect } from './components';
+  /* router */
+  import Router from 'svelte-spa-router';
+  import Mypage from './account/Mypage.svelte';
 
-  export let url = '';
+  const routes = new Map();
+
+  // ex #/account
+  routes.set('/', Landing);
+  routes.set('/scenarioList', ScenarioList);
+  routes.set('/login', Login);
+  routes.set('/accounts/me', Mypage);
+  routes.set('/mails', Mails);
+  routes.set('/mails/*', Mails);
+  routes.set('*', PageNotFound);
 </script>
 
 <svelte:head>
@@ -29,18 +39,7 @@
 
 <HeaderBar />
 
-<Router {url}>
-  <Route path="/">
-    <Redirect path="/landing" />
-  </Route>
-  <Route path="/landing" component={Landing} />
-  <Route path="/scenarioList" component={ScenarioList} />
-  <Route path="/login" component={Login} />
-  <Route path="/about" component={About} />
-  <Route path="/account" component={Account} />
-  <Route path="/mails" component={Mails} />
-  <Route path="**" component={PageNotFound} />
-</Router>
+<Router {routes} />
 
 <style>
 </style>

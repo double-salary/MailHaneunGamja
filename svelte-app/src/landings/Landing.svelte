@@ -79,7 +79,7 @@
         메일 앞에서 <br /> 말하는 감자가 <br /> 되어버리는 <br /> 당신을 위해서
       </div>
       <div class="link-button">
-        <a href="/scenarioList" class="link-button__text" style="font-size: {buttonFontSize}px">
+        <a href="#/scenarioList" class="link-button__text" style="font-size: {buttonFontSize}px">
           가능한 시나리오 보러가기
         </a>
         <!-- <div class="link-button__text" style="font-size: {buttonFontSize}px">
@@ -115,3 +115,7 @@
     </div>
   </div>
 </div>
+
+<img class="landing-potato" src="../resources/img/long-potato.png">
+
+

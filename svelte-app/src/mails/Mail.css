@@ -1,0 +1,275 @@
+*{
+  font-family: 'NanumSquareOTF_ac';
+}
+.mail__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+.mail__content {
+  width: 90%;
+  background-color: #e0f2f4;
+  border-radius: 16px;
+  padding: 32px;
+}
+textarea {
+  resize: none;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+button{
+  cursor: pointer;
+  border: none;
+}
+span:empty:before{
+  content: attr(placeholder);
+}
+p:empty:before{
+  content: attr(placeholder);
+}
+
+/* 메일 상단 */
+.mail__header {
+  border-radius: 16px 16px 0 0;
+  background-color: #efefef;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mail__header span {
+  width: 100%;
+  margin-left: -18%;
+  font-size: 16px;
+  color: #3f424d;
+}
+.mail__circle {
+  width: 100%;
+}
+.mail__circle > i:nth-child(1) {
+  margin-left: 15px;
+  color: #9189eb;
+  font-size: 14px;
+  margin-right:2px;
+}
+.mail__circle i:nth-child(2) {
+  color: #6cbcc6;
+  font-size: 14px;
+  margin-right:2px;
+}
+.mail__circle i:nth-child(3) {
+  color: #f4bc77;
+  font-size: 14px;
+  margin-right:2px;
+}
+.mail__bookmark i {
+  color: #6cbcc6;
+  font-size: 16px;
+  margin-right: 15px;
+}
+
+/* 받는 사람 */
+.mail__recipient {
+  background-color: #ffffff;
+  color: #8992b0;
+  font-size: 16px;
+  padding: 7px 15px;
+  border-bottom: 2px solid #efefef;
+}
+.mail__recipient > p {
+  background-color: #9189eb;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 2px 8px;
+  font-size: 12px;
+  display: inline-block;
+}
+.mail__recipient > p > i {
+  font-size: 12px;
+}
+
+/* 제목 */
+.mail__title {
+  background-color: #ffffff;
+  color: #8992b0;
+  font-size: 16px;
+  padding: 6px 15px;
+  border-bottom: 2px solid #efefef;
+}
+.mail__title span {
+  border: none;
+  color: #3f424d;
+  font-size: 16px;
+  padding: 0 10px;
+}
+.mail__title > p {
+  color: #3f424d;
+  padding: 1px 8px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+/* 내용 */
+.mail__text {
+  width: 100%;
+  background-color: #ffffff;
+  color: #3f424d;
+  font-size: 16px;
+  padding: 15px;
+  border-bottom: 2px solid #efefef;
+}
+.mail__text span:not(.mail__last-words span) {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #6cbcc6;
+  padding: 0 10px;
+}
+
+/* 사유 예시 */
+.mail__example {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #6cbcc6;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 20px;
+}
+.mail__example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.mail__reason {
+  border:none;
+  font-size: 16px;
+  color: #6cbcc6;
+}
+.mail__example p:empty:before{
+  color:#cecece;
+}
+
+/* 끝 인사 */
+.mail__last-words{
+  margin: 10px 0;
+}
+.mail__last-words span {
+  border-bottom: 1px solid #f4bc77;
+  font-size: 16px;
+  padding: 0 10px;
+}
+.mail__last-words span:empty:before {
+  color:#cecece;
+}
+
+/* 클립보드 복사 */
+.mail__copy {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 0 0 16px 16px;
+  padding: 10px;
+}
+.mail__copy-btn {
+  background-color: #9189eb;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 2px 5px;
+  border-radius: 8px;
+}
+/* 끝 인사 */
+.mail__last-words-add {
+  margin-top: 15px;
+  width: 100%;
+  font-size: 14px;
+  color: #3f424d;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+.mail__last-words-add .mail__header {
+  justify-content: flex-start;
+}
+.mail__last-words-content {
+  background-color: #ffffff;
+  padding: 20px 20px;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+  position: relative;
+  height: 70px;
+}
+.mail__last-words-content input[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f4bc77;
+  border: none;
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.mail__last-words-content input[type='radio']:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #ffffff;
+  border: 4px solid #f4bc77;
+  box-sizing: border-box;
+  border-radius: 100%;
+}
+.mail__btn-option {
+  width: 50%;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.mail__sync-btn{
+  position: absolute;
+  bottom:10px;
+  right:10px;
+  color:#ffffff;
+  font-size:14px;
+  background-color: #F4BC77;
+  border-radius: 8px;
+  padding:2px 5px;
+  border:none;
+}
+
+/* 사유 예시 */
+.example {
+  width: 35%;
+  padding: 20px;
+  padding-top:0;
+}
+.example__title {
+  font-size: 20px;
+  color: #6cbcc6;
+  border-bottom: 2px solid #efefef;
+  padding-bottom: 5px;
+}
+.example__content {
+  margin: 15px 0;
+  border: 1px solid #6cbcc6;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  position: relative;
+  padding-bottom: 40px;
+  line-height: 20px;
+}
+.example__content button {
+  background-color: #6cbcc6;
+  padding: 3px 8px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  position: absolute;
+  margin: 6px;
+  bottom: 0;
+  right: 0;
+}
