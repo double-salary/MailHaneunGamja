@@ -316,6 +316,9 @@ span:empty:before {
     margin-left: 0;
     margin: 30px;
   }
+  .mail__content{
+    padding:10px;
+  }
   .mail__last-words-content {
     height: 80px;
   }
