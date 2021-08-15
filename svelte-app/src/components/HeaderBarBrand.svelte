@@ -273,12 +273,13 @@
 
     
   }
-
+  /*로그인/회원가입, 감자, 로그아웃 box shadow*/
   .new_login a:hover{
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
-
+  
+  /*화면 넓을때는 햄버거 안보이게*/
   .hamburger{
       display:none;
     }
@@ -295,7 +296,7 @@
       flex-direction: column;
     }
     .new_dropdown-content {
-      margin-top:50px; 
+      margin-top:50px; /*hover했을때 내려오는 세부카테고리 높이 맞추기*/
     }
 
     #for_toggle, #for_toggle_login{
@@ -310,7 +311,14 @@
 
     .hamburger .icon{
       color: var(--yellow-main);
-      margin-top:10px;
+      margin-top:10px; /*왼쪽이랑 높이 맞추기 위해*/
+    }
+
+    /*TODO for 수빈의 테두리 이쁘게 만들기*/
+    .hamburger .icon i{
+      border: solid 2px var(--yellow-main);
+      padding: 5px;
+      border-radius: 16px;
     }
 
     .new_dropbtn_hamburger{
@@ -322,7 +330,7 @@
       display:none; /* 원래로고 감추기 */
     }
 
-    .etc{ /* 기타문의 간격맞추기 */
+    .etc{ /* 기타문의 화살표 없는거 때문에 간격맞추기 */
       height: 55px;
     }
   }
