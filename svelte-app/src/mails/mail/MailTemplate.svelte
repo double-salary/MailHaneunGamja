@@ -218,18 +218,20 @@
   <!-- 사유 예시 -->
   <div class="example">
     <div class="example__title">다양한 사유 보기</div>
-    {#each exampleData as ex, id}
-      <div class="example__content">
-        <p>{ex}</p>
-        <button
-          on:click={() => {
-            example = ex;
-          }}
-        >
-          적용
-          <i class="fas fa-pencil-alt" />
-        </button>
-      </div>
-    {/each}
+    <div class="example__data">
+      {#each exampleData as ex, id}
+        <div class="example__content">
+          <p>{ex}</p>
+          <button
+            on:click={() => {
+              example = ex;
+            }}
+          >
+            적용
+            <i class="fas fa-pencil-alt" />
+          </button>
+        </div>
+      {/each}
+    </div>
   </div>
 </div>
