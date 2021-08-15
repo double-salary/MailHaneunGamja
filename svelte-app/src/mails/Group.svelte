@@ -84,7 +84,7 @@
     <div class="mail">
       {#if params.subcategory === 'corrections'}
         {#if params.id === '1'}
-          <Mail />
+          <MailGradesCorrections1 />
         {/if}
       {:else if params.subcategory === 'inquiries'}
         {#if params.id === '1'}
