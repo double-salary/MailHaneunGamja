@@ -1,6 +1,15 @@
 <script>
     import { slide } from 'svelte/transition';
     import { onMount } from 'svelte';
+    import { getRandomLastWords } from '../lastWords/lastWords-data';
+    import { bookmarkAction, getUserAction } from '../../../store/user-data';
+    import { location } from 'svelte-spa-router';
+  
+    const exampleData = [
+      '다름이 아니라 이 강의에 주전공 수강제한이 걸려 있어서 첫째날 수강신청을 못하게 되었는데, 저는 경영학과 부전공을 희망하고 있어 이번 학기에 꼭 이 강의를 수강하고 싶습니다. 하여 정원 외 수강신청을 받아주시는지 여쭙고자 메일을 보내게 되었습니다.',
+      '다름이 아니라 정원 외 수강신청을 받으시는지 여쭙고자 메일을 드리게 되었습니다. 지난 번처럼 구글폼으로 신청자를 받으시는지, 아니면 수강 신청 날 메일을 보내면 될지 알려주신다면 감사하겠습니다.',
+    ];
+  
     let name = '';
     let department = '';
     let studentId = '';
@@ -8,59 +17,44 @@
     //let assignment = '';
     let lastWords = '';
     let example = '';
-    let selected = 'weather';
-    let min;
-    let max;
-    const exampleData = {
-      1: '다름이 아니라 이 강의에 주전공 수강제한이 걸려 있어서 첫째날 수강신청을 못하게 되었는데, 저는 경영학과 부전공을 희망하고 있어 이번 학기에 꼭 이 강의를 수강하고 싶습니다. 하여 정원 외 수강신청을 받아주시는지 여쭙고자 메일을 보내게 되었습니다. ',
-      2: '다름이 아니라 정원 외 수강신청을 받으시는지 여쭙고자 메일을 드리게 되었습니다. 지난 번처럼 구글폼으로 신청자를 받으시는지, 아니면 수강 신청 날 메일을 보내면 될지 알려주신다면 감사하겠습니다.',
-    };
-    
-    const weatherLastWords={
-      1: '날이 더운데 항상 감사드립니다.', 
-      2: '날이 추운데 감기 조심하시고, 건강하시길 기원합니다.', 
-      3: '날이 좋은데 어쩌구', 
-    }
-    const coronaLastWords={
-      1: '코로나가 다시 악화되었는데 건강하시길 바랍니다.', 
-      2: '건강이 어쩌구', 
-      3: '코로나 사태에도 불구하고 좋은 강의 감사합니다.', 
-    }
-    
-    function apply(event) {
-      const button = event.target;
-      example = button.parentElement.firstChild.innerText;
-    }
+    let checkedWeather = true;
+    var bookmarked = false;
+    let hideBookmark = true;
   
-    function randomApply(event) {
-      const input = document.getElementById('input');
-  
-      /* 랜덤으로 index 결정 */
-      let i = Math.floor(Math.random() * (max - min + 1)) + min;
-      min = 1;
-      max = 3;
-  
-      if (input.checked === true){
-        lastWords=weatherLastWords[i];
+    onMount(async () => {
+      lastWords = getRandomLastWords(checkedWeather);
+      const userInfo = await getUserAction();
+      if (userInfo == null) {
+        hideBookmark = true;
+      } else {
+        hideBookmark = false;
+        bookmarked = userInfo.bookmarks.includes($location);
+        name = userInfo.name;
+        department = userInfo.major;
+        studentId = userInfo.studentId;
       }
-      else {
-        lastWords=coronaLastWords[i];
-      }
-    }
+    });
   
-      import CopyClipBoard from '../../CopyClipBoard.svelte';
+    import CopyClipBoard from '../../CopyClipBoard.svelte';
   
-    
-      const copy = () => {
+    const copy = () => {
       let mail = document.getElementById('copy').innerText;
   
-          const app = new CopyClipBoard({
-              target: document.getElementById('clipboard'),
-              props: { mail },
-          });
-          app.$destroy();
+      const app = new CopyClipBoard({
+        target: document.getElementById('clipboard'),
+        props: { mail },
+      });
+      app.$destroy();
       alert('Copied to clipboard!');
-      }
+    };
+  
+    function refreshLastWords() {
+      lastWords = getRandomLastWords(checkedWeather);
+    }
+  
+    async function handleBookmark() {
+      bookmarked = await bookmarkAction($location);
+    }
   </script>
   
   <div class="mail__wrapper">
@@ -72,8 +66,13 @@
           <i class="fas fa-circle" />
           <i class="fas fa-circle" />
         </div>
-        <div class="mail__bookmark">
-          <i class="fas fa-bookmark" />
+        <span>정원 외 수강신청 가능여부 문의할 때</span>
+        <div class="mail__bookmark" hidden={hideBookmark}>
+          {#if bookmarked}
+            <i class="fas fa-bookmark" on:click={handleBookmark} />
+          {:else}
+            <i class="far fa-bookmark" on:click={handleBookmark} />
+          {/if}
         </div>
       </div>
   
@@ -90,7 +89,8 @@
       <div class="mail__title">
         제목:
         <p>
-          [<span placeholder="강의명" contenteditable="true" bind:innerHTML={className}></span>] 정원 외 수강신청 가능 여부 문의드립니다.
+            [<span placeholder="강의명" contenteditable="true" bind:innerHTML={className}></span>]
+            정원 외 수강신청 가능 여부 문의드립니다.
         </p>
       </div>
   
@@ -101,22 +101,22 @@
         <span placeholder="학번" class="mail__student-id" contenteditable="true" bind:innerHTML={studentId}></span>
         <span placeholder="이름" class="mail__name" contenteditable="true" bind:innerHTML={name}></span>
         입니다.
-
+  
         <!-- 사유 예시 -->
         <div class="mail__example">
-          <div class="mail__example-header">
-            <input class="mail__reason" value="사유 예시" readonly/>
-          </div>
-          <p
-            placeholder="이번 학기부터 이 강의에 경영학과 수강제한이 걸려서 첫째날 수강신청을 못하게 되었습니다. 저는 경영학과 부전공을 희망하고 있어 이번학기에 꼭 이 강의를 수강하고 싶습니다. "
-            contenteditable="true"
-            bind:innerHTML={example} >
-          </p>
+            <div class="mail__example-header">
+              <input class="mail__reason" value="사유 예시" readonly/>
+            </div>
+            <p
+              placeholder="이번 학기부터 이 강의에 경영학과 수강제한이 걸려서 첫째날 수강신청을 못하게 되었습니다. 저는 경영학과 부전공을 희망하고 있어 이번학기에 꼭 이 강의를 수강하고 싶습니다. "
+              contenteditable="true"
+              bind:innerHTML={example} >
+            </p>
         </div>
-  
-        꼭 교수님의 수업을 수강하고 싶습니다.
-        <br>
-        메일 읽어주셔서 감사드립니다. 답신 기다리고 있겠습니다!
+    
+          꼭 교수님의 수업을 수강하고 싶습니다.
+          <br>
+          메일 읽어주셔서 감사드립니다. 답신 기다리고 있겠습니다!
   
         <!-- 끝 인사 -->
         <div class="mail__last-words">
@@ -124,26 +124,23 @@
             placeholder="요즘 코로나가 기승인데 건강 조심하시길 바랍니다."
             contenteditable="true"
             bind:innerHTML={lastWords}
-          >
-          </span>
+          />
         </div>
   
-        <span
-          class="mail__name"
-          placeholder="이름"
-          contenteditable="true"
-          bind:innerHTML={name}
-        >
-        </span> 올림
+        <span placeholder="이름" class="mail__name" contenteditable="true" bind:innerHTML={name}></span> 올림
       </div>
   
       <!-- 클립보드 복사 -->
       <div class="mail__copy">
-        <button class="mail__copy-btn" on:click={copy}>
+        <button
+          class="mail__copy-btn"
+          on:click={copy}
+          data-clipboard-target="#bar"
+        >
           클립보드에 복사&nbsp;
           <i class="far fa-clone" />
         </button>
-        <div id="clipboard"></div>
+        <div id="clipboard" />
       </div>
   
       <!-- 끝 인사 -->
@@ -159,26 +156,27 @@
         <div class="mail__last-words-content">
           <label class="mail__btn-option">
             <input
-            id="input"
-            checked={selected === 'weather'}
-            type="radio"
-            name="amount"
-            value="계절별 안부인사"
+              id="input"
+              type="radio"
+              bind:group={checkedWeather}
+              name="amount"
+              value={true}
+              placeholder="계절별 안부인사"
             />
             <span> 계절별 안부인사 </span>
           </label>
           <label class="mail__btn-option">
             <input
-            checked={selected === 'corona'}
-            type="radio"
-            name="amount"
-            value="코시국 안부인사"
+              type="radio"
+              bind:group={checkedWeather}
+              name="amount"
+              value={false}
             />
             <span> 코시국 안부인사 </span>
           </label>
-          <button on:click={(e) => randomApply(e)} class="mail__sync-btn">
+          <button on:click={refreshLastWords} class="mail__sync-btn">
             다른 안부인사 보기
-            <i class="fas fa-sync-alt"></i>
+            <i class="fas fa-sync-alt" />
           </button>
         </div>
       </div>
@@ -187,10 +185,14 @@
     <!-- 사유 예시 -->
     <div class="example">
       <div class="example__title">다양한 사유 보기</div>
-      {#each Object.entries(exampleData) as example}
+      {#each exampleData as ex, id}
         <div class="example__content">
-          <p>{example[1]}</p>
-          <button on:click={(e) => apply(e)}>
+          <p>{ex}</p>
+          <button
+            on:click={() => {
+              example = ex;
+            }}
+          >
             적용
             <i class="fas fa-pencil-alt" />
           </button>
