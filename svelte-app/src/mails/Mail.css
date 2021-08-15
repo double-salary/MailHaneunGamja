@@ -364,6 +364,9 @@ span:empty:before {
   .mail__text span:empty:before {
     font-size: 12px;
   }
+  .mail__text span {
+    font-size: 12px;
+  }
   .mail__example input {
     font-size: 12px;
   }
